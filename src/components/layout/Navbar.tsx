@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Radio } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { supabase } from '@/integrations/supabase/client';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,7 +12,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 
-const LOGO_URL = 'https://cdn.enter.pro/resources/uid_100066245/29b71ed7-ea27-47.png';
+const LOGO_URL = 'https://cdn.enter.pro/resources/uid_100066245/55b7f7df-d041-4c.png';
 
 const aboutLinks = [
   { label: 'Brief History of the Church', to: '/about' },
@@ -34,7 +36,42 @@ const mediaLinks = [
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [now, setNow] = useState(new Date());
   const navigate = useNavigate();
+
+  // Live clock
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Fetch published news headlines
+  const { data: newsHeadlines = [] } = useQuery({
+    queryKey: ['news_ticker'],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from('news_announcements')
+        .select('title')
+        .eq('is_published', true)
+        .order('published_at', { ascending: false })
+        .limit(8);
+      return (data ?? []).map((n: { title: string }) => n.title);
+    },
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const fallbackHeadlines = [
+    'Welcome to Christ Foundation Gospel Church (Inc.)',
+    'Sunday Worship Service — 9:00 AM & 11:00 AM',
+    'Midweek Bible Study every Wednesday — 6:30 PM',
+    'Prayer & Fasting — First Friday of every month',
+  ];
+
+  const headlines = newsHeadlines.length > 0 ? newsHeadlines : fallbackHeadlines;
+  const tickerText = headlines.join('   •••   ');
+
+  const dateStr = now.toLocaleDateString('en-GH', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
+  const timeStr = now.toLocaleTimeString('en-GH', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `text-sm font-serif transition-colors ${
@@ -43,11 +80,37 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 shadow-blue">
-      {/* Top announcement bar */}
-      <div className="bg-church-red py-1.5 px-4 text-center">
-        <p className="text-primary-foreground text-xs font-serif">
-          <span className="font-semibold">"Christ, the Sure Foundation"</span> — I Corinthians 3:11
-        </p>
+      {/* Top info bar */}
+      <div className="bg-church-red">
+        <div className="container mx-auto px-4 flex items-center h-8 gap-3">
+          {/* Quote — hidden on small screens */}
+          <span className="hidden lg:block text-[11px] font-serif text-white/90 italic shrink-0">
+            "Christ, the Sure Foundation" — I Cor 3:11
+          </span>
+          <div className="hidden lg:block w-px h-4 bg-white/30 shrink-0" />
+
+          {/* News ticker */}
+          <div className="flex-1 flex items-center gap-2 overflow-hidden min-w-0">
+            <span className="flex items-center gap-1 bg-white/20 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shrink-0 uppercase tracking-wider border border-white/30">
+              <Radio className="w-2.5 h-2.5" />
+              News
+            </span>
+            <div className="overflow-hidden flex-1">
+              <p className="animate-ticker whitespace-nowrap text-[11px] font-serif text-white/95">
+                {tickerText}
+              </p>
+            </div>
+          </div>
+
+          <div className="hidden sm:block w-px h-4 bg-white/30 shrink-0" />
+
+          {/* Date & Time */}
+          <div className="hidden sm:flex items-center gap-1.5 shrink-0 text-[11px] font-serif text-white/90 tabular-nums">
+            <span>{dateStr}</span>
+            <span className="text-white/50">|</span>
+            <span className="font-semibold">{timeStr}</span>
+          </div>
+        </div>
       </div>
 
       {/* Main navbar */}

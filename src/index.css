@@ -121,6 +121,16 @@ body,
   min-height: 100%;
 }
 
+/* News ticker scroll animation */
+@keyframes ticker-scroll {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.animate-ticker {
+  display: inline-block;
+  animation: ticker-scroll 35s linear infinite;
+}
+
 /* Hero slider animation */
 @keyframes fade-slide-in {
   from { opacity: 0; transform: translateY(20px); }
