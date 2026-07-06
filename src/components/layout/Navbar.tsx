@@ -45,6 +45,21 @@ export function Navbar() {
     return () => clearInterval(timer);
   }, []);
 
+  // Fetch top bar settings from DB
+  const { data: topbarSettings } = useQuery({
+    queryKey: ['topbar_settings'],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from('website_settings')
+        .select('key, value')
+        .eq('setting_group', 'topbar');
+      const map: Record<string, string> = {};
+      (data ?? []).forEach((s: { key: string; value: string }) => { map[s.key] = s.value; });
+      return map;
+    },
+    staleTime: 60 * 1000,
+  });
+
   // Fetch published news headlines
   const { data: newsHeadlines = [] } = useQuery({
     queryKey: ['news_ticker'],
@@ -60,14 +75,14 @@ export function Navbar() {
     staleTime: 5 * 60 * 1000,
   });
 
-  const fallbackHeadlines = [
-    'Welcome to Christ Foundation Gospel Church (Inc.)',
-    'Sunday Worship Service — 9:00 AM & 11:00 AM',
-    'Midweek Bible Study every Wednesday — 6:30 PM',
-    'Prayer & Fasting — First Friday of every month',
-  ];
+  const showQuote = topbarSettings?.topbar_show_quote !== 'false';
+  const showNews = topbarSettings?.topbar_show_news !== 'false';
+  const showClock = topbarSettings?.topbar_show_clock !== 'false';
+  const quoteText = topbarSettings?.topbar_quote ?? '"Christ, the Sure Foundation"';
+  const quoteRef = topbarSettings?.topbar_quote_reference ?? 'I Corinthians 3:11';
+  const fallbackTicker = topbarSettings?.topbar_news_fallback ?? 'Welcome to Christ Foundation Gospel Church (Inc.) • Sunday Worship: 9:00 AM & 11:00 AM';
 
-  const headlines = newsHeadlines.length > 0 ? newsHeadlines : fallbackHeadlines;
+  const headlines = newsHeadlines.length > 0 ? newsHeadlines : fallbackTicker.split('•').map((s: string) => s.trim()).filter(Boolean);
   const tickerText = headlines.join('   •••   ');
 
   const dateStr = now.toLocaleDateString('en-GH', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
@@ -84,32 +99,41 @@ export function Navbar() {
       <div className="bg-church-red">
         <div className="container mx-auto px-4 flex items-center h-8 gap-3">
           {/* Quote — hidden on small screens */}
-          <span className="hidden lg:block text-[11px] font-serif text-white/90 italic shrink-0">
-            "Christ, the Sure Foundation" — I Cor 3:11
-          </span>
-          <div className="hidden lg:block w-px h-4 bg-white/30 shrink-0" />
+          {showQuote && (
+            <>
+              <span className="hidden lg:block text-[11px] font-serif text-white/90 italic shrink-0">
+                {quoteText} — {quoteRef}
+              </span>
+              <div className="hidden lg:block w-px h-4 bg-white/30 shrink-0" />
+            </>
+          )}
 
           {/* News ticker */}
-          <div className="flex-1 flex items-center gap-2 overflow-hidden min-w-0">
-            <span className="flex items-center gap-1 bg-white/20 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shrink-0 uppercase tracking-wider border border-white/30">
-              <Radio className="w-2.5 h-2.5" />
-              News
-            </span>
-            <div className="overflow-hidden flex-1">
-              <p className="animate-ticker whitespace-nowrap text-[11px] font-serif text-white/95">
-                {tickerText}
-              </p>
+          {showNews && (
+            <div className="flex-1 flex items-center gap-2 overflow-hidden min-w-0">
+              <span className="flex items-center gap-1 bg-white/20 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shrink-0 uppercase tracking-wider border border-white/30">
+                <Radio className="w-2.5 h-2.5" />
+                News
+              </span>
+              <div className="overflow-hidden flex-1">
+                <p className="animate-ticker whitespace-nowrap text-[11px] font-serif text-white/95">
+                  {tickerText}
+                </p>
+              </div>
             </div>
-          </div>
+          )}
 
-          <div className="hidden sm:block w-px h-4 bg-white/30 shrink-0" />
-
-          {/* Date & Time */}
-          <div className="hidden sm:flex items-center gap-1.5 shrink-0 text-[11px] font-serif text-white/90 tabular-nums">
-            <span>{dateStr}</span>
-            <span className="text-white/50">|</span>
-            <span className="font-semibold">{timeStr}</span>
-          </div>
+          {showClock && (
+            <>
+              <div className="hidden sm:block w-px h-4 bg-white/30 shrink-0" />
+              {/* Date & Time */}
+              <div className="hidden sm:flex items-center gap-1.5 shrink-0 text-[11px] font-serif text-white/90 tabular-nums">
+                <span>{dateStr}</span>
+                <span className="text-white/50">|</span>
+                <span className="font-semibold">{timeStr}</span>
+              </div>
+            </>
+          )}
         </div>
       </div>
 

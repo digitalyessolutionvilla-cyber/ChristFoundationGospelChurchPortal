@@ -7,12 +7,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { logActivity } from '@/hooks/useAdminProfile';
-import { Save, Globe, Phone, Mail, Share2, Settings, Image } from 'lucide-react';
+import { Save, Globe, Phone, Mail, Share2, Settings, Image, Layout } from 'lucide-react';
 
 const settingGroups = [
+  { key: 'topbar', label: 'Top Bar', icon: Layout },
   { key: 'general', label: 'General', icon: Settings },
   { key: 'church', label: 'Church Info', icon: Globe },
   { key: 'footer', label: 'Footer', icon: Globe },
@@ -95,28 +97,53 @@ function WebsiteSettingsInner() {
         {isLoading ? (
           <div className="space-y-4">{[1,2,3,4].map(i => <Skeleton key={i} className="h-14 rounded-lg" />)}</div>
         ) : (
-          <div className="space-y-4">
-            {settings?.map((s: Setting) => (
-              <div key={s.key}>
-                <Label htmlFor={s.key} className="font-serif text-sm font-semibold">{s.label}</Label>
-                {s.value.length > 80 ? (
-                  <Textarea
-                    id={s.key}
-                    value={values[s.key] ?? s.value}
-                    onChange={e => setValues(v => ({ ...v, [s.key]: e.target.value }))}
-                    className="mt-1.5 font-serif text-sm min-h-20"
-                  />
-                ) : (
-                  <Input
-                    id={s.key}
-                    value={values[s.key] ?? s.value}
-                    onChange={e => setValues(v => ({ ...v, [s.key]: e.target.value }))}
-                    className="mt-1.5 font-serif"
-                  />
-                )}
-                <p className="text-[10px] text-muted-foreground font-serif mt-1">Key: {s.key}</p>
+          <div className="space-y-5">
+            {activeGroup === 'topbar' && (
+              <div className="bg-muted/30 rounded-xl p-4 border border-border mb-2">
+                <p className="font-serif text-xs text-muted-foreground">
+                  These settings control what appears in the red top bar of your website. Changes are reflected immediately on the live site.
+                </p>
               </div>
-            ))}
+            )}
+            {settings?.map((s: Setting) => {
+              const isBool = s.value === 'true' || s.value === 'false';
+              const currentVal = values[s.key] ?? s.value;
+              return (
+                <div key={s.key}>
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex-1">
+                      <Label htmlFor={s.key} className="font-serif text-sm font-semibold">{s.label}</Label>
+                      {isBool && (
+                        <p className="text-[10px] text-muted-foreground font-serif mt-0.5">Toggle on or off</p>
+                      )}
+                    </div>
+                    {isBool && (
+                      <Switch
+                        checked={currentVal === 'true'}
+                        onCheckedChange={v => setValues(val => ({ ...val, [s.key]: v ? 'true' : 'false' }))}
+                      />
+                    )}
+                  </div>
+                  {!isBool && (
+                    currentVal.length > 100 ? (
+                      <Textarea
+                        id={s.key}
+                        value={currentVal}
+                        onChange={e => setValues(v => ({ ...v, [s.key]: e.target.value }))}
+                        className="mt-1.5 font-serif text-sm min-h-20"
+                      />
+                    ) : (
+                      <Input
+                        id={s.key}
+                        value={currentVal}
+                        onChange={e => setValues(v => ({ ...v, [s.key]: e.target.value }))}
+                        className="mt-1.5 font-serif"
+                      />
+                    )
+                  )}
+                </div>
+              );
+            })}
             <div className="pt-2 flex justify-end">
               <Button onClick={() => saveMutation.mutate()} disabled={saveMutation.isPending} className="bg-primary text-primary-foreground font-serif gap-2">
                 <Save className="w-4 h-4" /> {saveMutation.isPending ? 'Saving...' : 'Save Settings'}

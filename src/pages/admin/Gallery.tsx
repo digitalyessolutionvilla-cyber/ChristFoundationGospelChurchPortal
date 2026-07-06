@@ -135,7 +135,6 @@ function GalleryInner() {
     if (!selectedAlbum) return;
     setUploading(true);
     try {
-      await supabase.storage.createBucket('cfgc-media', { public: true }).catch(() => null);
       const { data: { session } } = await supabase.auth.getSession();
       let uploaded = 0;
       for (const file of files) {

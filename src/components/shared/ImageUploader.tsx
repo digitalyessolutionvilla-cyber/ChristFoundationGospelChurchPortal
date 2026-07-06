@@ -34,9 +34,6 @@ export function ImageUploader({
       const ext = file.name.split('.').pop();
       const path = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
 
-      // Try to create bucket if it doesn't exist
-      await supabase.storage.createBucket('cfgc-media', { public: true }).catch(() => null);
-
       const { error } = await supabase.storage.from('cfgc-media').upload(path, file, { upsert: true });
       if (error) throw error;
 

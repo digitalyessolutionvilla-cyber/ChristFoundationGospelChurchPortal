@@ -1,0 +1,38 @@
+
+-- Create the cfgc-media storage bucket
+INSERT INTO storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+VALUES (
+  'cfgc-media',
+  'cfgc-media',
+  true,
+  52428800,  -- 50MB limit
+  ARRAY['image/jpeg','image/png','image/gif','image/webp','image/svg+xml','video/mp4','video/webm','audio/mpeg','audio/mp3','audio/wav','application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+)
+ON CONFLICT (id) DO UPDATE SET public = true;
+
+-- Storage RLS policies
+CREATE POLICY "Public read cfgc-media"
+  ON storage.objects FOR SELECT
+  USING (bucket_id = 'cfgc-media');
+
+CREATE POLICY "Authenticated upload cfgc-media"
+  ON storage.objects FOR INSERT
+  WITH CHECK (bucket_id = 'cfgc-media' AND auth.role() = 'authenticated');
+
+CREATE POLICY "Authenticated update cfgc-media"
+  ON storage.objects FOR UPDATE
+  USING (bucket_id = 'cfgc-media' AND auth.role() = 'authenticated');
+
+CREATE POLICY "Authenticated delete cfgc-media"
+  ON storage.objects FOR DELETE
+  USING (bucket_id = 'cfgc-media' AND auth.role() = 'authenticated');
+
+-- Top Bar website settings
+INSERT INTO website_settings (key, value, label, setting_group) VALUES
+  ('topbar_quote', '"Christ, the Sure Foundation"', 'Bible Quote Text', 'topbar'),
+  ('topbar_quote_reference', 'I Corinthians 3:11', 'Quote Reference (Bible verse)', 'topbar'),
+  ('topbar_show_quote', 'true', 'Show Quote on Top Bar', 'topbar'),
+  ('topbar_show_news', 'true', 'Show News Ticker', 'topbar'),
+  ('topbar_show_clock', 'true', 'Show Date & Time', 'topbar'),
+  ('topbar_news_fallback', 'Welcome to Christ Foundation Gospel Church (Inc.) • Sunday Worship: 9:00 AM & 11:00 AM • Midweek Bible Study: Wednesday 6:30 PM • Prayer & Fasting: First Friday of every month', 'Fallback News Ticker Text (shown when no news is published)', 'topbar')
+ON CONFLICT (key) DO NOTHING;
