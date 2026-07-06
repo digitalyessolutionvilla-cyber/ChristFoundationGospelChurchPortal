@@ -8,10 +8,11 @@ import {
   LayoutDashboard, FileText, Users, CalendarDays, Image, Newspaper,
   MessageSquare, Settings, LogOut, ChevronDown, ChevronRight,
   Radio, Tv, Map, BookOpen, Sliders, Bell, UserCog, Activity,
-  HandHeart, Mail, Rss, Menu, X, Shield
+  HandHeart, Mail, Rss, Menu, X, Shield, FolderOpen, Navigation,
+  Tag, Layers
 } from 'lucide-react';
 
-const LOGO_URL = 'https://cdn.enter.pro/resources/uid_100066245/29b71ed7-ea27-47.png';
+const LOGO_URL = 'https://cdn.enter.pro/resources/uid_100066245/55b7f7df-d041-4c.png';
 
 interface NavGroup {
   label: string;
@@ -37,11 +38,13 @@ const navGroups: NavGroup[] = [
   {
     label: 'Content',
     items: [
-      { label: 'Page Content', to: '/admin/content', icon: FileText, permission: 'manage_content' },
       { label: 'Hero Slider', to: '/admin/slider', icon: Sliders, permission: 'manage_slider' },
+      { label: 'Page Builder', to: '/admin/pages', icon: Layers, permission: 'manage_content' },
+      { label: 'Page Content', to: '/admin/content', icon: FileText, permission: 'manage_content' },
       { label: 'Sermons', to: '/admin/sermons', icon: BookOpen, permission: 'manage_sermons' },
       { label: 'Leadership', to: '/admin/leadership', icon: Users, permission: 'manage_leadership' },
       { label: 'News & Announcements', to: '/admin/news', icon: Newspaper, permission: 'manage_news' },
+      { label: 'News Categories', to: '/admin/categories', icon: Tag, permission: 'manage_news' },
       { label: 'Gallery', to: '/admin/gallery', icon: Image, permission: 'manage_gallery' },
     ],
   },
@@ -56,8 +59,15 @@ const navGroups: NavGroup[] = [
   {
     label: 'Media',
     items: [
+      { label: 'Media Library', to: '/admin/media', icon: FolderOpen, permission: 'manage_gallery' },
       { label: 'Online Radio', to: '/admin/radio', icon: Radio, permission: 'manage_livestream' },
       { label: 'Watch Live', to: '/admin/watchlive', icon: Tv, permission: 'manage_livestream' },
+    ],
+  },
+  {
+    label: 'Navigation',
+    items: [
+      { label: 'Menu Management', to: '/admin/menus', icon: Navigation, permission: 'manage_settings' },
     ],
   },
   {

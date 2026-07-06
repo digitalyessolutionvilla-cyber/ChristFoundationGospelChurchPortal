@@ -13,6 +13,9 @@
     "pInstall": "pnpm install"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@enter-pro/analytics-sdk": "^0.0.10",
     "@hookform/resolvers": "^5.2.1",
     "@radix-ui/react-accordion": "^1.2.12",
@@ -44,6 +47,8 @@
     "@radix-ui/react-tooltip": "^1.2.8",
     "@supabase/supabase-js": "^2.57.4",
     "@tanstack/react-query": "^5.86.0",
+    "@tiptap/react": "^3.27.2",
+    "@tiptap/starter-kit": "^3.27.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -59,6 +64,7 @@
     "react": "^19.1.1",
     "react-day-picker": "^9.9.0",
     "react-dom": "^19.1.1",
+    "react-dropzone": "^15.0.0",
     "react-hook-form": "^7.62.0",
     "react-i18next": "^15.7.3",
     "react-resizable-panels": "^3.0.5",

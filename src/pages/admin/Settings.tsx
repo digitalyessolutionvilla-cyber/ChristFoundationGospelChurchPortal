@@ -14,10 +14,12 @@ import { Save, Globe, Phone, Mail, Share2, Settings, Image } from 'lucide-react'
 
 const settingGroups = [
   { key: 'general', label: 'General', icon: Settings },
+  { key: 'church', label: 'Church Info', icon: Globe },
+  { key: 'footer', label: 'Footer', icon: Globe },
   { key: 'seo', label: 'SEO & Analytics', icon: Globe },
-  { key: 'contact', label: 'Contact Information', icon: Phone },
+  { key: 'contact', label: 'Contact', icon: Phone },
   { key: 'social', label: 'Social Media', icon: Share2 },
-  { key: 'media', label: 'Media & Streaming', icon: Image },
+  { key: 'media', label: 'Media', icon: Image },
 ];
 
 interface Setting {

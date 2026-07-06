@@ -31,6 +31,10 @@ import Slider from "./pages/admin/Slider";
 import WebsiteSettings from "./pages/admin/Settings";
 import Users from "./pages/admin/Users";
 import ActivityLogs from "./pages/admin/ActivityLogs";
+import MediaLibrary from "./pages/admin/MediaLibrary";
+import NewsCategories from "./pages/admin/NewsCategories";
+import MenuManagement from "./pages/admin/MenuManagement";
+import PageBuilder from "./pages/admin/PageBuilder";
 import { AdminRadio, AdminWatchLive } from "./pages/admin/MediaSettings";
 import { PrayerRequests, ContactMessages, Newsletter } from "./pages/admin/Forms";
 
@@ -67,6 +71,10 @@ export const routers = [
   { path: "/admin/settings", name: "admin-settings", element: <WebsiteSettings /> },
   { path: "/admin/users", name: "admin-users", element: <Users /> },
   { path: "/admin/activity", name: "admin-activity", element: <ActivityLogs /> },
+  { path: "/admin/media", name: "admin-media", element: <MediaLibrary /> },
+  { path: "/admin/categories", name: "admin-categories", element: <NewsCategories /> },
+  { path: "/admin/menus", name: "admin-menus", element: <MenuManagement /> },
+  { path: "/admin/pages", name: "admin-pages", element: <PageBuilder /> },
   { path: "/admin/radio", name: "admin-radio", element: <AdminRadio /> },
   { path: "/admin/watchlive", name: "admin-watchlive", element: <AdminWatchLive /> },
   { path: "/admin/forms/prayer", name: "admin-prayer", element: <PrayerRequests /> },

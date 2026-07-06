@@ -11,6 +11,7 @@ import { Switch } from '@/components/ui/switch';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { logActivity } from '@/hooks/useAdminProfile';
+import { ImageUploader } from '@/components/shared/ImageUploader';
 import { Plus, Trash2, Edit2, Save, GripVertical } from 'lucide-react';
 
 interface Leader {
@@ -106,9 +107,11 @@ function LeadershipInner() {
               <Label className="font-serif text-sm">Title / Position *</Label>
               <Input value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} className="mt-1.5 font-serif" placeholder="e.g. General Overseer" required />
             </div>
-            <div>
-              <Label className="font-serif text-sm">Photo URL</Label>
-              <Input value={form.photo_url} onChange={e => setForm(f => ({ ...f, photo_url: e.target.value }))} className="mt-1.5 font-serif" placeholder="https://..." />
+            <div className="md:col-span-2">
+              <Label className="font-serif text-sm">Photo</Label>
+              <div className="mt-1.5">
+                <ImageUploader value={form.photo_url} onChange={url => setForm(f => ({ ...f, photo_url: url }))} folder="leadership" label="Leader Photo" />
+              </div>
             </div>
             <div>
               <Label className="font-serif text-sm">Display Order</Label>

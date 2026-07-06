@@ -11,6 +11,7 @@ import { Switch } from '@/components/ui/switch';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { logActivity } from '@/hooks/useAdminProfile';
+import { ImageUploader } from '@/components/shared/ImageUploader';
 import { Plus, Trash2, Edit2, Save, GripVertical } from 'lucide-react';
 
 interface SliderItem {
@@ -100,8 +101,15 @@ function SliderInner() {
               <Input value={form.subtitle} onChange={e => setForm(f => ({ ...f, subtitle: e.target.value }))} className="mt-1.5 font-serif" placeholder="John 3:16" />
             </div>
             <div>
-              <Label className="font-serif text-sm">Background Image URL (optional)</Label>
-              <Input value={form.image_url} onChange={e => setForm(f => ({ ...f, image_url: e.target.value }))} className="mt-1.5 font-serif" placeholder="https://..." />
+              <Label className="font-serif text-sm">Background Image</Label>
+              <div className="mt-1.5">
+                <ImageUploader
+                  value={form.image_url}
+                  onChange={url => setForm(f => ({ ...f, image_url: url }))}
+                  folder="slider"
+                  label="Slide Background"
+                />
+              </div>
             </div>
             <div>
               <Label className="font-serif text-sm">Button Text</Label>

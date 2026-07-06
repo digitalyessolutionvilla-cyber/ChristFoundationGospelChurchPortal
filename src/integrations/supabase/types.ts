@@ -3293,6 +3293,45 @@ export type Database = {
         }
         Relationships: []
       }
+      cms_pages: {
+        Row: {
+          content: Json | null
+          created_at: string | null
+          featured_image: string | null
+          id: string
+          is_published: boolean | null
+          seo_description: string | null
+          seo_title: string | null
+          slug: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          content?: Json | null
+          created_at?: string | null
+          featured_image?: string | null
+          id?: string
+          is_published?: boolean | null
+          seo_description?: string | null
+          seo_title?: string | null
+          slug: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          content?: Json | null
+          created_at?: string | null
+          featured_image?: string | null
+          id?: string
+          is_published?: boolean | null
+          seo_description?: string | null
+          seo_title?: string | null
+          slug?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       contact_messages: {
         Row: {
           created_at: string | null
@@ -3367,39 +3406,50 @@ export type Database = {
       }
       gallery_albums: {
         Row: {
+          category: string | null
           cover_url: string | null
           created_at: string | null
           description: string | null
           display_order: number | null
+          event_date: string | null
           id: string
           is_active: boolean | null
           name: string
+          tags: string[] | null
         }
         Insert: {
+          category?: string | null
           cover_url?: string | null
           created_at?: string | null
           description?: string | null
           display_order?: number | null
+          event_date?: string | null
           id?: string
           is_active?: boolean | null
           name: string
+          tags?: string[] | null
         }
         Update: {
+          category?: string | null
           cover_url?: string | null
           created_at?: string | null
           description?: string | null
           display_order?: number | null
+          event_date?: string | null
           id?: string
           is_active?: boolean | null
           name?: string
+          tags?: string[] | null
         }
         Relationships: []
       }
       gallery_items: {
         Row: {
           album_id: string | null
+          alt_text: string | null
           caption: string | null
           created_at: string | null
+          description: string | null
           display_order: number | null
           id: string
           media_type: string
@@ -3407,8 +3457,10 @@ export type Database = {
         }
         Insert: {
           album_id?: string | null
+          alt_text?: string | null
           caption?: string | null
           created_at?: string | null
+          description?: string | null
           display_order?: number | null
           id?: string
           media_type?: string
@@ -3416,8 +3468,10 @@ export type Database = {
         }
         Update: {
           album_id?: string | null
+          alt_text?: string | null
           caption?: string | null
           created_at?: string | null
+          description?: string | null
           display_order?: number | null
           id?: string
           media_type?: string
@@ -3507,39 +3561,215 @@ export type Database = {
         }
         Relationships: []
       }
+      media_library: {
+        Row: {
+          alt_text: string | null
+          caption: string | null
+          created_at: string | null
+          file_size: number | null
+          file_type: string
+          filename: string
+          folder: string | null
+          id: string
+          public_url: string
+          storage_path: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          alt_text?: string | null
+          caption?: string | null
+          created_at?: string | null
+          file_size?: number | null
+          file_type?: string
+          filename: string
+          folder?: string | null
+          id?: string
+          public_url: string
+          storage_path: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          alt_text?: string | null
+          caption?: string | null
+          created_at?: string | null
+          file_size?: number | null
+          file_type?: string
+          filename?: string
+          folder?: string | null
+          id?: string
+          public_url?: string
+          storage_path?: string
+          uploaded_by?: string | null
+        }
+        Relationships: []
+      }
+      nav_menu_items: {
+        Row: {
+          created_at: string | null
+          display_order: number | null
+          icon: string | null
+          id: string
+          is_active: boolean | null
+          label: string
+          menu_id: string | null
+          parent_id: string | null
+          target: string | null
+          url: string
+        }
+        Insert: {
+          created_at?: string | null
+          display_order?: number | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          label: string
+          menu_id?: string | null
+          parent_id?: string | null
+          target?: string | null
+          url?: string
+        }
+        Update: {
+          created_at?: string | null
+          display_order?: number | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          label?: string
+          menu_id?: string | null
+          parent_id?: string | null
+          target?: string | null
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "nav_menu_items_menu_id_fkey"
+            columns: ["menu_id"]
+            referencedRelation: "nav_menus"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "nav_menu_items_parent_id_fkey"
+            columns: ["parent_id"]
+            referencedRelation: "nav_menu_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      nav_menus: {
+        Row: {
+          created_at: string | null
+          id: string
+          location: string | null
+          name: string
+          slug: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          location?: string | null
+          name: string
+          slug: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          location?: string | null
+          name?: string
+          slug?: string
+        }
+        Relationships: []
+      }
       news_announcements: {
         Row: {
           author: string | null
+          category_id: string | null
           content: string
           created_at: string | null
+          excerpt: string | null
           id: string
           image_url: string | null
           is_featured: boolean | null
           is_published: boolean | null
           published_at: string | null
+          scheduled_at: string | null
+          seo_description: string | null
+          seo_title: string | null
+          slug: string | null
+          status: string | null
+          tags: string[] | null
           title: string
         }
         Insert: {
           author?: string | null
+          category_id?: string | null
           content?: string
           created_at?: string | null
+          excerpt?: string | null
           id?: string
           image_url?: string | null
           is_featured?: boolean | null
           is_published?: boolean | null
           published_at?: string | null
+          scheduled_at?: string | null
+          seo_description?: string | null
+          seo_title?: string | null
+          slug?: string | null
+          status?: string | null
+          tags?: string[] | null
           title: string
         }
         Update: {
           author?: string | null
+          category_id?: string | null
           content?: string
           created_at?: string | null
+          excerpt?: string | null
           id?: string
           image_url?: string | null
           is_featured?: boolean | null
           is_published?: boolean | null
           published_at?: string | null
+          scheduled_at?: string | null
+          seo_description?: string | null
+          seo_title?: string | null
+          slug?: string | null
+          status?: string | null
+          tags?: string[] | null
           title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "news_announcements_category_id_fkey"
+            columns: ["category_id"]
+            referencedRelation: "news_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      news_categories: {
+        Row: {
+          color: string | null
+          created_at: string | null
+          description: string | null
+          id: string
+          name: string
+          slug: string
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          slug: string
+        }
+        Update: {
+          color?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          slug?: string
         }
         Relationships: []
       }
