@@ -112,14 +112,10 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
     },
   });
 
-  const permissions: Record<string, boolean> = (profile as { admin_roles?: { permissions?: Record<string, boolean> } })?.admin_roles?.permissions ?? {};
-  const isSuperAdmin = profile?.role_slug === 'super_admin';
+  const _isSuperAdmin = profile?.role_slug === 'super_admin';
 
-  const canAccess = (permission?: string) => {
-    if (!permission) return true;
-    if (isSuperAdmin) return true;
-    return !!permissions[permission];
-  };
+  // All authenticated admins see all nav items — RLS handles data security
+  const _canAccess = (_permission?: string) => true;
 
   const { data: pendingCounts } = useQuery({
     queryKey: ['admin_pending_counts'],
@@ -152,12 +148,12 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
     });
   };
 
-  const SidebarContent = () => (
-    <div className="flex flex-col h-full">
+  const renderSidebar = (compact = false) => (
+    <div className="flex flex-col h-full overflow-hidden">
       {/* Logo */}
-      <div className="p-4 border-b border-sidebar-border flex items-center gap-3">
-        <img src={LOGO_URL} alt="CFGC" className="h-9 w-9 rounded-full shrink-0" crossOrigin="anonymous" />
-        {sidebarOpen && (
+      <div className="p-4 border-b border-sidebar-border flex items-center gap-3 shrink-0">
+        <img src={LOGO_URL} alt="CFGC" className="h-9 w-9 rounded-full shrink-0 object-cover" crossOrigin="anonymous" />
+        {!compact && (
           <div className="min-w-0">
             <p className="font-display font-bold text-sidebar-foreground text-xs leading-tight truncate">CFGC Admin</p>
             <p className="text-sidebar-foreground/50 text-[10px] font-serif truncate">{userEmail}</p>
@@ -166,8 +162,8 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* Role badge */}
-      {sidebarOpen && profile && (
-        <div className="px-4 py-2 border-b border-sidebar-border">
+      {!compact && profile && (
+        <div className="px-4 py-2 border-b border-sidebar-border shrink-0">
           <div className="flex items-center gap-2">
             <Shield className="w-3 h-3 text-sidebar-primary shrink-0" />
             <span className="text-[10px] font-serif text-sidebar-primary font-semibold uppercase tracking-wider truncate">
@@ -178,15 +174,12 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
       )}
 
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto py-3 px-2 space-y-1">
+      <nav className="flex-1 overflow-y-auto py-3 px-2 space-y-1 min-h-0">
         {navGroups.map((group) => {
-          const visibleItems = group.items.filter(item => canAccess(item.permission));
-          if (visibleItems.length === 0) return null;
           const isCollapsed = collapsedGroups.has(group.label);
-
           return (
             <div key={group.label}>
-              {sidebarOpen && (
+              {!compact && (
                 <button
                   onClick={() => toggleGroup(group.label)}
                   className="w-full flex items-center justify-between px-2 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-sidebar-foreground/40 hover:text-sidebar-foreground/70 transition-colors"
@@ -197,7 +190,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
               )}
               {!isCollapsed && (
                 <div className="space-y-0.5">
-                  {visibleItems.map(item => {
+                  {group.items.map(item => {
                     const Icon = item.icon;
                     const isActive = location.pathname === item.to;
                     const count = item.to === '/admin/testimonies' ? pendingCounts?.testimonies
@@ -217,7 +210,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
                         }`}
                       >
                         <Icon className="w-4 h-4 shrink-0" />
-                        {sidebarOpen && (
+                        {!compact && (
                           <>
                             <span className="flex-1 truncate text-xs">{item.label}</span>
                             {count ? <Badge className="text-[9px] h-4 px-1 bg-church-red text-primary-foreground">{count}</Badge> : null}
@@ -234,21 +227,21 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
       </nav>
 
       {/* Footer */}
-      <div className="p-3 border-t border-sidebar-border space-y-1">
+      <div className="p-3 border-t border-sidebar-border space-y-1 shrink-0">
         <Link
           to="/"
           target="_blank"
           className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs font-serif text-sidebar-foreground/60 hover:text-sidebar-foreground hover:bg-sidebar-accent transition-all"
         >
           <Bell className="w-4 h-4 shrink-0" />
-          {sidebarOpen && <span>View Website</span>}
+          {!compact && <span>View Website</span>}
         </Link>
         <button
           onClick={handleSignOut}
           className="w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs font-serif text-sidebar-foreground/60 hover:text-destructive hover:bg-destructive/10 transition-all"
         >
           <LogOut className="w-4 h-4 shrink-0" />
-          {sidebarOpen && <span>Sign Out</span>}
+          {!compact && <span>Sign Out</span>}
         </button>
       </div>
     </div>
@@ -260,7 +253,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
       <aside
         className={`hidden lg:flex flex-col bg-sidebar text-sidebar-foreground border-r border-sidebar-border flex-shrink-0 transition-all duration-300 ${sidebarOpen ? 'w-56' : 'w-14'}`}
       >
-        <SidebarContent />
+        {renderSidebar(!sidebarOpen)}
       </aside>
 
       {/* Mobile Sidebar Overlay */}
@@ -268,7 +261,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
         <div className="lg:hidden fixed inset-0 z-50 flex">
           <div className="absolute inset-0 bg-black/50" onClick={() => setMobileSidebarOpen(false)} />
           <aside className="relative z-10 w-64 bg-sidebar text-sidebar-foreground border-r border-sidebar-border flex flex-col h-full">
-            <SidebarContent />
+            {renderSidebar(false)}
           </aside>
         </div>
       )}
