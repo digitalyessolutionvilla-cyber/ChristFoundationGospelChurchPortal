@@ -3486,6 +3486,39 @@ export type Database = {
           },
         ]
       }
+      home_sections: {
+        Row: {
+          created_at: string | null
+          custom_config: Json | null
+          display_order: number
+          id: string
+          is_visible: boolean
+          label: string
+          section_key: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          custom_config?: Json | null
+          display_order?: number
+          id?: string
+          is_visible?: boolean
+          label: string
+          section_key: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          custom_config?: Json | null
+          display_order?: number
+          id?: string
+          is_visible?: boolean
+          label?: string
+          section_key?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       home_slider_items: {
         Row: {
           created_at: string | null
@@ -3827,6 +3860,51 @@ export type Database = {
           is_responded?: boolean | null
           phone?: string | null
           request?: string
+        }
+        Relationships: []
+      }
+      quick_links: {
+        Row: {
+          bg_color: string
+          created_at: string | null
+          description: string | null
+          display_order: number
+          icon_color: string
+          icon_library: string
+          icon_name: string
+          id: string
+          is_active: boolean
+          label: string
+          updated_at: string | null
+          url: string
+        }
+        Insert: {
+          bg_color?: string
+          created_at?: string | null
+          description?: string | null
+          display_order?: number
+          icon_color?: string
+          icon_library?: string
+          icon_name?: string
+          id?: string
+          is_active?: boolean
+          label: string
+          updated_at?: string | null
+          url?: string
+        }
+        Update: {
+          bg_color?: string
+          created_at?: string | null
+          description?: string | null
+          display_order?: number
+          icon_color?: string
+          icon_library?: string
+          icon_name?: string
+          id?: string
+          is_active?: boolean
+          label?: string
+          updated_at?: string | null
+          url?: string
         }
         Relationships: []
       }

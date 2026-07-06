@@ -35,6 +35,7 @@ import MediaLibrary from "./pages/admin/MediaLibrary";
 import NewsCategories from "./pages/admin/NewsCategories";
 import MenuManagement from "./pages/admin/MenuManagement";
 import PageBuilder from "./pages/admin/PageBuilder";
+import HomeBuilder from "./pages/admin/HomeBuilder";
 import { AdminRadio, AdminWatchLive } from "./pages/admin/MediaSettings";
 import { PrayerRequests, ContactMessages, Newsletter } from "./pages/admin/Forms";
 
@@ -75,6 +76,7 @@ export const routers = [
   { path: "/admin/categories", name: "admin-categories", element: <NewsCategories /> },
   { path: "/admin/menus", name: "admin-menus", element: <MenuManagement /> },
   { path: "/admin/pages", name: "admin-pages", element: <PageBuilder /> },
+  { path: "/admin/homepage", name: "admin-homepage", element: <HomeBuilder /> },
   { path: "/admin/radio", name: "admin-radio", element: <AdminRadio /> },
   { path: "/admin/watchlive", name: "admin-watchlive", element: <AdminWatchLive /> },
   { path: "/admin/forms/prayer", name: "admin-prayer", element: <PrayerRequests /> },

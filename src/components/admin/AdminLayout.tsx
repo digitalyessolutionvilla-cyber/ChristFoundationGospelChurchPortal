@@ -38,6 +38,7 @@ const navGroups: NavGroup[] = [
   {
     label: 'Content',
     items: [
+      { label: 'Homepage Builder', to: '/admin/homepage', icon: Layers, permission: 'manage_content' },
       { label: 'Hero Slider', to: '/admin/slider', icon: Sliders, permission: 'manage_slider' },
       { label: 'Page Builder', to: '/admin/pages', icon: Layers, permission: 'manage_content' },
       { label: 'Page Content', to: '/admin/content', icon: FileText, permission: 'manage_content' },

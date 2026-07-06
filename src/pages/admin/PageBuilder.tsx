@@ -330,13 +330,17 @@ function PageBuilderInner() {
   }
 
   // --- Pages List ---
+  const CORE_SLUGS = ['about', 'vision', 'mission', 'contact', 'youth-ministry', 'church-leadership'];
+  const corePages = pages.filter(p => CORE_SLUGS.includes(p.slug));
+  const customPages = pages.filter(p => !CORE_SLUGS.includes(p.slug));
+
   return (
     <AdminLayout>
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="font-display font-bold text-2xl text-foreground">Page Builder</h1>
-            <p className="text-sm font-serif text-muted-foreground">Create and manage custom pages</p>
+            <p className="text-sm font-serif text-muted-foreground">Edit core site pages and create custom pages with content blocks</p>
           </div>
           <Button onClick={() => { setEditPage({ ...emptyPage }); setIsNew(true); }} className="font-serif">
             <Plus className="w-4 h-4 mr-1" /> New Page
@@ -345,41 +349,78 @@ function PageBuilderInner() {
 
         {isLoading ? (
           <div className="space-y-3">{Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="h-20 rounded-xl" />)}</div>
-        ) : pages.length === 0 ? (
-          <div className="border border-dashed border-border rounded-xl p-16 text-center text-muted-foreground">
-            <FileText className="w-12 h-12 mx-auto mb-3 opacity-30" />
-            <p className="font-serif">No pages yet. Create your first custom page!</p>
-          </div>
         ) : (
-          <div className="space-y-3">
-            {pages.map(page => (
-              <div key={page.id} className="flex items-center gap-4 p-4 rounded-xl border border-border bg-card">
-                {page.featured_image && (
-                  <img src={page.featured_image} alt={page.title} className="w-14 h-14 rounded-lg object-cover shrink-0" crossOrigin="anonymous" />
-                )}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-0.5">
-                    <p className="font-serif font-semibold text-foreground">{page.title}</p>
-                    <Badge variant={page.is_published ? 'default' : 'secondary'} className="text-xs">
-                      {page.is_published ? 'Published' : 'Draft'}
-                    </Badge>
-                  </div>
-                  <p className="font-mono text-xs text-muted-foreground">/page/{page.slug}</p>
-                  <p className="font-serif text-xs text-muted-foreground mt-0.5">
-                    {(page.content || []).length} blocks — Updated {format(new Date(page.updated_at), 'PP')}
-                  </p>
-                </div>
-                <div className="flex gap-2 shrink-0">
-                  <Button size="sm" variant="outline" className="font-serif text-xs" onClick={() => { setEditPage(page); setIsNew(false); }}>
-                    <Edit2 className="w-3 h-3 mr-1" /> Edit
-                  </Button>
-                  <Button size="sm" variant="outline" className="text-destructive border-destructive/30 h-8 w-8 p-0" onClick={() => deleteMutation.mutate(page.id)}>
-                    <Trash2 className="w-3 h-3" />
-                  </Button>
+          <>
+            {/* Core Pages */}
+            {corePages.length > 0 && (
+              <div>
+                <h2 className="font-display font-semibold text-sm text-muted-foreground uppercase tracking-widest mb-3">Core Pages</h2>
+                <div className="space-y-2">
+                  {corePages.map(page => (
+                    <div key={page.id} className="flex items-center gap-4 p-4 rounded-xl border border-primary/20 bg-primary/5">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <p className="font-serif font-semibold text-foreground">{page.title}</p>
+                          <Badge variant="outline" className="text-xs border-primary/30 text-primary">Core</Badge>
+                          <Badge variant={page.is_published ? 'default' : 'secondary'} className="text-xs">
+                            {page.is_published ? 'Live' : 'Draft'}
+                          </Badge>
+                        </div>
+                        <p className="font-mono text-xs text-muted-foreground">/{page.slug}</p>
+                        <p className="font-serif text-xs text-muted-foreground mt-0.5">
+                          {(page.content || []).length} blocks — Updated {format(new Date(page.updated_at), 'PP')}
+                        </p>
+                      </div>
+                      <Button size="sm" variant="outline" className="font-serif text-xs shrink-0" onClick={() => { setEditPage(page); setIsNew(false); }}>
+                        <Edit2 className="w-3 h-3 mr-1" /> Edit Content
+                      </Button>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
+            )}
+
+            {/* Custom Pages */}
+            <div>
+              <h2 className="font-display font-semibold text-sm text-muted-foreground uppercase tracking-widest mb-3">Custom Pages</h2>
+              {customPages.length === 0 ? (
+                <div className="border border-dashed border-border rounded-xl p-10 text-center text-muted-foreground">
+                  <FileText className="w-10 h-10 mx-auto mb-3 opacity-30" />
+                  <p className="font-serif">No custom pages yet. Create your first!</p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {customPages.map(page => (
+                    <div key={page.id} className="flex items-center gap-4 p-4 rounded-xl border border-border bg-card">
+                      {page.featured_image && (
+                        <img src={page.featured_image} alt={page.title} className="w-14 h-14 rounded-lg object-cover shrink-0" crossOrigin="anonymous" />
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <p className="font-serif font-semibold text-foreground">{page.title}</p>
+                          <Badge variant={page.is_published ? 'default' : 'secondary'} className="text-xs">
+                            {page.is_published ? 'Published' : 'Draft'}
+                          </Badge>
+                        </div>
+                        <p className="font-mono text-xs text-muted-foreground">/page/{page.slug}</p>
+                        <p className="font-serif text-xs text-muted-foreground mt-0.5">
+                          {(page.content || []).length} blocks — Updated {format(new Date(page.updated_at), 'PP')}
+                        </p>
+                      </div>
+                      <div className="flex gap-2 shrink-0">
+                        <Button size="sm" variant="outline" className="font-serif text-xs" onClick={() => { setEditPage(page); setIsNew(false); }}>
+                          <Edit2 className="w-3 h-3 mr-1" /> Edit
+                        </Button>
+                        <Button size="sm" variant="outline" className="text-destructive border-destructive/30 h-8 w-8 p-0" onClick={() => deleteMutation.mutate(page.id)}>
+                          <Trash2 className="w-3 h-3" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </>
         )}
       </div>
     </AdminLayout>
