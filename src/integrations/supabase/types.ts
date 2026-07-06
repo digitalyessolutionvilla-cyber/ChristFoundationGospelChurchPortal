@@ -3109,6 +3109,169 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_activity_logs: {
+        Row: {
+          action: string
+          created_at: string | null
+          details: string | null
+          id: string
+          section: string
+          user_email: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string | null
+          details?: string | null
+          id?: string
+          section: string
+          user_email?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string | null
+          details?: string | null
+          id?: string
+          section?: string
+          user_email?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      admin_profiles: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          full_name: string
+          id: string
+          is_active: boolean | null
+          last_login: string | null
+          role_slug: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          full_name?: string
+          id?: string
+          is_active?: boolean | null
+          last_login?: string | null
+          role_slug?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          full_name?: string
+          id?: string
+          is_active?: boolean | null
+          last_login?: string | null
+          role_slug?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      admin_roles: {
+        Row: {
+          created_at: string | null
+          id: string
+          name: string
+          permissions: Json
+          slug: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          name: string
+          permissions?: Json
+          slug: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          name?: string
+          permissions?: Json
+          slug?: string
+        }
+        Relationships: []
+      }
+      church_branches: {
+        Row: {
+          address: string | null
+          created_at: string | null
+          display_order: number | null
+          district_id: string | null
+          id: string
+          is_headquarters: boolean | null
+          is_national_camp: boolean | null
+          map_url: string | null
+          name: string
+          pastor_name: string | null
+          phones: string[] | null
+          po_box: string | null
+          service_times: string | null
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string | null
+          display_order?: number | null
+          district_id?: string | null
+          id?: string
+          is_headquarters?: boolean | null
+          is_national_camp?: boolean | null
+          map_url?: string | null
+          name: string
+          pastor_name?: string | null
+          phones?: string[] | null
+          po_box?: string | null
+          service_times?: string | null
+        }
+        Update: {
+          address?: string | null
+          created_at?: string | null
+          display_order?: number | null
+          district_id?: string | null
+          id?: string
+          is_headquarters?: boolean | null
+          is_national_camp?: boolean | null
+          map_url?: string | null
+          name?: string
+          pastor_name?: string | null
+          phones?: string[] | null
+          po_box?: string | null
+          service_times?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "church_branches_district_id_fkey"
+            columns: ["district_id"]
+            referencedRelation: "church_districts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      church_districts: {
+        Row: {
+          created_at: string | null
+          display_order: number | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string | null
+          display_order?: number | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string | null
+          display_order?: number | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
       cms_content: {
         Row: {
           id: string
@@ -3130,33 +3293,355 @@ export type Database = {
         }
         Relationships: []
       }
+      contact_messages: {
+        Row: {
+          created_at: string | null
+          email: string
+          full_name: string
+          id: string
+          is_read: boolean | null
+          message: string
+          phone: string | null
+          subject: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          full_name: string
+          id?: string
+          is_read?: boolean | null
+          message: string
+          phone?: string | null
+          subject?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          full_name?: string
+          id?: string
+          is_read?: boolean | null
+          message?: string
+          phone?: string | null
+          subject?: string | null
+        }
+        Relationships: []
+      }
       events: {
         Row: {
+          banner_url: string | null
           created_at: string | null
           description: string | null
           event_date: string
           id: string
           is_featured: boolean | null
           location: string | null
+          map_url: string | null
+          registration_link: string | null
           title: string
         }
         Insert: {
+          banner_url?: string | null
           created_at?: string | null
           description?: string | null
           event_date: string
           id?: string
           is_featured?: boolean | null
           location?: string | null
+          map_url?: string | null
+          registration_link?: string | null
           title: string
         }
         Update: {
+          banner_url?: string | null
           created_at?: string | null
           description?: string | null
           event_date?: string
           id?: string
           is_featured?: boolean | null
           location?: string | null
+          map_url?: string | null
+          registration_link?: string | null
           title?: string
+        }
+        Relationships: []
+      }
+      gallery_albums: {
+        Row: {
+          cover_url: string | null
+          created_at: string | null
+          description: string | null
+          display_order: number | null
+          id: string
+          is_active: boolean | null
+          name: string
+        }
+        Insert: {
+          cover_url?: string | null
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+        }
+        Update: {
+          cover_url?: string | null
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+        }
+        Relationships: []
+      }
+      gallery_items: {
+        Row: {
+          album_id: string | null
+          caption: string | null
+          created_at: string | null
+          display_order: number | null
+          id: string
+          media_type: string
+          media_url: string
+        }
+        Insert: {
+          album_id?: string | null
+          caption?: string | null
+          created_at?: string | null
+          display_order?: number | null
+          id?: string
+          media_type?: string
+          media_url: string
+        }
+        Update: {
+          album_id?: string | null
+          caption?: string | null
+          created_at?: string | null
+          display_order?: number | null
+          id?: string
+          media_type?: string
+          media_url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gallery_items_album_id_fkey"
+            columns: ["album_id"]
+            referencedRelation: "gallery_albums"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      home_slider_items: {
+        Row: {
+          created_at: string | null
+          cta_text: string | null
+          cta_url: string | null
+          display_order: number | null
+          id: string
+          image_url: string | null
+          is_active: boolean | null
+          subtitle: string | null
+          title: string
+        }
+        Insert: {
+          created_at?: string | null
+          cta_text?: string | null
+          cta_url?: string | null
+          display_order?: number | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          subtitle?: string | null
+          title: string
+        }
+        Update: {
+          created_at?: string | null
+          cta_text?: string | null
+          cta_url?: string | null
+          display_order?: number | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          subtitle?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
+      leadership: {
+        Row: {
+          bio: string | null
+          created_at: string | null
+          display_order: number | null
+          email: string | null
+          full_name: string
+          id: string
+          is_active: boolean | null
+          phone: string | null
+          photo_url: string | null
+          title: string
+        }
+        Insert: {
+          bio?: string | null
+          created_at?: string | null
+          display_order?: number | null
+          email?: string | null
+          full_name: string
+          id?: string
+          is_active?: boolean | null
+          phone?: string | null
+          photo_url?: string | null
+          title: string
+        }
+        Update: {
+          bio?: string | null
+          created_at?: string | null
+          display_order?: number | null
+          email?: string | null
+          full_name?: string
+          id?: string
+          is_active?: boolean | null
+          phone?: string | null
+          photo_url?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
+      news_announcements: {
+        Row: {
+          author: string | null
+          content: string
+          created_at: string | null
+          id: string
+          image_url: string | null
+          is_featured: boolean | null
+          is_published: boolean | null
+          published_at: string | null
+          title: string
+        }
+        Insert: {
+          author?: string | null
+          content?: string
+          created_at?: string | null
+          id?: string
+          image_url?: string | null
+          is_featured?: boolean | null
+          is_published?: boolean | null
+          published_at?: string | null
+          title: string
+        }
+        Update: {
+          author?: string | null
+          content?: string
+          created_at?: string | null
+          id?: string
+          image_url?: string | null
+          is_featured?: boolean | null
+          is_published?: boolean | null
+          published_at?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
+      newsletter_subscribers: {
+        Row: {
+          email: string
+          full_name: string | null
+          id: string
+          is_active: boolean | null
+          subscribed_at: string | null
+        }
+        Insert: {
+          email: string
+          full_name?: string | null
+          id?: string
+          is_active?: boolean | null
+          subscribed_at?: string | null
+        }
+        Update: {
+          email?: string
+          full_name?: string | null
+          id?: string
+          is_active?: boolean | null
+          subscribed_at?: string | null
+        }
+        Relationships: []
+      }
+      prayer_requests: {
+        Row: {
+          created_at: string | null
+          email: string | null
+          full_name: string
+          id: string
+          is_private: boolean | null
+          is_responded: boolean | null
+          phone: string | null
+          request: string
+        }
+        Insert: {
+          created_at?: string | null
+          email?: string | null
+          full_name: string
+          id?: string
+          is_private?: boolean | null
+          is_responded?: boolean | null
+          phone?: string | null
+          request: string
+        }
+        Update: {
+          created_at?: string | null
+          email?: string | null
+          full_name?: string
+          id?: string
+          is_private?: boolean | null
+          is_responded?: boolean | null
+          phone?: string | null
+          request?: string
+        }
+        Relationships: []
+      }
+      sermons: {
+        Row: {
+          audio_url: string | null
+          category: string | null
+          created_at: string | null
+          description: string | null
+          id: string
+          is_featured: boolean | null
+          notes_url: string | null
+          sermon_date: string
+          speaker: string
+          thumbnail_url: string | null
+          title: string
+          video_url: string | null
+        }
+        Insert: {
+          audio_url?: string | null
+          category?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_featured?: boolean | null
+          notes_url?: string | null
+          sermon_date: string
+          speaker?: string
+          thumbnail_url?: string | null
+          title: string
+          video_url?: string | null
+        }
+        Update: {
+          audio_url?: string | null
+          category?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_featured?: boolean | null
+          notes_url?: string | null
+          sermon_date?: string
+          speaker?: string
+          thumbnail_url?: string | null
+          title?: string
+          video_url?: string | null
         }
         Relationships: []
       }
@@ -3167,6 +3652,7 @@ export type Database = {
           content: string
           created_at: string | null
           id: string
+          is_featured: boolean | null
         }
         Insert: {
           approved?: boolean | null
@@ -3174,6 +3660,7 @@ export type Database = {
           content: string
           created_at?: string | null
           id?: string
+          is_featured?: boolean | null
         }
         Update: {
           approved?: boolean | null
@@ -3181,6 +3668,34 @@ export type Database = {
           content?: string
           created_at?: string | null
           id?: string
+          is_featured?: boolean | null
+        }
+        Relationships: []
+      }
+      website_settings: {
+        Row: {
+          id: string
+          key: string
+          label: string | null
+          setting_group: string | null
+          updated_at: string | null
+          value: string
+        }
+        Insert: {
+          id?: string
+          key: string
+          label?: string | null
+          setting_group?: string | null
+          updated_at?: string | null
+          value?: string
+        }
+        Update: {
+          id?: string
+          key?: string
+          label?: string | null
+          setting_group?: string | null
+          updated_at?: string | null
+          value?: string
         }
         Relationships: []
       }

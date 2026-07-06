@@ -1,45 +1,51 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
-import { Navigate } from 'react-router-dom';
 
 interface AdminGuardProps {
   children: React.ReactNode;
 }
 
 export function AdminGuard({ children }: AdminGuardProps) {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [authed, setAuthed] = useState(false);
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setAuthed(!!session);
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        navigate('/admin/login', { replace: true });
+        setLoading(false);
+        return;
+      }
+      setAuthed(true);
       setLoading(false);
+    };
+
+    checkAuth();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!session) {
+        setTimeout(() => navigate('/admin/login', { replace: true }), 0);
+      }
     });
 
-    setTimeout(() => {
-      supabase.auth.getSession().then(({ data: { session } }) => {
-        setAuthed(!!session);
-        setLoading(false);
-      });
-    }, 0);
-
     return () => subscription.unsubscribe();
-  }, []);
+  }, [navigate]);
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-background">
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-10 h-10 rounded-full border-4 border-primary border-t-transparent animate-spin" />
-          <p className="text-muted-foreground font-serif text-sm">Loading...</p>
+      <div className="min-h-screen bg-gradient-hero flex items-center justify-center">
+        <div className="flex items-center gap-3">
+          <div className="w-6 h-6 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+          <span className="font-serif text-primary-foreground text-sm">Loading...</span>
         </div>
       </div>
     );
   }
 
-  if (!authed) {
-    return <Navigate to="/admin/login" replace />;
-  }
+  if (!authed) return null;
 
   return <>{children}</>;
 }

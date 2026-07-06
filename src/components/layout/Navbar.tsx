@@ -13,10 +13,11 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/s
 const LOGO_URL = 'https://cdn.enter.pro/resources/uid_100066245/29b71ed7-ea27-47.png';
 
 const aboutLinks = [
-  { label: 'Brief History', to: '/about' },
+  { label: 'Brief History of the Church', to: '/about' },
   { label: 'Our Vision', to: '/vision' },
   { label: 'Our Mission', to: '/mission' },
   { label: 'Doctrines & Beliefs', to: '/about#doctrines' },
+  { label: 'Church Leadership', to: '/leadership' },
 ];
 
 const ministriesLinks = [
@@ -25,6 +26,9 @@ const ministriesLinks = [
 ];
 
 const mediaLinks = [
+  { label: 'Sermons', to: '/sermons' },
+  { label: 'News & Announcements', to: '/news' },
+  { label: 'Gallery', to: '/gallery' },
   { label: 'Online Radio', to: '/online-radio' },
 ];
 
@@ -84,7 +88,8 @@ export function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <NavLink to="/locations" className={navLinkClass}>Our Locations</NavLink>
+            <NavLink to="/locations" className={navLinkClass}>Locations</NavLink>
+            <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -152,13 +157,18 @@ export function Navbar() {
                   { label: 'Brief History', to: '/about' },
                   { label: 'Our Vision', to: '/vision' },
                   { label: 'Our Mission', to: '/mission' },
+                  { label: 'Church Leadership', to: '/leadership' },
                   { label: 'Doctrines & Beliefs', to: '/about#doctrines' },
+                  { label: 'Sermons', to: '/sermons' },
+                  { label: 'News & Announcements', to: '/news' },
+                  { label: 'Gallery', to: '/gallery' },
                   { label: 'Our Locations', to: '/locations' },
                   { label: 'Youth Ministry', to: '/youth-ministry' },
                   { label: 'Online Radio', to: '/online-radio' },
                   { label: 'Watch Us Live', to: '/watch-live' },
                   { label: 'Our Calendar', to: '/calendar' },
                   { label: 'Testimonies', to: '/testimonies' },
+                  { label: 'Contact Us', to: '/contact' },
                 ].map((item) => (
                   <Link
                     key={item.to}
