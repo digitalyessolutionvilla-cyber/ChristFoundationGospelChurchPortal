@@ -62,7 +62,27 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				/* CFGC custom colors */
+				'church-deep': 'hsl(var(--church-deep))',
+				'church-red': 'hsl(var(--church-red))',
+				'church-gold': 'hsl(var(--church-gold))',
+				'church-gold-dark': 'hsl(var(--church-gold-dark))',
+				'church-blue-light': 'hsl(var(--church-blue-light))',
+			},
+			fontFamily: {
+				display: ['Playfair Display', 'Georgia', 'serif'],
+				serif: ['Source Serif 4', 'Georgia', 'serif'],
+			},
+			backgroundImage: {
+				'gradient-hero': 'var(--gradient-hero)',
+				'gradient-gold': 'var(--gradient-gold)',
+				'gradient-section': 'var(--gradient-section)',
+			},
+			boxShadow: {
+				'blue': 'var(--shadow-blue)',
+				'gold': 'var(--shadow-gold)',
+				'card': 'var(--shadow-card)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
