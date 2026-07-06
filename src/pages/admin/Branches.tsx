@@ -97,6 +97,7 @@ function BranchesInner() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin_branches', selectedDistrictId] });
+      queryClient.invalidateQueries({ queryKey: ['admin_hq_branches'] });
       queryClient.invalidateQueries({ queryKey: ['church_branches'] });
       toast({ title: 'Branch saved!' });
       setShowBranchForm(false); setEditBranchId(null); setBranchForm({ ...emptyBranchForm });
@@ -238,6 +239,7 @@ function BranchesInner() {
       {hqBranches && hqBranches.length > 0 && (
         <div className="mt-6">
           <h2 className="font-display font-semibold text-sm text-muted-foreground mb-3">Headquarters & National Camp Ground</h2>
+          {showBranchForm && selectedDistrictId === null && <BranchForm />}
           <div className="space-y-2">
             {hqBranches.map(b => (
               <div key={b.id} className="bg-card rounded-xl border border-border p-4 flex items-start justify-between gap-3">
