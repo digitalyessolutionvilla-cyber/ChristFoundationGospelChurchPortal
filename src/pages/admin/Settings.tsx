@@ -35,36 +35,52 @@ interface Setting {
 function WebsiteSettingsInner() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const [activeGroup, setActiveGroup] = useState('general');
+  const [activeGroup, setActiveGroup] = useState('topbar');
   const [values, setValues] = useState<Record<string, string>>({});
+  const [initialized, setInitialized] = useState(false);
 
-  const { data: settings, isLoading } = useQuery({
-    queryKey: ['website_settings'],
+  // Load ALL settings once — filter client-side for instant tab switching
+  const { data: allSettings = [], isLoading } = useQuery({
+    queryKey: ['website_settings_all'],
     queryFn: async () => {
-      const { data } = await supabase.from('website_settings').select('*').eq('setting_group', activeGroup);
+      const { data } = await supabase.from('website_settings').select('*');
       return (data ?? []) as Setting[];
     },
+    staleTime: 30 * 1000,
   });
 
+  // Initialise values map from all settings (once loaded)
   useEffect(() => {
-    if (settings) {
+    if (allSettings.length > 0 && !initialized) {
       const map: Record<string, string> = {};
-      settings.forEach((s: Setting) => { map[s.key] = s.value; });
+      allSettings.forEach((s: Setting) => { map[s.key] = s.value; });
       setValues(map);
+      setInitialized(true);
     }
-  }, [settings]);
+  }, [allSettings, initialized]);
+
+  // Settings visible in the active tab
+  const settings = allSettings.filter((s: Setting) => s.setting_group === activeGroup);
+
+  // Detect if a setting is a boolean toggle
+  const isBoolKey = (key: string) => {
+    const dbVal = allSettings.find(s => s.key === key)?.value ?? '';
+    return dbVal === 'true' || dbVal === 'false';
+  };
 
   const saveMutation = useMutation({
     mutationFn: async () => {
-      const updates = Object.entries(values).map(([key, value]) =>
-        supabase.from('website_settings').update({ value }).eq('key', key)
+      // Only save keys belonging to the active group
+      const groupKeys = settings.map(s => s.key);
+      const updates = groupKeys.map(key =>
+        supabase.from('website_settings').update({ value: values[key] ?? '' }).eq('key', key)
       );
       await Promise.all(updates);
       await logActivity('Updated website settings', 'Settings', activeGroup);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['website_settings'] });
-      queryClient.invalidateQueries({ queryKey: ['settings_all'] });
+      queryClient.invalidateQueries({ queryKey: ['website_settings_all'] });
+      queryClient.invalidateQueries({ queryKey: ['topbar_settings'] });
       toast({ title: 'Settings saved successfully!' });
     },
     onError: () => toast({ title: 'Failed to save settings', variant: 'destructive' }),
@@ -82,7 +98,7 @@ function WebsiteSettingsInner() {
         {settingGroups.map(({ key, label, icon: Icon }) => (
           <button
             key={key}
-            onClick={() => { setActiveGroup(key); setValues({}); }}
+            onClick={() => setActiveGroup(key)}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-serif font-semibold transition-all ${
               activeGroup === key ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
             }`}
@@ -105,8 +121,8 @@ function WebsiteSettingsInner() {
                 </p>
               </div>
             )}
-            {settings?.map((s: Setting) => {
-              const isBool = s.value === 'true' || s.value === 'false';
+            {settings.map((s: Setting) => {
+              const isBool = isBoolKey(s.key);
               const currentVal = values[s.key] ?? s.value;
               return (
                 <div key={s.key}>
