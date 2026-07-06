@@ -22,7 +22,7 @@ import EditContent from "./pages/admin/EditContent";
 import ContentList from "./pages/admin/ContentList";
 import ManageEvents from "./pages/admin/ManageEvents";
 import ManageTestimonies from "./pages/admin/ManageTestimonies";
-import Sermons from "./pages/admin/Sermons";
+import AdminSermons from "./pages/admin/Sermons";
 import Leadership from "./pages/admin/Leadership";
 import Gallery from "./pages/admin/Gallery";
 import News from "./pages/admin/News";
@@ -58,7 +58,7 @@ export const routers = [
   { path: "/admin/edit/:key", name: "admin-edit", element: <EditContent /> },
   { path: "/admin/events", name: "admin-events", element: <ManageEvents /> },
   { path: "/admin/testimonies", name: "admin-testimonies", element: <ManageTestimonies /> },
-  { path: "/admin/sermons", name: "admin-sermons", element: <Sermons /> },
+  { path: "/admin/sermons", name: "admin-sermons", element: <AdminSermons /> },
   { path: "/admin/leadership", name: "admin-leadership", element: <Leadership /> },
   { path: "/admin/gallery", name: "admin-gallery", element: <Gallery /> },
   { path: "/admin/news", name: "admin-news", element: <News /> },
