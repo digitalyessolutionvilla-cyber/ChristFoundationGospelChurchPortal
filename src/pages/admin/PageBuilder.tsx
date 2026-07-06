@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { AdminGuard } from '@/components/shared/AdminGuard';
 import { AdminLayout } from '@/components/admin/AdminLayout';
@@ -16,7 +17,8 @@ import { ImageUploader } from '@/components/shared/ImageUploader';
 import { RichTextEditor } from '@/components/shared/RichTextEditor';
 import {
   Plus, Trash2, Edit2, Save, X, ChevronUp, ChevronDown, FileText,
-  Image as ImageIcon, Video, AlignLeft, BookOpen, MousePointer, GripVertical
+  Image as ImageIcon, Video, AlignLeft, BookOpen, MousePointer, GripVertical,
+  ExternalLink, Info
 } from 'lucide-react';
 import { format } from 'date-fns';
 
@@ -220,8 +222,24 @@ function PageBuilderInner() {
     });
   };
 
+  // CMS content key map for core pages
+  const CORE_CMS_KEYS: Record<string, { key: string; label: string }[]> = {
+    'about': [
+      { key: 'history_text', label: 'Brief History of the Church' },
+      { key: 'doctrines_text', label: 'Doctrines and Beliefs' },
+    ],
+    'vision': [{ key: 'vision_text', label: 'Our Vision' }],
+    'mission': [{ key: 'mission_text', label: 'Our Mission' }],
+    'youth-ministry': [{ key: 'youth_ministry_text', label: 'Youth Ministry Text' }],
+    'contact': [],
+    'church-leadership': [],
+  };
+
   // --- Page Editor ---
   if (editPage !== null) {
+    const cmsKeys = CORE_CMS_KEYS[editPage.slug ?? ''];
+    const isCorePage = cmsKeys !== undefined;
+
     return (
       <AdminLayout>
         <div className="p-6 space-y-6 max-w-4xl mx-auto">
@@ -242,6 +260,40 @@ function PageBuilderInner() {
               </Button>
             </div>
           </div>
+
+          {/* Core page helper — shows links to the right CMS editors */}
+          {isCorePage && (
+            <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 space-y-3">
+              <div className="flex items-start gap-2">
+                <Info className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                <div className="flex-1">
+                  <p className="font-serif font-semibold text-sm text-primary">Core Page — Edit via Page Content</p>
+                  <p className="font-serif text-xs text-muted-foreground mt-0.5">
+                    This page's main text is managed through the Page Content editor. Use the links below to edit it, then optionally add extra blocks below.
+                  </p>
+                </div>
+              </div>
+              {cmsKeys.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {cmsKeys.map(({ key, label }) => (
+                    <Link key={key} to={`/admin/edit/${key}`} className="inline-flex items-center gap-1.5 text-xs font-serif bg-primary text-primary-foreground px-3 py-1.5 rounded-lg hover:bg-primary/90 transition-colors">
+                      <ExternalLink className="w-3 h-3" /> Edit: {label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+              {editPage.slug === 'contact' && (
+                <Link to="/admin/settings" className="inline-flex items-center gap-1.5 text-xs font-serif bg-primary text-primary-foreground px-3 py-1.5 rounded-lg hover:bg-primary/90 transition-colors">
+                  <ExternalLink className="w-3 h-3" /> Edit Contact Info (Website Settings → Contact)
+                </Link>
+              )}
+              {editPage.slug === 'church-leadership' && (
+                <Link to="/admin/leadership" className="inline-flex items-center gap-1.5 text-xs font-serif bg-primary text-primary-foreground px-3 py-1.5 rounded-lg hover:bg-primary/90 transition-colors">
+                  <ExternalLink className="w-3 h-3" /> Manage Leadership Team
+                </Link>
+              )}
+            </div>
+          )}
 
           <Tabs defaultValue="content" className="space-y-4">
             <TabsList className="font-serif">

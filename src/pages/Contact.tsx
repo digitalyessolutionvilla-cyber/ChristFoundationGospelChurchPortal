@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
@@ -21,15 +21,30 @@ export default function Contact() {
   const [prayerForm, setPrayerForm] = useState({ ...emptyPrayer });
   const [contactForm, setContactForm] = useState({ ...emptyContact });
 
+  // Read contact info from website_settings
+  const { data: contactSettings } = useQuery({
+    queryKey: ['contact_settings'],
+    queryFn: async () => {
+      const { data } = await supabase.from('website_settings').select('key, value').eq('setting_group', 'contact');
+      const map: Record<string, string> = {};
+      (data ?? []).forEach((s: { key: string; value: string }) => { map[s.key] = s.value; });
+      return map;
+    },
+    staleTime: 60 * 1000,
+  });
+
+  const address  = contactSettings?.contact_address  ?? '7, Olusoji Street, Orile Oshodi, P. O. Box 983, Mushin, Lagos';
+  const phone1   = contactSettings?.contact_phone_1   ?? '+234 703 009 0757';
+  const phone2   = contactSettings?.contact_phone_2   ?? '+234 802 772 3788';
+  const phone3   = contactSettings?.contact_phone_3   ?? '+234 806 027 9123';
+  const email    = contactSettings?.contact_email     ?? 'cfgcchurch@gmail.com';
+
   const submitPrayer = useMutation({
     mutationFn: async () => {
       const { error } = await supabase.from('prayer_requests').insert(prayerForm);
       if (error) throw error;
     },
-    onSuccess: () => {
-      toast({ title: 'Prayer request submitted. We will pray with you.' });
-      setPrayerForm({ ...emptyPrayer });
-    },
+    onSuccess: () => { toast({ title: 'Prayer request submitted. We will pray with you.' }); setPrayerForm({ ...emptyPrayer }); },
     onError: () => toast({ title: 'Failed to submit. Please try again.', variant: 'destructive' }),
   });
 
@@ -38,10 +53,7 @@ export default function Contact() {
       const { error } = await supabase.from('contact_messages').insert(contactForm);
       if (error) throw error;
     },
-    onSuccess: () => {
-      toast({ title: 'Message sent! We will get back to you soon.' });
-      setContactForm({ ...emptyContact });
-    },
+    onSuccess: () => { toast({ title: 'Message sent! We will get back to you soon.' }); setContactForm({ ...emptyContact }); },
     onError: () => toast({ title: 'Failed to send. Please try again.', variant: 'destructive' }),
   });
 
@@ -59,21 +71,21 @@ export default function Contact() {
             <div className="bg-card rounded-2xl border border-border shadow-card p-6 flex flex-col items-center text-center gap-3">
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center"><MapPin className="w-6 h-6 text-primary" /></div>
               <h3 className="font-display font-bold text-foreground">Address</h3>
-              <p className="font-serif text-sm text-muted-foreground">7, Olusoji Street, Orile Oshodi<br />P. O. Box 983, Mushin, Lagos</p>
+              <p className="font-serif text-sm text-muted-foreground whitespace-pre-line">{address}</p>
             </div>
             <div className="bg-card rounded-2xl border border-border shadow-card p-6 flex flex-col items-center text-center gap-3">
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center"><Phone className="w-6 h-6 text-primary" /></div>
               <h3 className="font-display font-bold text-foreground">Phone</h3>
               <div className="font-serif text-sm text-muted-foreground space-y-1">
-                <p>+234 703 009 0757</p>
-                <p>+234 802 772 3788</p>
-                <p>+234 806 027 9123</p>
+                {phone1 && <p>{phone1}</p>}
+                {phone2 && <p>{phone2}</p>}
+                {phone3 && <p>{phone3}</p>}
               </div>
             </div>
             <div className="bg-card rounded-2xl border border-border shadow-card p-6 flex flex-col items-center text-center gap-3">
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center"><Mail className="w-6 h-6 text-primary" /></div>
               <h3 className="font-display font-bold text-foreground">Email</h3>
-              <a href="mailto:cfgcchurch@gmail.com" className="font-serif text-sm text-primary hover:underline">cfgcchurch@gmail.com</a>
+              <a href={`mailto:${email}`} className="font-serif text-sm text-primary hover:underline">{email}</a>
             </div>
           </div>
 
