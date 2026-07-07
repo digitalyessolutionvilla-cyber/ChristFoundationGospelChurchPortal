@@ -11,30 +11,150 @@ import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { logActivity } from '@/hooks/useAdminProfile';
-import { Plus, Trash2, Edit2, Save, X, ExternalLink, ChevronRight, ChevronDown, GripVertical, Menu, Globe } from 'lucide-react';
+import {
+  Plus, Trash2, Edit2, Save, X, ExternalLink,
+  ChevronRight, GripVertical, Menu, Globe
+} from 'lucide-react';
 
-interface NavMenu {
-  id: string;
-  name: string;
-  slug: string;
-  location: string;
-}
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
+/* ─── Types ──────────────────────────────────────────────── */
+interface NavMenu  { id: string; name: string; slug: string; location: string; }
 interface NavMenuItem {
-  id: string;
-  menu_id: string;
-  parent_id: string | null;
-  label: string;
-  url: string;
-  target: string;
-  icon: string;
-  display_order: number;
-  is_active: boolean;
+  id: string; menu_id: string; parent_id: string | null;
+  label: string; url: string; target: string; icon: string;
+  display_order: number; is_active: boolean;
   children?: NavMenuItem[];
 }
 
 const emptyItem = { label: '', url: '/', target: '_self', icon: '', display_order: 0, is_active: true, parent_id: '' };
 
+/* ─── Sortable Item ──────────────────────────────────────── */
+interface SortableItemProps {
+  item: NavMenuItem;
+  children: (handleRef: React.RefObject<HTMLButtonElement> | null) => React.ReactNode;
+}
+
+function SortableItem({ item, children }: SortableItemProps) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    setActivatorNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: item.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+    zIndex: isDragging ? 50 : undefined,
+  };
+
+  return (
+    <div ref={setNodeRef} style={style}>
+      {children
+        ? (() => {
+            // Pass drag handle props to the grip icon via a render-prop pattern
+            const grip = (
+              <button
+                ref={setActivatorNodeRef as React.RefObject<HTMLButtonElement>}
+                {...attributes}
+                {...listeners}
+                className="cursor-grab active:cursor-grabbing text-muted-foreground hover:text-foreground p-1 rounded touch-none"
+                aria-label="Drag to reorder"
+              >
+                <GripVertical className="w-4 h-4" />
+              </button>
+            );
+            return (children as (grip: React.ReactNode) => React.ReactNode)(grip as unknown as null);
+          })()
+        : null}
+    </div>
+  );
+}
+
+/* ─── Drag-handle aware row ─────────────────────────────── */
+interface DraggableRowProps {
+  item: NavMenuItem;
+  childCount: number;
+  onEdit: () => void;
+  onDelete: () => void;
+  onToggle: (v: boolean) => void;
+}
+
+function DraggableRow({ item, childCount, onEdit, onDelete, onToggle }: DraggableRowProps) {
+  const {
+    attributes, listeners,
+    setNodeRef, setActivatorNodeRef,
+    transform, transition, isDragging,
+  } = useSortable({ id: item.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.4 : 1,
+    zIndex: isDragging ? 50 : undefined,
+    position: isDragging ? 'relative' as const : undefined,
+  };
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      className={`flex items-center gap-3 p-3 rounded-lg border bg-card ${item.is_active ? 'border-border' : 'border-border/40 opacity-60'}`}
+    >
+      <button
+        ref={setActivatorNodeRef as React.RefObject<HTMLButtonElement>}
+        {...attributes}
+        {...listeners}
+        className="cursor-grab active:cursor-grabbing text-muted-foreground hover:text-foreground touch-none shrink-0"
+        aria-label="Drag to reorder"
+      >
+        <GripVertical className="w-4 h-4" />
+      </button>
+
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2">
+          <p className="font-serif font-semibold text-sm text-foreground">{item.label}</p>
+          {item.target === '_blank' && <ExternalLink className="w-3 h-3 text-muted-foreground" />}
+          {childCount > 0 && <Badge variant="secondary" className="text-xs">{childCount} sub-items</Badge>}
+        </div>
+        <p className="font-mono text-xs text-muted-foreground">{item.url}</p>
+      </div>
+
+      <div className="flex items-center gap-1 shrink-0">
+        <Switch checked={item.is_active} onCheckedChange={onToggle} />
+        <Button size="sm" variant="ghost" className="h-7 w-7 p-0" onClick={onEdit}>
+          <Edit2 className="w-3 h-3" />
+        </Button>
+        <Button size="sm" variant="ghost" className="h-7 w-7 p-0 text-destructive hover:text-destructive" onClick={onDelete}>
+          <Trash2 className="w-3 h-3" />
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Main Component ────────────────────────────────────── */
 function MenusInner() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -42,6 +162,12 @@ function MenusInner() {
   const [showItemForm, setShowItemForm] = useState(false);
   const [editItemId, setEditItemId] = useState<string | null>(null);
   const [itemForm, setItemForm] = useState({ ...emptyItem });
+  const [localItems, setLocalItems] = useState<NavMenuItem[]>([]);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  );
 
   const { data: menus = [], isLoading: menusLoading } = useQuery({
     queryKey: ['nav_menus'],
@@ -55,8 +181,13 @@ function MenusInner() {
     queryKey: ['nav_menu_items', selectedMenu?.id],
     enabled: !!selectedMenu,
     queryFn: async () => {
-      const { data } = await supabase.from('nav_menu_items').select('*').eq('menu_id', selectedMenu!.id).order('display_order');
-      return (data ?? []) as NavMenuItem[];
+      const { data } = await supabase
+        .from('nav_menu_items').select('*')
+        .eq('menu_id', selectedMenu!.id)
+        .order('display_order');
+      const items = (data ?? []) as NavMenuItem[];
+      setLocalItems(items);
+      return items;
     },
   });
 
@@ -64,10 +195,8 @@ function MenusInner() {
     mutationFn: async () => {
       const payload = {
         menu_id: selectedMenu!.id,
-        label: itemForm.label,
-        url: itemForm.url,
-        target: itemForm.target,
-        icon: itemForm.icon,
+        label: itemForm.label, url: itemForm.url,
+        target: itemForm.target, icon: itemForm.icon,
         display_order: itemForm.display_order,
         is_active: itemForm.is_active,
         parent_id: itemForm.parent_id || null,
@@ -84,6 +213,7 @@ function MenusInner() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['nav_menu_items', selectedMenu?.id] });
+      queryClient.invalidateQueries({ queryKey: ['nav_primary'] });
       toast({ title: editItemId ? 'Menu item updated!' : 'Menu item added!' });
       setShowItemForm(false); setEditItemId(null); setItemForm({ ...emptyItem });
     },
@@ -98,6 +228,7 @@ function MenusInner() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['nav_menu_items', selectedMenu?.id] });
+      queryClient.invalidateQueries({ queryKey: ['nav_primary'] });
       toast({ title: 'Item deleted' });
     },
   });
@@ -107,7 +238,25 @@ function MenusInner() {
       const { error } = await supabase.from('nav_menu_items').update({ is_active }).eq('id', id);
       if (error) throw error;
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['nav_menu_items', selectedMenu?.id] }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['nav_menu_items', selectedMenu?.id] });
+      queryClient.invalidateQueries({ queryKey: ['nav_primary'] });
+    },
+  });
+
+  const reorderMutation = useMutation({
+    mutationFn: async (items: NavMenuItem[]) => {
+      const updates = items.map((item, idx) =>
+        supabase.from('nav_menu_items').update({ display_order: idx + 1 }).eq('id', item.id)
+      );
+      await Promise.all(updates);
+      await logActivity('Reordered menu items', 'Menus');
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['nav_menu_items', selectedMenu?.id] });
+      queryClient.invalidateQueries({ queryKey: ['nav_primary'] });
+    },
+    onError: () => toast({ title: 'Failed to save order', variant: 'destructive' }),
   });
 
   const startEditItem = (item: NavMenuItem) => {
@@ -120,9 +269,27 @@ function MenusInner() {
     setShowItemForm(true);
   };
 
-  // Build tree structure: top-level items and their children
-  const topLevel = menuItems.filter(i => !i.parent_id);
-  const getChildren = (parentId: string) => menuItems.filter(i => i.parent_id === parentId);
+  const topLevel = localItems.filter(i => !i.parent_id);
+  const getChildren = (parentId: string) => localItems.filter(i => i.parent_id === parentId);
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    const oldIndex = topLevel.findIndex(i => i.id === active.id);
+    const newIndex = topLevel.findIndex(i => i.id === over.id);
+    if (oldIndex === -1 || newIndex === -1) return;
+
+    const reordered = arrayMove(topLevel, oldIndex, newIndex);
+
+    // Preserve children in localItems, only reorder top-level items
+    const children = localItems.filter(i => i.parent_id);
+    const newLocal = [...reordered, ...children];
+    setLocalItems(newLocal);
+
+    reorderMutation.mutate(reordered);
+    toast({ title: 'Order saved!' });
+  };
 
   return (
     <AdminLayout>
@@ -131,7 +298,7 @@ function MenusInner() {
           <Menu className="w-6 h-6 text-primary" />
           <div>
             <h1 className="font-display font-bold text-2xl text-foreground">Menu Management</h1>
-            <p className="text-sm font-serif text-muted-foreground">Manage website navigation menus</p>
+            <p className="text-sm font-serif text-muted-foreground">Drag items to reorder • Toggle to show/hide • Add or remove items</p>
           </div>
         </div>
 
@@ -170,7 +337,15 @@ function MenusInner() {
               <>
                 <div className="flex items-center justify-between">
                   <p className="font-serif font-semibold text-foreground">{selectedMenu.name} Items</p>
-                  <Button size="sm" onClick={() => { setShowItemForm(true); setEditItemId(null); setItemForm({ ...emptyItem, display_order: menuItems.length }); }} className="font-serif">
+                  <Button
+                    size="sm"
+                    onClick={() => {
+                      setShowItemForm(true);
+                      setEditItemId(null);
+                      setItemForm({ ...emptyItem, display_order: menuItems.length });
+                    }}
+                    className="font-serif"
+                  >
                     <Plus className="w-4 h-4 mr-1" /> Add Item
                   </Button>
                 </div>
@@ -178,7 +353,12 @@ function MenusInner() {
                 {/* Add/Edit Form */}
                 {showItemForm && (
                   <div className="border border-border rounded-xl p-4 bg-card space-y-3">
-                    <h3 className="font-serif font-semibold text-sm">{editItemId ? 'Edit Menu Item' : 'New Menu Item'}</h3>
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-serif font-semibold text-sm">{editItemId ? 'Edit Menu Item' : 'New Menu Item'}</h3>
+                      <Button variant="ghost" size="sm" className="h-7 w-7 p-0" onClick={() => { setShowItemForm(false); setEditItemId(null); }}>
+                        <X className="w-3 h-3" />
+                      </Button>
+                    </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <Label className="font-serif text-xs">Label *</Label>
@@ -190,21 +370,25 @@ function MenusInner() {
                       </div>
                       <div>
                         <Label className="font-serif text-xs">Parent Item (sub-menu)</Label>
-                        <select value={itemForm.parent_id} onChange={e => setItemForm(f => ({ ...f, parent_id: e.target.value }))} className="mt-1 w-full font-serif text-sm border border-input rounded-md px-3 py-2 bg-background">
+                        <select
+                          value={itemForm.parent_id}
+                          onChange={e => setItemForm(f => ({ ...f, parent_id: e.target.value }))}
+                          className="mt-1 w-full font-serif text-sm border border-input rounded-md px-3 py-2 bg-background"
+                        >
                           <option value="">-- Top Level --</option>
                           {topLevel.map(i => <option key={i.id} value={i.id}>{i.label}</option>)}
                         </select>
                       </div>
                       <div>
                         <Label className="font-serif text-xs">Open In</Label>
-                        <select value={itemForm.target} onChange={e => setItemForm(f => ({ ...f, target: e.target.value }))} className="mt-1 w-full font-serif text-sm border border-input rounded-md px-3 py-2 bg-background">
+                        <select
+                          value={itemForm.target}
+                          onChange={e => setItemForm(f => ({ ...f, target: e.target.value }))}
+                          className="mt-1 w-full font-serif text-sm border border-input rounded-md px-3 py-2 bg-background"
+                        >
                           <option value="_self">Same Tab</option>
                           <option value="_blank">New Tab</option>
                         </select>
-                      </div>
-                      <div>
-                        <Label className="font-serif text-xs">Display Order</Label>
-                        <Input type="number" value={itemForm.display_order} onChange={e => setItemForm(f => ({ ...f, display_order: +e.target.value }))} className="mt-1 font-serif text-sm" />
                       </div>
                       <div className="flex items-center gap-2 pt-4">
                         <Switch checked={itemForm.is_active} onCheckedChange={v => setItemForm(f => ({ ...f, is_active: v }))} />
@@ -212,70 +396,81 @@ function MenusInner() {
                       </div>
                     </div>
                     <div className="flex gap-2">
-                      <Button size="sm" onClick={() => saveItemMutation.mutate()} disabled={!itemForm.label || saveItemMutation.isPending} className="font-serif">
+                      <Button
+                        size="sm"
+                        onClick={() => saveItemMutation.mutate()}
+                        disabled={!itemForm.label || saveItemMutation.isPending}
+                        className="font-serif"
+                      >
                         <Save className="w-3 h-3 mr-1" /> {saveItemMutation.isPending ? 'Saving...' : 'Save'}
                       </Button>
                       <Button size="sm" variant="outline" onClick={() => { setShowItemForm(false); setEditItemId(null); }} className="font-serif">
-                        <X className="w-3 h-3 mr-1" /> Cancel
+                        Cancel
                       </Button>
                     </div>
                   </div>
                 )}
 
-                {/* Items Tree */}
+                {/* Draggable Items Tree */}
                 {itemsLoading ? (
                   <div className="space-y-2">{Array.from({ length: 5 }).map((_, i) => <Skeleton key={i} className="h-14 rounded-lg" />)}</div>
                 ) : topLevel.length === 0 ? (
                   <p className="text-center py-8 text-muted-foreground font-serif text-sm">No menu items yet. Add some above!</p>
                 ) : (
-                  <div className="space-y-2">
-                    {topLevel.map(item => {
-                      const children = getChildren(item.id);
-                      return (
-                        <div key={item.id}>
-                          <div className={`flex items-center gap-3 p-3 rounded-lg border ${item.is_active ? 'border-border bg-card' : 'border-border/40 bg-muted/20 opacity-60'}`}>
-                            <GripVertical className="w-4 h-4 text-muted-foreground shrink-0" />
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2">
-                                <p className="font-serif font-semibold text-sm text-foreground">{item.label}</p>
-                                {item.target === '_blank' && <ExternalLink className="w-3 h-3 text-muted-foreground" />}
-                                {children.length > 0 && <Badge variant="secondary" className="text-xs">{children.length} sub-items</Badge>}
+                  <>
+                    <p className="text-xs font-serif text-muted-foreground flex items-center gap-1.5">
+                      <GripVertical className="w-3.5 h-3.5" /> Drag the grip handle to reorder items
+                    </p>
+                    <DndContext
+                      sensors={sensors}
+                      collisionDetection={closestCenter}
+                      onDragEnd={handleDragEnd}
+                    >
+                      <SortableContext items={topLevel.map(i => i.id)} strategy={verticalListSortingStrategy}>
+                        <div className="space-y-2">
+                          {topLevel.map(item => {
+                            const children = getChildren(item.id);
+                            return (
+                              <div key={item.id}>
+                                <DraggableRow
+                                  item={item}
+                                  childCount={children.length}
+                                  onEdit={() => startEditItem(item)}
+                                  onDelete={() => deleteItemMutation.mutate(item.id)}
+                                  onToggle={v => toggleItemMutation.mutate({ id: item.id, is_active: v })}
+                                />
+                                {/* Sub-items (not draggable themselves, shown indented) */}
+                                {children.map(child => (
+                                  <div
+                                    key={child.id}
+                                    className={`flex items-center gap-3 p-3 ml-8 mt-1 rounded-lg border ${child.is_active ? 'border-border bg-card/50' : 'border-border/40 bg-muted/20 opacity-60'}`}
+                                  >
+                                    <ChevronRight className="w-3 h-3 text-muted-foreground shrink-0" />
+                                    <div className="flex-1 min-w-0">
+                                      <p className="font-serif text-sm text-foreground">{child.label}</p>
+                                      <p className="font-mono text-xs text-muted-foreground">{child.url}</p>
+                                    </div>
+                                    <div className="flex items-center gap-1 shrink-0">
+                                      <Switch
+                                        checked={child.is_active}
+                                        onCheckedChange={v => toggleItemMutation.mutate({ id: child.id, is_active: v })}
+                                      />
+                                      <Button size="sm" variant="ghost" className="h-7 w-7 p-0" onClick={() => startEditItem(child)}>
+                                        <Edit2 className="w-3 h-3" />
+                                      </Button>
+                                      <Button size="sm" variant="ghost" className="h-7 w-7 p-0 text-destructive hover:text-destructive" onClick={() => deleteItemMutation.mutate(child.id)}>
+                                        <Trash2 className="w-3 h-3" />
+                                      </Button>
+                                    </div>
+                                  </div>
+                                ))}
                               </div>
-                              <p className="font-mono text-xs text-muted-foreground">{item.url}</p>
-                            </div>
-                            <div className="flex items-center gap-1 shrink-0">
-                              <Switch checked={item.is_active} onCheckedChange={v => toggleItemMutation.mutate({ id: item.id, is_active: v })} />
-                              <Button size="sm" variant="ghost" className="h-7 w-7 p-0" onClick={() => startEditItem(item)}>
-                                <Edit2 className="w-3 h-3" />
-                              </Button>
-                              <Button size="sm" variant="ghost" className="h-7 w-7 p-0 text-destructive hover:text-destructive" onClick={() => deleteItemMutation.mutate(item.id)}>
-                                <Trash2 className="w-3 h-3" />
-                              </Button>
-                            </div>
-                          </div>
-                          {/* Sub-items */}
-                          {children.map(child => (
-                            <div key={child.id} className={`flex items-center gap-3 p-3 ml-6 mt-1 rounded-lg border ${child.is_active ? 'border-border bg-card/50' : 'border-border/40 bg-muted/20 opacity-60'}`}>
-                              <ChevronRight className="w-3 h-3 text-muted-foreground shrink-0" />
-                              <div className="flex-1 min-w-0">
-                                <p className="font-serif text-sm text-foreground">{child.label}</p>
-                                <p className="font-mono text-xs text-muted-foreground">{child.url}</p>
-                              </div>
-                              <div className="flex items-center gap-1 shrink-0">
-                                <Switch checked={child.is_active} onCheckedChange={v => toggleItemMutation.mutate({ id: child.id, is_active: v })} />
-                                <Button size="sm" variant="ghost" className="h-7 w-7 p-0" onClick={() => startEditItem(child)}>
-                                  <Edit2 className="w-3 h-3" />
-                                </Button>
-                                <Button size="sm" variant="ghost" className="h-7 w-7 p-0 text-destructive hover:text-destructive" onClick={() => deleteItemMutation.mutate(child.id)}>
-                                  <Trash2 className="w-3 h-3" />
-                                </Button>
-                              </div>
-                            </div>
-                          ))}
+                            );
+                          })}
                         </div>
-                      );
-                    })}
-                  </div>
+                      </SortableContext>
+                    </DndContext>
+                  </>
                 )}
               </>
             )}
