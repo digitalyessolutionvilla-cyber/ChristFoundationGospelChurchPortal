@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { LiveNowBanner } from '@/components/home/LiveNowBanner';
 import { HeroSlider } from '@/components/home/HeroSlider';
 import { WelcomeSection } from '@/components/home/WelcomeSection';
 import { VisionMissionCards } from '@/components/home/VisionMissionCards';
@@ -49,6 +50,7 @@ const Index = () => {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Navbar />
+      <LiveNowBanner />
       <main className="flex-1">
         {visibleSections.map(section => {
           const Component = SECTION_MAP[section.section_key];

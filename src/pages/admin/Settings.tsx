@@ -11,11 +11,12 @@ import { Switch } from '@/components/ui/switch';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { logActivity } from '@/hooks/useAdminProfile';
-import { Save, Globe, Phone, Mail, Share2, Settings, Image, Layout } from 'lucide-react';
+import { Save, Globe, Phone, Mail, Share2, Settings, Image, Layout, Radio } from 'lucide-react';
 
 const settingGroups = [
   { key: 'topbar', label: 'Top Bar', icon: Layout },
   { key: 'general', label: 'General', icon: Settings },
+  { key: 'live', label: 'Live Now', icon: Radio },
   { key: 'church', label: 'Church Info', icon: Globe },
   { key: 'footer', label: 'Footer', icon: Globe },
   { key: 'seo', label: 'SEO & Analytics', icon: Globe },
@@ -81,6 +82,7 @@ function WebsiteSettingsInner() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['website_settings_all'] });
       queryClient.invalidateQueries({ queryKey: ['topbar_settings'] });
+      queryClient.invalidateQueries({ queryKey: ['live_now_settings'] });
       toast({ title: 'Settings saved successfully!' });
     },
     onError: () => toast({ title: 'Failed to save settings', variant: 'destructive' }),
@@ -118,6 +120,13 @@ function WebsiteSettingsInner() {
               <div className="bg-muted/30 rounded-xl p-4 border border-border mb-2">
                 <p className="font-serif text-xs text-muted-foreground">
                   These settings control what appears in the red top bar of your website. Changes are reflected immediately on the live site.
+                </p>
+              </div>
+            )}
+            {activeGroup === 'live' && (
+              <div className="bg-muted/30 rounded-xl p-4 border border-border mb-2">
+                <p className="font-serif text-xs text-muted-foreground">
+                  Turn this on when a service or broadcast is streaming on Mixlr. Paste your Mixlr embed URL below (from your Mixlr channel's "Embed" option) — once saved, a live banner with the player appears at the top of your homepage.
                 </p>
               </div>
             )}
