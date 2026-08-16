@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Skeleton } from '@/components/ui/skeleton';
+import { ImageUploader } from '@/components/shared/ImageUploader';
 import { useToast } from '@/hooks/use-toast';
 import { logActivity } from '@/hooks/useAdminProfile';
 import { Save, Globe, Phone, Mail, Share2, Settings, Image, Layout } from 'lucide-react';
@@ -124,6 +125,25 @@ function WebsiteSettingsInner() {
             {settings.map((s: Setting) => {
               const isBool = isBoolKey(s.key);
               const currentVal = values[s.key] ?? s.value;
+
+              if (activeGroup === 'church' && s.key === 'general_overseer_photo') {
+                return (
+                  <div key={s.key}>
+                    <div className="flex items-center justify-between gap-4 mb-2">
+                      <div className="flex-1">
+                        <Label htmlFor={s.key} className="font-serif text-sm font-semibold">{s.label}</Label>
+                      </div>
+                    </div>
+                    <ImageUploader
+                      value={currentVal}
+                      onChange={url => setValues(v => ({ ...v, [s.key]: url }))}
+                      folder="leadership"
+                      label="General Overseer Photo"
+                    />
+                  </div>
+                );
+              }
+
               return (
                 <div key={s.key}>
                   <div className="flex items-center justify-between gap-4">

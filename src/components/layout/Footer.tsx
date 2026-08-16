@@ -111,9 +111,6 @@ export function Footer() {
           <p className="text-primary-foreground/50 text-xs font-serif">
             &copy; {new Date().getFullYear()} Christ Foundation Gospel Church (Inc.). All rights reserved.
           </p>
-          <Link to="/admin/login" className="text-primary-foreground/30 hover:text-accent text-xs font-serif transition-colors">
-            Admin
-          </Link>
         </div>
       </div>
     </footer>

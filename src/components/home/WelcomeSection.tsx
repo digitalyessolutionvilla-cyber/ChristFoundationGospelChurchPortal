@@ -1,7 +1,24 @@
+import { useQuery } from '@tanstack/react-query';
+import { supabase } from '@/integrations/supabase/client';
 import { CMSText } from '@/components/shared/CMSText';
 import { UserRound } from 'lucide-react';
 
 export function WelcomeSection() {
+  const { data: churchSettings = {} as Record<string, string> } = useQuery({
+    queryKey: ['church_settings'],
+    queryFn: async () => {
+      const { data } = await supabase.from('website_settings').select('key, value').eq('setting_group', 'church');
+      const map: Record<string, string> = {};
+      (data ?? []).forEach((item: { key: string; value: string }) => {
+        map[item.key] = item.value;
+      });
+      return map;
+    },
+    staleTime: 60 * 1000,
+  });
+
+  const overseerPhoto = churchSettings.general_overseer_photo || '';
+
   return (
     <section className="py-14 md:py-20 bg-card">
       <div className="container mx-auto px-4">
@@ -34,12 +51,21 @@ export function WelcomeSection() {
 
             {/* Overseer signature */}
             <div className="mt-8 pt-6 border-t border-border flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shrink-0">
-                <UserRound className="w-5 h-5 text-primary-foreground" />
-              </div>
+              {overseerPhoto ? (
+                <img
+                  src={overseerPhoto}
+                  alt="General Overseer"
+                  className="w-10 h-10 rounded-full object-cover border border-border bg-white shrink-0"
+                  crossOrigin="anonymous"
+                />
+              ) : (
+                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shrink-0">
+                  <UserRound className="w-5 h-5 text-primary-foreground" />
+                </div>
+              )}
               <div>
                 <p className="font-display font-semibold text-primary text-sm">
-                  Rev. Nathaniel A. Akintobi (JP)
+                  {churchSettings.general_overseer_name || 'Rev. Nathaniel A. Akintobi (JP)'}
                 </p>
                 <p className="text-muted-foreground text-xs font-serif">
                   General Overseer, CFGC (Inc.)
