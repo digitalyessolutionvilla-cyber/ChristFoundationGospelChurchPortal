@@ -17,6 +17,9 @@ export default function AdminLogin() {
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ email: '', password: '', fullName: '' });
 
+  const siteUrl = (import.meta.env.VITE_SITE_URL as string) || window.location.origin;
+  const adminRedirectUrl = `${siteUrl.replace(/\/$/, '')}/admin/login`;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -40,7 +43,7 @@ export default function AdminLogin() {
         const { data, error } = await supabase.auth.signUp({
           email: form.email,
           password: form.password,
-          options: { emailRedirectTo: `${window.location.origin}/admin/login` },
+          options: { emailRedirectTo: adminRedirectUrl },
         });
         if (error) throw error;
 
