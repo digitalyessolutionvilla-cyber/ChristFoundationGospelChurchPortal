@@ -1,0 +1,57 @@
+-- Seed headquarters and camp ground (no district)
+INSERT INTO church_branches (district_id, name, address, po_box, phones, is_headquarters, is_national_camp, display_order)
+VALUES
+(NULL, 'Headquarters', '7, Olusoji Street, Orile Oshodi', 'P. O. Box 983, Mushin, Lagos', ARRAY['+2347030090757','+2348027723788','+2348060279123'], true, false, 0),
+(NULL, 'National Camp Ground — Mountain of Salvation', 'Ilupeju Quarters, Magada-Ibafo, Lagos-Ibadan Express Way, Ibafo, Ogun State', '', ARRAY['+2348053035335'], false, true, 1);
+
+-- Seed branches with district references using subqueries
+INSERT INTO church_branches (district_id, name, address, phones, is_headquarters, display_order)
+SELECT d.id, b.name, b.address, b.phones, b.is_hq, b.ord
+FROM church_districts d
+JOIN (VALUES
+  ('Lagos District', 'Olowora Branch', '2a, Olatunde Sule Street, Olowora, By Isheri, Lagos State', ARRAY['+2348169057554'], false, 1),
+  ('Lagos District', 'Bariga Branch', '25, Alubarika Street, Laide Bus Stop, Bariga, Lagos State', ARRAY['+2348067057058'], false, 2),
+  ('Lagos District', 'Ikotun Branch', '3, Akanbi Oguntoyinbo Street, Off Asalu Mosque Road, Ola Farm Bus Stop, Via Abaranje, Ikotun, Lagos State', ARRAY['+2348059780005','+2348183229135'], false, 3),
+  ('Badagry District', 'Badagry Branch', 'Akilapa Compound, Off Aradagun Road, Mowo-Badagry, Lagos State', ARRAY['+2348035712722'], false, 1),
+  ('Iroko District', 'Iroko Branch — District Hqtrs.', '5-13 Tijani Ayoola Street, Iroko Town, Ajegunle Bus Stop, Via Sango Ota Toll Gate, Ogun State', ARRAY['+2347038430418'], true, 1),
+  ('Iroko District', 'Orija Branch', '18, Moshood Amusa Street, Orija Estate, Iroko Town, Ogun State', ARRAY['+2348079233938'], false, 2),
+  ('Iroko District', 'Mosafejo Branch', 'Ijamala Area, Mosafejo, Via Ijoko Ota, Ogun State', ARRAY['+2347038307476'], false, 3),
+  ('Iroko District', 'Oyero Branch', '10, Irepodun Street, Oyero, Via Ijoko Ota, Ogun State', ARRAY['+2348023962465'], false, 4),
+  ('Ota District', 'Konifewo Branch — District Hqtrs.', '2, Oore-ofe Street, Okititan Town, Via Konifewo, Ogun State', ARRAY['+2348039294323'], true, 1),
+  ('Ota District', 'Ota 1 Branch', '124, Idiroko Road, Opposite Fowobi Filling Station, Ota, Ogun State', ARRAY['+2348136285333'], false, 2),
+  ('Ota District', 'Ota 2 Branch', '104 Anglican Road, Ota, Ogun State', ARRAY['+2348169610408'], false, 3),
+  ('Ifo District', 'Ifo Branch — District Hqtrs.', '91, Awolowo Avenue, Ikoritameje, Ifo, Ogun State', ARRAY['+2348028396903'], true, 1),
+  ('Ifo District', 'Ibogun Akiode Branch', 'Ibogun Akiode Junction, Akiode Bus Stop, Via Ifo, Ogun State', ARRAY['+2347038601072'], false, 2),
+  ('Ifo District', 'Oko-Ireke Branch', 'Ayedaade Oko-Ireke Along Ifo Ibogun Road, Ogun State', ARRAY['+2347038184764'], false, 3),
+  ('Arigbajo District', 'Arigbajo Branch — District Hqtrs.', 'Behind Methodist High School, Along Ifo-Abeokuta Express Way, Arigbajo Town, Ogun State', ARRAY['+2348035677373'], true, 1),
+  ('Arigbajo District', 'Ososun Branch', 'Gasline Area, Off Alaja Road, Ososun Titun, Via Ifo, Ogun State', ARRAY['+2347035386956'], false, 2),
+  ('Arigbajo District', 'Apomu Branch', 'Apomu Village, Via Arigbajo, Ogun State', ARRAY['+2348060659212'], false, 3),
+  ('Ilaro District', 'Ilaro Branch — District Hqtrs.', '10, Seriki Street, Sabo, Ilaro, Ogun State', ARRAY['+2348031301380','+2348055444431'], true, 1),
+  ('Ilaro District', 'Olorunda Station Branch', 'Olorunda Station, Opp. Railway Station, Via Egbeda, Ifo, Ogun State', ARRAY['+2347030749197'], false, 2),
+  ('Ilaro District', 'Oja Odan Branch', 'Papa Olasun, Oja-Odan, Ogun State', ARRAY['+2348148145504'], false, 3),
+  ('Ilaro District', 'Idogo Branch', 'Elefun Compound, Alagbado Road, Oke-Ola, Idogo Town, Via Ilaro, Ogun State', ARRAY['+2347030749197'], false, 4),
+  ('Ilaro District', 'Obele Branch', 'Pedepo Road, Border Town, Obele, Ogun State', ARRAY['+2348148145504'], false, 5),
+  ('Abeokuta South District', 'Oke-Aregba Branch — District Hqtrs.', '6, Alani Kayode Street, Oke-Aregba, Itoko Titun, Adatan, Abeokuta, Ogun State', ARRAY['+2348060152193'], true, 1),
+  ('Abeokuta South District', 'Oke-Ijeun Branch', '152, Beside Onjoko House Oke-Ijeun, Abeokuta, Ogun State', ARRAY['+2348033951383'], false, 2),
+  ('Abeokuta South District', 'Idosan Branch', 'Idosa Fagada Village, Obafemi Owode LGA, Ogun State', ARRAY['+2348033753539'], false, 3),
+  ('Abeokuta South District', 'Sigo-Opalola Branch', 'Sigo-Opalola Village, Ifo-Abeokuta Express Road Bye Pass, Near Wasimi, Ogun State', ARRAY['+2348089517867'], false, 4),
+  ('Abeokuta South District', 'Ojeke Branch', 'Ojeke Village Near Obafemi Owode, Ogun State', ARRAY['+2347037905257'], false, 5),
+  ('Odeda District', 'Gbonagun Branch — District Hqtrs.', '19, Gbonagun Road, Near Obantoko, Odo-Eran, Abeokuta, Ogun State', ARRAY['+2348060152193'], true, 1),
+  ('Odeda District', 'Osaara Branch', 'Osaara Community, Via Gbonagun Area, Odeda LGA, Ogun State', ARRAY['+2348032496100'], false, 2),
+  ('Odeda District', 'Ologburugburu Branch', 'Ologburugburu Village, Odeda LGA, Ogun State', ARRAY['+2348061699925'], false, 3),
+  ('Odeda District', 'Akintoye Branch', 'Akintoye Village, Along Abeokuta-Ibadan Road, Ogun State', ARRAY['+2347038595729'], false, 4),
+  ('Keesan District', 'Olorunda Branch — District Hqtrs.', 'Olorunda Town, Along Abeokuta-Ayetoro Road, Via Imala, Ogun State', ARRAY['+2348035022586'], true, 1),
+  ('Keesan District', 'Ayetoro Branch', 'Joga-Ayetoro-Ilaro Road Bye Pass, Via Olorunda Town, Ogun State', ARRAY['+2348162594661'], false, 2),
+  ('Keesan District', 'Keesan Branch', 'Keesan Village, Abeokuta-Ayetoro Road Bye Pass, Via Olorunda Town, Ogun State', ARRAY['+2348167643853'], false, 3),
+  ('Ibafo District', 'Ibafo Camp Church', 'Mountain of Salvation, Ilupeju Quarters, Magada-Ibafo, Lagos-Ibadan Express Way, Ibafo, Ogun State', ARRAY['+2348053035335'], false, 1),
+  ('Ibafo District', 'Ibafo 1 — District Hqtrs.', 'Bayo Oluokun Street, Opp. Police Station, Along Lagos-Ibadan Express Way, Ibafo, Ogun State', ARRAY['+2347032048282'], true, 2),
+  ('Ibafo District', 'Ibafo 2 Branch', 'Surulere Quarters Off Olusoji Street, Ebut Road, Ibafo, Ogun State', ARRAY['+2348134721711'], false, 3),
+  ('Ibafo District', 'Mowe Branch', '2, Famuyiwa Street, Opp. Iyaniwura Medical Centre, Along Lagos-Ibadan Express Way, Mowe, Ogun State', ARRAY['+2348084933510'], false, 4),
+  ('Ibafo District', 'Isefu Branch', 'Isefu Village, Via Ibafo, Ogun State', ARRAY['+2348067172400'], false, 5),
+  ('Ijebu District', 'Ijebu-Ode — District Hqtrs.', '131, Molipa Road, Molipa Ijebu-Ode, Ogun State', ARRAY['+2348052251365'], true, 1),
+  ('Ijebu District', 'Ago-Iwoye Branch', 'Ag E2/51, Fabigbade Road, Ago-Iwoye, Ogun State', ARRAY['+2348163045897'], false, 2),
+  ('Ijebu District', 'Ijebu-Igbo Branch', '6, Pelumi Street, Oke-Alaafia, Ijebu-Igbo, Ogun State', ARRAY['+2348140900140'], false, 3),
+  ('Ibadan District', 'Ibadan 1 — District Hqtrs.', '3, Kalejaiye Street, Oke-Itunu, Mokola, Ibadan, Oyo State', ARRAY['+2348029563118'], true, 1),
+  ('Ibadan District', 'Ibadan 2 Branch', 'Farae Estate, Sanyo Bus Stop, Iwo Road, Ibadan, Oyo State', ARRAY['+2348061638931'], false, 2),
+  ('Ekiti District', 'Okemesi Branch', 'Ijana Street, Okemesi, Ekiti State', ARRAY['+2348127134428'], false, 1)
+) AS b(district_name, name, address, phones, is_hq, ord) ON d.name = b.district_name;

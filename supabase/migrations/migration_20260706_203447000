@@ -1,0 +1,65 @@
+-- home_sections: controls which sections appear on homepage and in what order
+CREATE TABLE IF NOT EXISTS home_sections (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  section_key text NOT NULL,
+  label text NOT NULL,
+  display_order integer NOT NULL DEFAULT 0,
+  is_visible boolean NOT NULL DEFAULT true,
+  custom_config jsonb DEFAULT '{}',
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+);
+
+ALTER TABLE home_sections ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Public can read home_sections" ON home_sections FOR SELECT USING (true);
+CREATE POLICY "Authenticated can manage home_sections" ON home_sections FOR ALL USING (auth.role() = 'authenticated');
+
+-- Seed built-in sections in default order
+INSERT INTO home_sections (section_key, label, display_order, is_visible) VALUES
+  ('hero_slider',     'Hero Slider',          1,  true),
+  ('quick_links',     'Quick Links',          2,  true),
+  ('welcome',         'Welcome Message',      3,  true),
+  ('vision_mission',  'Vision & Mission',     4,  true),
+  ('events',          'Upcoming Events',      5,  true)
+ON CONFLICT DO NOTHING;
+
+-- quick_links: replaces hardcoded QuickLinks array
+CREATE TABLE IF NOT EXISTS quick_links (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  icon_library text NOT NULL DEFAULT 'lucide',
+  icon_name text NOT NULL DEFAULT 'Link',
+  label text NOT NULL,
+  description text DEFAULT '',
+  url text NOT NULL DEFAULT '/',
+  icon_color text NOT NULL DEFAULT 'text-white',
+  bg_color text NOT NULL DEFAULT 'bg-white/20',
+  display_order integer NOT NULL DEFAULT 0,
+  is_active boolean NOT NULL DEFAULT true,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+);
+
+ALTER TABLE quick_links ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Public can read quick_links" ON quick_links FOR SELECT USING (true);
+CREATE POLICY "Authenticated can manage quick_links" ON quick_links FOR ALL USING (auth.role() = 'authenticated');
+
+-- Seed with the 4 existing quick links
+INSERT INTO quick_links (icon_library, icon_name, label, description, url, icon_color, bg_color, display_order, is_active) VALUES
+  ('lucide', 'Radio',  'Online Radio',   '24/7 gospel music & preaching', '/online-radio',   'text-red-400',   'bg-red-400/25',  1, true),
+  ('lucide', 'Tv',     'Watch Us Live',  'Stream our services online',    '/watch-live',     'text-white',     'bg-white/20',    2, true),
+  ('lucide', 'MapPin', 'Our Locations',  'Find a branch near you',        '/locations',      'text-amber-400', 'bg-amber-400/25',3, true),
+  ('lucide', 'Users',  'Youth Ministry', 'For the next generation',       '/youth-ministry', 'text-sky-300',   'bg-sky-300/20',  4, true)
+ON CONFLICT DO NOTHING;
+
+-- Ensure cms_pages has the core pages seeded (for editing via PageBuilder)
+INSERT INTO cms_pages (title, slug, content, is_published, seo_title, seo_description, featured_image, updated_at)
+VALUES
+  ('About',              'about',              '[]'::jsonb, true, 'About Us',              'Learn about our church',            '', now()),
+  ('Vision',             'vision',             '[]'::jsonb, true, 'Our Vision',            'Our church vision statement',       '', now()),
+  ('Mission',            'mission',            '[]'::jsonb, true, 'Our Mission',           'Our church mission statement',      '', now()),
+  ('Contact',            'contact',            '[]'::jsonb, true, 'Contact Us',            'Get in touch with us',              '', now()),
+  ('Youth Ministry',     'youth-ministry',     '[]'::jsonb, true, 'Youth Ministry',        'Ministry for the next generation',  '', now()),
+  ('Church Leadership',  'church-leadership',  '[]'::jsonb, true, 'Church Leadership',     'Meet our church leadership',        '', now())
+ON CONFLICT DO NOTHING;

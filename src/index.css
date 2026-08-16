@@ -1,0 +1,181 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* CFGC Church Color Palette — derived from official logo */
+    --background: 220 20% 97%;
+    --foreground: 224 40% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 40% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 40% 12%;
+
+    /* Royal Blue — logo's blue ring */
+    --primary: 224 71% 32%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Light blue — secondary UI */
+    --secondary: 218 50% 92%;
+    --secondary-foreground: 224 71% 25%;
+
+    --muted: 220 20% 93%;
+    --muted-foreground: 220 15% 45%;
+
+    /* Gold / amber — logo's motto color */
+    --accent: 43 96% 50%;
+    --accent-foreground: 224 40% 10%;
+
+    --destructive: 0 84% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 224 71% 32%;
+
+    --radius: 0.375rem;
+
+    /* Sidebar */
+    --sidebar-background: 224 71% 20%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 43 96% 50%;
+    --sidebar-primary-foreground: 224 40% 10%;
+    --sidebar-accent: 224 71% 28%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 224 71% 25%;
+    --sidebar-ring: 43 96% 50%;
+
+    /* Custom CFGC design tokens */
+    --church-deep: 224 50% 12%;
+    --church-red: 0 85% 48%;
+    --church-gold: 43 96% 50%;
+    --church-gold-dark: 38 90% 42%;
+    --church-blue-light: 210 60% 85%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(224 65% 20%) 0%, hsl(224 71% 35%) 60%, hsl(210 60% 40%) 100%);
+    --gradient-gold: linear-gradient(90deg, hsl(43 96% 45%) 0%, hsl(38 96% 55%) 100%);
+    --gradient-section: linear-gradient(180deg, hsl(220 20% 97%) 0%, hsl(218 30% 93%) 100%);
+    --shadow-blue: 0 8px 32px -8px hsl(224 71% 32% / 0.35);
+    --shadow-gold: 0 4px 16px -4px hsl(43 96% 50% / 0.4);
+    --shadow-card: 0 2px 16px -4px hsl(224 40% 12% / 0.12);
+  }
+
+  .dark {
+    --background: 224 50% 8%;
+    --foreground: 210 40% 96%;
+
+    --card: 224 50% 11%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 224 50% 11%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 224 71% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 224 40% 18%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 224 40% 16%;
+    --muted-foreground: 220 15% 65%;
+
+    --accent: 43 96% 55%;
+    --accent-foreground: 224 40% 10%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 224 40% 20%;
+    --input: 224 40% 20%;
+    --ring: 224 71% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+/* News ticker scroll animation */
+@keyframes ticker-scroll {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.animate-ticker {
+  display: inline-block;
+  animation: ticker-scroll 35s linear infinite;
+}
+
+/* Hero slider animation */
+@keyframes fade-slide-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-slide-in {
+  animation: fade-slide-in 0.7s ease forwards;
+}
+
+/* Gold shimmer for accent elements */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, hsl(43 96% 40%), hsl(48 100% 65%), hsl(43 96% 40%));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Cross divider decorative */
+.cross-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: hsl(var(--accent));
+}
+.cross-divider::before,
+.cross-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(var(--accent) / 0.5), transparent);
+}
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
+
+/* Scripture quote styling */
+.scripture-quote {
+  border-left: 4px solid hsl(var(--accent));
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: hsl(var(--foreground) / 0.8);
+}

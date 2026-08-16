@@ -1,0 +1,140 @@
+
+-- ============================================
+-- CFGC CMS Enhancement Migration
+-- ============================================
+
+-- Media Library tracking table
+CREATE TABLE IF NOT EXISTS media_library (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  filename TEXT NOT NULL,
+  storage_path TEXT NOT NULL,
+  public_url TEXT NOT NULL,
+  file_type TEXT NOT NULL DEFAULT 'image',
+  file_size INT DEFAULT 0,
+  alt_text TEXT DEFAULT '',
+  caption TEXT DEFAULT '',
+  folder TEXT DEFAULT 'general',
+  uploaded_by UUID REFERENCES auth.users(id) ON DELETE SET NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE media_library ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public can read media" ON media_library FOR SELECT USING (true);
+CREATE POLICY "Authenticated manage media" ON media_library FOR ALL USING (auth.role() = 'authenticated');
+
+-- News Categories
+CREATE TABLE IF NOT EXISTS news_categories (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  name TEXT NOT NULL,
+  slug TEXT UNIQUE NOT NULL,
+  color TEXT DEFAULT '#1e3a8a',
+  description TEXT DEFAULT '',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE news_categories ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public can read categories" ON news_categories FOR SELECT USING (true);
+CREATE POLICY "Authenticated manage categories" ON news_categories FOR ALL USING (auth.role() = 'authenticated');
+
+-- Insert default news categories
+INSERT INTO news_categories (name, slug, color) VALUES
+  ('Church News', 'church-news', '#1e3a8a'),
+  ('Announcements', 'announcements', '#dc2626'),
+  ('Events', 'events', '#d97706'),
+  ('Youth Ministry', 'youth-ministry', '#16a34a'),
+  ('Missions', 'missions', '#7c3aed'),
+  ('Camp Meeting', 'camp-meeting', '#0891b2'),
+  ('Testimonies', 'testimonies', '#db2777'),
+  ('Community Outreach', 'community-outreach', '#059669'),
+  ('General Updates', 'general-updates', '#64748b')
+ON CONFLICT (slug) DO NOTHING;
+
+-- Add columns to news_announcements
+ALTER TABLE news_announcements
+  ADD COLUMN IF NOT EXISTS category_id UUID REFERENCES news_categories(id) ON DELETE SET NULL,
+  ADD COLUMN IF NOT EXISTS tags TEXT[] DEFAULT '{}',
+  ADD COLUMN IF NOT EXISTS seo_title TEXT DEFAULT '',
+  ADD COLUMN IF NOT EXISTS seo_description TEXT DEFAULT '',
+  ADD COLUMN IF NOT EXISTS excerpt TEXT DEFAULT '',
+  ADD COLUMN IF NOT EXISTS slug TEXT,
+  ADD COLUMN IF NOT EXISTS scheduled_at TIMESTAMPTZ,
+  ADD COLUMN IF NOT EXISTS status TEXT DEFAULT 'draft';
+
+-- Add columns to gallery_albums
+ALTER TABLE gallery_albums
+  ADD COLUMN IF NOT EXISTS category TEXT DEFAULT 'Other',
+  ADD COLUMN IF NOT EXISTS tags TEXT[] DEFAULT '{}',
+  ADD COLUMN IF NOT EXISTS event_date DATE;
+
+-- Add columns to gallery_items
+ALTER TABLE gallery_items
+  ADD COLUMN IF NOT EXISTS alt_text TEXT DEFAULT '',
+  ADD COLUMN IF NOT EXISTS description TEXT DEFAULT '';
+
+-- Dynamic Navigation Menus
+CREATE TABLE IF NOT EXISTS nav_menus (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  name TEXT NOT NULL,
+  slug TEXT UNIQUE NOT NULL,
+  location TEXT DEFAULT 'header',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE nav_menus ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public can read menus" ON nav_menus FOR SELECT USING (true);
+CREATE POLICY "Authenticated manage menus" ON nav_menus FOR ALL USING (auth.role() = 'authenticated');
+
+CREATE TABLE IF NOT EXISTS nav_menu_items (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  menu_id UUID REFERENCES nav_menus(id) ON DELETE CASCADE,
+  parent_id UUID REFERENCES nav_menu_items(id) ON DELETE CASCADE,
+  label TEXT NOT NULL,
+  url TEXT NOT NULL DEFAULT '/',
+  target TEXT DEFAULT '_self',
+  icon TEXT DEFAULT '',
+  display_order INT DEFAULT 0,
+  is_active BOOLEAN DEFAULT true,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE nav_menu_items ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public can read menu items" ON nav_menu_items FOR SELECT USING (true);
+CREATE POLICY "Authenticated manage menu items" ON nav_menu_items FOR ALL USING (auth.role() = 'authenticated');
+
+-- Seed default header menu
+INSERT INTO nav_menus (name, slug, location) VALUES ('Header Menu', 'header', 'header') ON CONFLICT (slug) DO NOTHING;
+INSERT INTO nav_menus (name, slug, location) VALUES ('Footer Menu', 'footer', 'footer') ON CONFLICT (slug) DO NOTHING;
+
+-- Pages (Page Builder)
+CREATE TABLE IF NOT EXISTS cms_pages (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  title TEXT NOT NULL,
+  slug TEXT UNIQUE NOT NULL,
+  content JSONB DEFAULT '[]',
+  featured_image TEXT DEFAULT '',
+  is_published BOOLEAN DEFAULT false,
+  seo_title TEXT DEFAULT '',
+  seo_description TEXT DEFAULT '',
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE cms_pages ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public can read published pages" ON cms_pages FOR SELECT USING (is_published = true);
+CREATE POLICY "Authenticated manage pages" ON cms_pages FOR ALL USING (auth.role() = 'authenticated');
+
+-- Add more fields to existing website_settings for footer
+INSERT INTO website_settings (key, value, label, setting_group) VALUES
+  ('footer_address', '7, Olusoji Street, Orile Oshodi, Lagos', 'Church Address', 'footer'),
+  ('footer_phones', '+2347030090757, +2348027723788', 'Phone Numbers', 'footer'),
+  ('footer_email', 'info@cfgc.org', 'Email Address', 'footer'),
+  ('footer_facebook', '', 'Facebook URL', 'footer'),
+  ('footer_youtube', '', 'YouTube URL', 'footer'),
+  ('footer_copyright', 'Christ Foundation Gospel Church (Inc.). All rights reserved.', 'Copyright Text', 'footer'),
+  ('footer_newsletter_enabled', 'true', 'Show Newsletter Section', 'footer'),
+  ('footer_logo_url', 'https://cdn.enter.pro/resources/uid_100066245/55b7f7df-d041-4c.png', 'Footer Logo URL', 'footer'),
+  ('general_overseer_name', 'Rev. Ezekiel Odunayo Alebiosu', 'General Overseer Name', 'church'),
+  ('general_overseer_message', 'Welcome to the official website of Christ Foundation Gospel Church (Inc.). We are committed to serving the hungry and thirsty individual with spiritual diet — the Word of God.', 'General Overseer Message', 'church'),
+  ('general_overseer_photo', '', 'General Overseer Photo', 'church')
+ON CONFLICT (key) DO NOTHING;
+
+-- Realtime for key tables
+ALTER PUBLICATION supabase_realtime ADD TABLE media_library;
+ALTER PUBLICATION supabase_realtime ADD TABLE news_categories;
+ALTER PUBLICATION supabase_realtime ADD TABLE nav_menu_items;
+ALTER PUBLICATION supabase_realtime ADD TABLE cms_pages;
