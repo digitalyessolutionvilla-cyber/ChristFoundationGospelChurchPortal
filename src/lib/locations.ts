@@ -17,7 +17,7 @@ export const headquarters: Branch = {
   name: 'Headquarters',
   address: '7, Olusoji Street, Orile Oshodi',
   poBox: 'P. O. Box 983, Mushin, Lagos',
-  phones: ['+2347030090757', '+2348027723788', '+2348060279123'],
+  phones: ['+234-81-523-1507'],
   isHq: true,
 };
 

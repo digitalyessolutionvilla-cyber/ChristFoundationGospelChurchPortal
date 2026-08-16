@@ -34,9 +34,9 @@ export default function Contact() {
   });
 
   const address  = contactSettings?.contact_address  ?? '7, Olusoji Street, Orile Oshodi, P. O. Box 983, Mushin, Lagos';
-  const phone1   = contactSettings?.contact_phone_1   ?? '+234 703 009 0757';
-  const phone2   = contactSettings?.contact_phone_2   ?? '+234 802 772 3788';
-  const phone3   = contactSettings?.contact_phone_3   ?? '+234 806 027 9123';
+  const phone1   = contactSettings?.contact_phone_1   ?? '+234-81-523-1507';
+  const phone2   = contactSettings?.contact_phone_2   ?? '';
+  const phone3   = contactSettings?.contact_phone_3   ?? '';
   const email    = contactSettings?.contact_email     ?? 'cfgcchurch@gmail.com';
 
   const submitPrayer = useMutation({
