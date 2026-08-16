@@ -121,6 +121,37 @@ body,
   min-height: 100%;
 }
 
+/* Mobile improvements */
+@media (max-width: 640px) {
+  body {
+    font-size: 16px; /* Prevent zoom on iOS when focusing inputs */
+  }
+  
+  input, textarea, select {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  /* Scrollable tables on mobile */
+  table {
+    display: inline-block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+  
+  /* Stack form fields better */
+  [class*="grid-cols-"] {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Better touch targets */
+  button, a[role="button"], input[type="button"], input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
 /* News ticker scroll animation */
 @keyframes ticker-scroll {
   0%   { transform: translateX(100%); }

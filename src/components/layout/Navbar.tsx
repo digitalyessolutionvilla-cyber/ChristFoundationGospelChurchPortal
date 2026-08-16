@@ -140,10 +140,10 @@ export function Navbar() {
     <header className="sticky top-0 z-50 shadow-blue">
       {/* Top info bar */}
       <div className="bg-church-red">
-        <div className="container mx-auto px-4 flex items-center h-8 gap-3">
+        <div className="container mx-auto px-4 flex items-center h-8 sm:h-9 gap-2 sm:gap-3 text-[10px] sm:text-[11px]">
           {showQuote && (
             <>
-              <span className="hidden lg:block text-[11px] font-serif text-white/90 italic shrink-0">
+              <span className="hidden lg:block font-serif text-white/90 italic shrink-0 truncate">
                 {quoteText} — {quoteRef}
               </span>
               <div className="hidden lg:block w-px h-4 bg-white/30 shrink-0" />
@@ -151,13 +151,13 @@ export function Navbar() {
           )}
 
           {showNews && (
-            <div className="flex-1 flex items-center gap-2 overflow-hidden min-w-0">
-              <span className="flex items-center gap-1 bg-white/20 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shrink-0 uppercase tracking-wider border border-white/30">
-                <Radio className="w-2.5 h-2.5" />
+            <div className="flex-1 flex items-center gap-1 sm:gap-2 overflow-hidden min-w-0">
+              <span className="flex items-center gap-0.5 sm:gap-1 bg-white/20 text-white text-[9px] sm:text-[10px] font-bold px-1 sm:px-1.5 py-0.5 rounded shrink-0 uppercase tracking-wider border border-white/30 whitespace-nowrap">
+                <Radio className="w-2 h-2 sm:w-2.5 sm:h-2.5" />
                 News
               </span>
               <div className="overflow-hidden flex-1">
-                <p className="animate-ticker whitespace-nowrap text-[11px] font-serif text-white/95">{tickerText}</p>
+                <p className="animate-ticker whitespace-nowrap text-[10px] sm:text-[11px] font-serif text-white/95">{tickerText}</p>
               </div>
             </div>
           )}
@@ -165,8 +165,8 @@ export function Navbar() {
           {showClock && (
             <>
               <div className="hidden sm:block w-px h-4 bg-white/30 shrink-0" />
-              <div className="hidden sm:flex items-center gap-1.5 shrink-0 text-[11px] font-serif text-white/90 tabular-nums">
-                <span>{dateStr}</span>
+              <div className="hidden sm:flex items-center gap-1 sm:gap-1.5 shrink-0 text-[10px] sm:text-[11px] font-serif text-white/90 tabular-nums">
+                <span className="truncate">{dateStr}</span>
                 <span className="text-white/50">|</span>
                 <span className="font-semibold">{timeStr}</span>
               </div>

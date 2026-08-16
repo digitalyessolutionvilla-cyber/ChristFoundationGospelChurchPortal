@@ -97,18 +97,18 @@ export function HeroSlider() {
       </div>
 
       {/* Content */}
-      <div className={`relative z-10 text-center px-6 md:px-16 max-w-3xl mx-auto transition-opacity duration-300 ${animating ? 'opacity-0' : 'opacity-100 animate-fade-slide-in'}`}>
+      <div className={`relative z-10 text-center px-4 sm:px-6 md:px-16 max-w-3xl mx-auto transition-opacity duration-300 ${animating ? 'opacity-0' : 'opacity-100 animate-fade-slide-in'}`}>
         {/* Gold decorative line */}
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <div className="h-px w-12 bg-gradient-gold" />
+        <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+          <div className="h-px w-8 sm:w-12 bg-gradient-gold" />
           <div className="w-2 h-2 rounded-full bg-accent" />
-          <div className="h-px w-12 bg-gradient-gold" />
+          <div className="h-px w-8 sm:w-12 bg-gradient-gold" />
         </div>
 
-        <blockquote className="font-display text-2xl md:text-4xl text-primary-foreground font-medium leading-relaxed italic mb-4">
+        <blockquote className="font-display text-xl sm:text-2xl md:text-4xl text-primary-foreground font-medium leading-relaxed italic mb-3 sm:mb-4">
           {slide.title || slide.verse}
         </blockquote>
-        <cite className="block text-accent font-serif text-base md:text-lg not-italic mb-8">
+        <cite className="block text-accent font-serif text-sm sm:text-base md:text-lg not-italic mb-6 sm:mb-8">
           — {slide.subtitle || slide.reference}
         </cite>
 
@@ -125,17 +125,17 @@ export function HeroSlider() {
       {/* Navigation arrows */}
       <button
         onClick={() => go(-1)}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-primary-foreground/10 hover:bg-primary-foreground/25 text-primary-foreground rounded-full p-2 transition-colors"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-primary-foreground/10 hover:bg-primary-foreground/25 text-primary-foreground rounded-full p-3 sm:p-2 transition-colors w-10 h-10 sm:w-auto sm:h-auto flex items-center justify-center"
         aria-label="Previous slide"
       >
-        <ChevronLeft className="w-5 h-5" />
+        <ChevronLeft className="w-6 h-6 sm:w-5 sm:h-5" />
       </button>
       <button
         onClick={() => go(1)}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-primary-foreground/10 hover:bg-primary-foreground/25 text-primary-foreground rounded-full p-2 transition-colors"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-primary-foreground/10 hover:bg-primary-foreground/25 text-primary-foreground rounded-full p-3 sm:p-2 transition-colors w-10 h-10 sm:w-auto sm:h-auto flex items-center justify-center"
         aria-label="Next slide"
       >
-        <ChevronRight className="w-5 h-5" />
+        <ChevronRight className="w-6 h-6 sm:w-5 sm:h-5" />
       </button>
 
       {/* Dots */}
