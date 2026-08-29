@@ -48,9 +48,9 @@ export function Navbar() {
 
   // Dynamic navigation from DB
   const { data: navItems = [] } = useQuery({
-    queryKey: ['nav_primary'],
+    queryKey: ['nav_header'],
     queryFn: async () => {
-      const { data: menu } = await supabase.from('nav_menus').select('id').eq('slug', 'primary').maybeSingle();
+      const { data: menu } = await supabase.from('nav_menus').select('id').eq('slug', 'header').maybeSingle();
       if (!menu?.id) return [];
       const { data: items } = await supabase
         .from('nav_menu_items')

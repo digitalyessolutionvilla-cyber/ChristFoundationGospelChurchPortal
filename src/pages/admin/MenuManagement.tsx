@@ -172,7 +172,8 @@ function MenusInner() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['nav_menu_items', selectedMenu?.id] });
-      queryClient.invalidateQueries({ queryKey: ['nav_primary'] });
+      queryClient.invalidateQueries({ queryKey: ['nav_header'] });
+      queryClient.invalidateQueries({ queryKey: ['nav_footer'] });
       toast({ title: editItemId ? 'Item updated!' : 'Item added!' });
       setShowItemForm(false); setEditItemId(null); setItemForm({ ...emptyItem });
     },
@@ -187,7 +188,8 @@ function MenusInner() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['nav_menu_items', selectedMenu?.id] });
-      queryClient.invalidateQueries({ queryKey: ['nav_primary'] });
+      queryClient.invalidateQueries({ queryKey: ['nav_header'] });
+      queryClient.invalidateQueries({ queryKey: ['nav_footer'] });
       toast({ title: 'Item deleted' });
     },
   });
@@ -199,7 +201,8 @@ function MenusInner() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['nav_menu_items', selectedMenu?.id] });
-      queryClient.invalidateQueries({ queryKey: ['nav_primary'] });
+      queryClient.invalidateQueries({ queryKey: ['nav_header'] });
+      queryClient.invalidateQueries({ queryKey: ['nav_footer'] });
     },
   });
 
@@ -213,7 +216,8 @@ function MenusInner() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['nav_menu_items', selectedMenu?.id] });
-      queryClient.invalidateQueries({ queryKey: ['nav_primary'] });
+      queryClient.invalidateQueries({ queryKey: ['nav_header'] });
+      queryClient.invalidateQueries({ queryKey: ['nav_footer'] });
     },
     onError: () => toast({ title: 'Failed to save order', variant: 'destructive' }),
   });

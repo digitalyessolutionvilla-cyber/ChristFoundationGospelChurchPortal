@@ -1,9 +1,55 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Facebook, Twitter } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { supabase } from '@/integrations/supabase/client';
 
 const LOGO_URL = 'https://cdn.enter.pro/resources/uid_100066245/29b71ed7-ea27-47.png';
 
+interface FooterLink {
+  id: string;
+  label: string;
+  url: string;
+  target: string;
+  display_order: number;
+  is_active: boolean;
+}
+
+// Shown while the DB menu loads / if the footer menu is empty, so the footer
+// never appears blank. Once the admin saves a Footer Menu, it takes over.
+const FALLBACK_LINKS = [
+  { id: 'fallback-1', label: 'Home', url: '/' },
+  { id: 'fallback-2', label: 'Brief History', url: '/about' },
+  { id: 'fallback-3', label: 'Our Vision', url: '/vision' },
+  { id: 'fallback-4', label: 'Our Mission', url: '/mission' },
+  { id: 'fallback-5', label: 'Doctrines & Beliefs', url: '/about#doctrines' },
+  { id: 'fallback-6', label: 'Our Locations', url: '/locations' },
+  { id: 'fallback-7', label: 'Our Calendar', url: '/calendar' },
+  { id: 'fallback-8', label: 'Youth Ministry', url: '/youth-ministry' },
+  { id: 'fallback-9', label: 'Online Radio', url: '/online-radio' },
+  { id: 'fallback-10', label: 'Watch Us Live', url: '/watch-live' },
+  { id: 'fallback-11', label: 'Testimonies', url: '/testimonies' },
+];
+
 export function Footer() {
+  // Footer quick links come from the Footer Menu in the admin.
+  const { data: footerItems = [] } = useQuery({
+    queryKey: ['nav_footer'],
+    queryFn: async () => {
+      const { data: menu } = await supabase.from('nav_menus').select('id').eq('slug', 'footer').maybeSingle();
+      if (!menu?.id) return [];
+      const { data: items } = await supabase
+        .from('nav_menu_items')
+        .select('*')
+        .eq('menu_id', menu.id)
+        .eq('is_active', true)
+        .order('display_order');
+      return (items ?? []) as FooterLink[];
+    },
+    staleTime: 60 * 1000,
+  });
+
+  const links = footerItems.length > 0 ? footerItems : FALLBACK_LINKS;
+
   return (
     <footer className="bg-church-deep text-primary-foreground">
       {/* Gold top border */}
@@ -34,26 +80,15 @@ export function Footer() {
           </p>
         </div>
 
-        {/* Quick Links */}
+        {/* Quick Links — managed via admin > Menu Management > Footer Menu */}
         <div>
           <h3 className="font-display font-semibold text-base text-accent mb-4">Quick Links</h3>
           <ul className="space-y-2">
-            {[
-              { label: 'Home', to: '/' },
-              { label: 'Brief History', to: '/about' },
-              { label: 'Our Vision', to: '/vision' },
-              { label: 'Our Mission', to: '/mission' },
-              { label: 'Doctrines & Beliefs', to: '/about#doctrines' },
-              { label: 'Our Locations', to: '/locations' },
-              { label: 'Our Calendar', to: '/calendar' },
-              { label: 'Youth Ministry', to: '/youth-ministry' },
-              { label: 'Online Radio', to: '/online-radio' },
-              { label: 'Watch Us Live', to: '/watch-live' },
-              { label: 'Testimonies', to: '/testimonies' },
-            ].map((item) => (
-              <li key={item.to}>
+            {links.map((item) => (
+              <li key={item.id}>
                 <Link
-                  to={item.to}
+                  to={item.url}
+                  target={item.target === '_blank' ? '_blank' : undefined}
                   className="text-sm font-serif text-primary-foreground/70 hover:text-accent transition-colors"
                 >
                   {item.label}

@@ -3196,6 +3196,42 @@ export type Database = {
         }
         Relationships: []
       }
+      categories: {
+        Row: {
+          color: string
+          created_at: string | null
+          description: string | null
+          icon: string
+          id: string
+          name: string
+          name_yo: string
+          order: number
+          slug: string
+        }
+        Insert: {
+          color?: string
+          created_at?: string | null
+          description?: string | null
+          icon?: string
+          id?: string
+          name: string
+          name_yo?: string
+          order?: number
+          slug: string
+        }
+        Update: {
+          color?: string
+          created_at?: string | null
+          description?: string | null
+          icon?: string
+          id?: string
+          name?: string
+          name_yo?: string
+          order?: number
+          slug?: string
+        }
+        Relationships: []
+      }
       church_branches: {
         Row: {
           address: string | null
@@ -3365,6 +3401,34 @@ export type Database = {
         }
         Relationships: []
       }
+      daily_hymns: {
+        Row: {
+          created_at: string | null
+          date: string
+          hymn_id: string
+          id: string
+        }
+        Insert: {
+          created_at?: string | null
+          date: string
+          hymn_id: string
+          id?: string
+        }
+        Update: {
+          created_at?: string | null
+          date?: string
+          hymn_id?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "daily_hymns_hymn_id_fkey"
+            columns: ["hymn_id"]
+            referencedRelation: "hymns"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       events: {
         Row: {
           banner_url: string | null
@@ -3486,6 +3550,48 @@ export type Database = {
           },
         ]
       }
+      guests: {
+        Row: {
+          card_number: string | null
+          checked_in: boolean
+          checked_in_time: string | null
+          created_at: string
+          download_count: number
+          email: string | null
+          full_name: string
+          id: string
+          phone: string | null
+          relationship: string | null
+          rsvp_status: string
+        }
+        Insert: {
+          card_number?: string | null
+          checked_in?: boolean
+          checked_in_time?: string | null
+          created_at?: string
+          download_count?: number
+          email?: string | null
+          full_name: string
+          id?: string
+          phone?: string | null
+          relationship?: string | null
+          rsvp_status: string
+        }
+        Update: {
+          card_number?: string | null
+          checked_in?: boolean
+          checked_in_time?: string | null
+          created_at?: string
+          download_count?: number
+          email?: string | null
+          full_name?: string
+          id?: string
+          phone?: string | null
+          relationship?: string | null
+          rsvp_status?: string
+        }
+        Relationships: []
+      }
       home_sections: {
         Row: {
           created_at: string | null
@@ -3554,6 +3660,82 @@ export type Database = {
           title?: string
         }
         Relationships: []
+      }
+      hymns: {
+        Row: {
+          audio_choir_url: string | null
+          audio_instrumental_url: string | null
+          audio_organ_url: string | null
+          audio_piano_url: string | null
+          audio_youtube_url: string | null
+          author: string | null
+          category_id: string | null
+          chorus_lines: string[] | null
+          composer: string | null
+          created_at: string | null
+          featured: boolean | null
+          id: string
+          keywords: string[] | null
+          number: number
+          scripture_ref: string | null
+          title_en: string
+          title_yo: string
+          updated_at: string | null
+          verses: Json
+          view_count: number | null
+        }
+        Insert: {
+          audio_choir_url?: string | null
+          audio_instrumental_url?: string | null
+          audio_organ_url?: string | null
+          audio_piano_url?: string | null
+          audio_youtube_url?: string | null
+          author?: string | null
+          category_id?: string | null
+          chorus_lines?: string[] | null
+          composer?: string | null
+          created_at?: string | null
+          featured?: boolean | null
+          id?: string
+          keywords?: string[] | null
+          number: number
+          scripture_ref?: string | null
+          title_en: string
+          title_yo?: string
+          updated_at?: string | null
+          verses?: Json
+          view_count?: number | null
+        }
+        Update: {
+          audio_choir_url?: string | null
+          audio_instrumental_url?: string | null
+          audio_organ_url?: string | null
+          audio_piano_url?: string | null
+          audio_youtube_url?: string | null
+          author?: string | null
+          category_id?: string | null
+          chorus_lines?: string[] | null
+          composer?: string | null
+          created_at?: string | null
+          featured?: boolean | null
+          id?: string
+          keywords?: string[] | null
+          number?: number
+          scripture_ref?: string | null
+          title_en?: string
+          title_yo?: string
+          updated_at?: string | null
+          verses?: Json
+          view_count?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "hymns_category_id_fkey"
+            columns: ["category_id"]
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       leadership: {
         Row: {
@@ -3863,6 +4045,36 @@ export type Database = {
         }
         Relationships: []
       }
+      profiles: {
+        Row: {
+          created_at: string | null
+          display_name: string | null
+          email: string | null
+          font_size: number | null
+          id: string
+          is_active: boolean | null
+          role: string
+        }
+        Insert: {
+          created_at?: string | null
+          display_name?: string | null
+          email?: string | null
+          font_size?: number | null
+          id: string
+          is_active?: boolean | null
+          role?: string
+        }
+        Update: {
+          created_at?: string | null
+          display_name?: string | null
+          email?: string | null
+          font_size?: number | null
+          id?: string
+          is_active?: boolean | null
+          role?: string
+        }
+        Relationships: []
+      }
       quick_links: {
         Row: {
           bg_color: string
@@ -3980,6 +4192,95 @@ export type Database = {
         }
         Relationships: []
       }
+      tributes: {
+        Row: {
+          author_name: string
+          created_at: string
+          id: string
+          image_url: string | null
+          is_approved: boolean
+          message: string
+          type: string
+        }
+        Insert: {
+          author_name: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          is_approved?: boolean
+          message: string
+          type: string
+        }
+        Update: {
+          author_name?: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          is_approved?: boolean
+          message?: string
+          type?: string
+        }
+        Relationships: []
+      }
+      user_favorites: {
+        Row: {
+          created_at: string | null
+          hymn_id: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          hymn_id: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          hymn_id?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_favorites_hymn_id_fkey"
+            columns: ["hymn_id"]
+            referencedRelation: "hymns"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_notes: {
+        Row: {
+          content: string
+          hymn_id: string
+          id: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          content?: string
+          hymn_id: string
+          id?: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          content?: string
+          hymn_id?: string
+          id?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_notes_hymn_id_fkey"
+            columns: ["hymn_id"]
+            referencedRelation: "hymns"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       website_settings: {
         Row: {
           id: string
@@ -4012,7 +4313,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_manager: {
+        Args: Record<PropertyKey, never>
+        Returns: boolean
+      }
+      nextval_guest_card_seq: {
+        Args: Record<PropertyKey, never>
+        Returns: number
+      }
     }
     Enums: {
       [_ in never]: never
@@ -4056,7 +4364,7 @@ export type Database = {
         }
         Relationships: []
       }
-      messages_2026_06_02: {
+      messages_2026_08_27: {
         Row: {
           event: string | null
           extension: string
@@ -4089,7 +4397,7 @@ export type Database = {
         }
         Relationships: []
       }
-      messages_2026_06_03: {
+      messages_2026_08_28: {
         Row: {
           event: string | null
           extension: string
@@ -4122,7 +4430,7 @@ export type Database = {
         }
         Relationships: []
       }
-      messages_2026_06_04: {
+      messages_2026_08_29: {
         Row: {
           event: string | null
           extension: string
@@ -4155,7 +4463,7 @@ export type Database = {
         }
         Relationships: []
       }
-      messages_2026_06_05: {
+      messages_2026_08_30: {
         Row: {
           event: string | null
           extension: string
@@ -4188,7 +4496,7 @@ export type Database = {
         }
         Relationships: []
       }
-      messages_2026_06_06: {
+      messages_2026_08_31: {
         Row: {
           event: string | null
           extension: string

@@ -1,0 +1,62 @@
+-- Ensure Header Menu and Footer Menu exist
+INSERT INTO nav_menus (name, slug, location)
+VALUES ('Header Menu', 'header', 'header'), ('Footer Menu', 'footer', 'footer')
+ON CONFLICT (slug) DO NOTHING;
+
+DO $$
+DECLARE
+  v_primary uuid;
+  v_header uuid;
+  v_footer uuid;
+  v_new_id uuid;
+  r RECORD;
+BEGIN
+  SELECT id INTO v_primary FROM nav_menus WHERE slug = 'primary';
+  SELECT id INTO v_header FROM nav_menus WHERE slug = 'header';
+  SELECT id INTO v_footer FROM nav_menus WHERE slug = 'footer';
+
+  -- ── Copy the existing header items (from 'primary') into the 'header' menu ──
+  IF v_primary IS NOT NULL AND v_header IS NOT NULL THEN
+    IF (SELECT COUNT(*) FROM nav_menu_items WHERE menu_id = v_header) = 0 THEN
+      CREATE TEMP TABLE item_map (old_id uuid PRIMARY KEY, new_id uuid);
+
+      -- Top-level items
+      FOR r IN SELECT * FROM nav_menu_items WHERE menu_id = v_primary AND parent_id IS NULL ORDER BY display_order LOOP
+        INSERT INTO nav_menu_items (menu_id, parent_id, label, url, target, icon, display_order, is_active)
+        VALUES (v_header, NULL, r.label, r.url, r.target, r.icon, r.display_order, r.is_active)
+        RETURNING id INTO v_new_id;
+        INSERT INTO item_map (old_id, new_id) VALUES (r.id, v_new_id);
+      END LOOP;
+
+      -- Sub-items (children)
+      FOR r IN SELECT * FROM nav_menu_items WHERE menu_id = v_primary AND parent_id IS NOT NULL ORDER BY display_order LOOP
+        INSERT INTO nav_menu_items (menu_id, parent_id, label, url, target, icon, display_order, is_active)
+        SELECT v_header, m.new_id, r.label, r.url, r.target, r.icon, r.display_order, r.is_active
+        FROM item_map m WHERE m.old_id = r.parent_id
+        RETURNING id INTO v_new_id;
+      END LOOP;
+    END IF;
+  END IF;
+
+  -- ── Seed the footer menu with the current Quick Links (only if empty) ──
+  IF v_footer IS NOT NULL AND (SELECT COUNT(*) FROM nav_menu_items WHERE menu_id = v_footer) = 0 THEN
+    INSERT INTO nav_menu_items (menu_id, label, url, display_order, is_active) VALUES
+      (v_footer, 'Home', '/', 1, true),
+      (v_footer, 'Brief History', '/about', 2, true),
+      (v_footer, 'Our Vision', '/vision', 3, true),
+      (v_footer, 'Our Mission', '/mission', 4, true),
+      (v_footer, 'Doctrines & Beliefs', '/about#doctrines', 5, true),
+      (v_footer, 'Our Locations', '/locations', 6, true),
+      (v_footer, 'Our Calendar', '/calendar', 7, true),
+      (v_footer, 'Youth Ministry', '/youth-ministry', 8, true),
+      (v_footer, 'Online Radio', '/online-radio', 9, true),
+      (v_footer, 'Watch Us Live', '/watch-live', 10, true),
+      (v_footer, 'Testimonies', '/testimonies', 11, true);
+  END IF;
+
+  -- ── Remove the old 'primary' menu so the admin shows only Header + Footer ──
+  IF v_primary IS NOT NULL THEN
+    DELETE FROM nav_menu_items WHERE menu_id = v_primary;
+    DELETE FROM nav_menus WHERE id = v_primary;
+  END IF;
+END $$;
