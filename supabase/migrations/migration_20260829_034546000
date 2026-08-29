@@ -1,0 +1,1 @@
+UPDATE website_settings SET value = '7, Olusoji Street, Orile Oshodi' WHERE key = 'footer_address' AND value = '7, Olusoji Street, Orile Oshodi, Lagos';

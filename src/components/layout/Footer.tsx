@@ -14,9 +14,33 @@ interface FooterLink {
   is_active: boolean;
 }
 
-// Shown while the DB menu loads / if the footer menu is empty, so the footer
-// never appears blank. Once the admin saves a Footer Menu, it takes over.
-const FALLBACK_LINKS = [
+const FOOTER_KEYS = [
+  'footer_logo_url', 'footer_church_name', 'footer_description',
+  'footer_motto_text', 'footer_motto_reference',
+  'footer_address', 'footer_po_box',
+  'footer_phone_1', 'footer_phone_2', 'footer_phone_3', 'footer_email',
+  'footer_copyright',
+];
+
+// Shown while the DB loads / if a setting is empty, so the footer is never blank.
+const FALLBACK_VALUES: Record<string, string> = {
+  footer_logo_url: LOGO_URL,
+  footer_church_name: 'Christ Foundation Gospel Church',
+  footer_description: 'Committed to serving the hungry and thirsty individual with spiritual diet (the Word of God).',
+  footer_motto_text: 'Christ, the Sure Foundation',
+  footer_motto_reference: 'I Cor. 3:11',
+  footer_address: '7, Olusoji Street, Orile Oshodi',
+  footer_po_box: 'P. O. Box 983, Mushin, Lagos',
+  footer_phone_1: '+2347030090757',
+  footer_phone_2: '+2348027723788',
+  footer_phone_3: '+2348060279123',
+  footer_copyright: 'Christ Foundation Gospel Church (Inc.). All rights reserved.',
+  facebook_url: 'https://facebook.com',
+  twitter_url: 'https://twitter.com/cfgcglobal',
+};
+
+// Shown while the DB menu loads / if the footer menu is empty.
+const FALLBACK_LINKS: FooterLink[] = [
   { id: 'fallback-1', label: 'Home', url: '/' },
   { id: 'fallback-2', label: 'Brief History', url: '/about' },
   { id: 'fallback-3', label: 'Our Vision', url: '/vision' },
@@ -31,6 +55,22 @@ const FALLBACK_LINKS = [
 ];
 
 export function Footer() {
+  // All footer text comes from Website Settings in the admin (Footer + Social tabs).
+  const { data: settings } = useQuery({
+    queryKey: ['footer_settings'],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from('website_settings')
+        .select('key, value')
+        .in('key', [...FOOTER_KEYS, 'facebook_url', 'twitter_url']);
+      return (data ?? []) as { key: string; value: string }[];
+    },
+    staleTime: 60 * 1000,
+  });
+
+  const values: Record<string, string> = { ...FALLBACK_VALUES };
+  settings?.forEach(s => { if (s.value) values[s.key] = s.value; });
+
   // Footer quick links come from the Footer Menu in the admin.
   const { data: footerItems = [] } = useQuery({
     queryKey: ['nav_footer'],
@@ -50,6 +90,9 @@ export function Footer() {
 
   const links = footerItems.length > 0 ? footerItems : FALLBACK_LINKS;
 
+  const phones = [values.footer_phone_1, values.footer_phone_2, values.footer_phone_3].filter(Boolean);
+  const showEmail = !!values.footer_email;
+
   return (
     <footer className="bg-church-deep text-primary-foreground">
       {/* Gold top border */}
@@ -60,23 +103,23 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-3 mb-4">
             <img
-              src={LOGO_URL}
+              src={values.footer_logo_url}
               alt="CFGC Logo"
-              className="h-14 w-14 rounded-full bg-white/10 p-0.5"
+              className="h-14 w-14 rounded-full bg-white/10 p-0.5 object-cover"
               crossOrigin="anonymous"
             />
             <div>
               <p className="font-display font-bold text-base text-primary-foreground leading-tight">
-                Christ Foundation Gospel Church
+                {values.footer_church_name}
               </p>
               <p className="text-accent text-xs font-serif">(Inc.)</p>
             </div>
           </div>
           <p className="text-primary-foreground/70 font-serif text-sm leading-relaxed mb-4">
-            Committed to serving the hungry and thirsty individual with spiritual diet (the Word of God).
+            {values.footer_description}
           </p>
           <p className="text-accent font-serif text-sm italic">
-            "Christ, the Sure Foundation" — I Cor. 3:11
+            "{values.footer_motto_text}" — {values.footer_motto_reference}
           </p>
         </div>
 
@@ -105,39 +148,53 @@ export function Footer() {
             <div className="flex gap-2.5">
               <MapPin className="w-4 h-4 text-church-red mt-0.5 shrink-0" />
               <div>
-                <p>7, Olusoji Street, Orile Oshodi</p>
-                <p className="text-primary-foreground/60">P. O. Box 983, Mushin, Lagos</p>
+                <p>{values.footer_address}</p>
+                {values.footer_po_box && <p className="text-primary-foreground/60">{values.footer_po_box}</p>}
               </div>
             </div>
-            <div className="flex gap-2.5">
-              <Phone className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-              <div className="space-y-0.5">
-                <a href="tel:+2347030090757" className="block hover:text-accent transition-colors">+2347030090757</a>
-                <a href="tel:+2348027723788" className="block hover:text-accent transition-colors">+2348027723788</a>
-                <a href="tel:+2348060279123" className="block hover:text-accent transition-colors">+2348060279123</a>
+            {phones.length > 0 && (
+              <div className="flex gap-2.5">
+                <Phone className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                <div className="space-y-0.5">
+                  {phones.map((phone) => (
+                    <a key={phone} href={`tel:${phone.replace(/\s/g, '')}`} className="block hover:text-accent transition-colors">
+                      {phone}
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
+            {showEmail && (
+              <div className="flex gap-2.5">
+                <Mail className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                <a href={`mailto:${values.footer_email}`} className="hover:text-accent transition-colors">{values.footer_email}</a>
+              </div>
+            )}
           </div>
 
           <div className="mt-5">
             <h4 className="font-display font-semibold text-sm text-accent mb-2">Follow Us</h4>
-            <div className="flex gap-3">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1.5 text-xs font-serif text-primary-foreground/70 hover:text-accent transition-colors"
-              >
-                <Facebook className="w-4 h-4" /> Facebook
-              </a>
-              <a
-                href="https://twitter.com/cfgcglobal"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1.5 text-xs font-serif text-primary-foreground/70 hover:text-accent transition-colors"
-              >
-                <Twitter className="w-4 h-4" /> @cfgcglobal
-              </a>
+            <div className="flex gap-3 flex-wrap">
+              {values.facebook_url && (
+                <a
+                  href={values.facebook_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1.5 text-xs font-serif text-primary-foreground/70 hover:text-accent transition-colors"
+                >
+                  <Facebook className="w-4 h-4" /> Facebook
+                </a>
+              )}
+              {values.twitter_url && (
+                <a
+                  href={values.twitter_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1.5 text-xs font-serif text-primary-foreground/70 hover:text-accent transition-colors"
+                >
+                  <Twitter className="w-4 h-4" /> @cfgcglobal
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -146,7 +203,7 @@ export function Footer() {
       <div className="border-t border-primary-foreground/10 py-4">
         <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-primary-foreground/50 text-xs font-serif">
-            &copy; {new Date().getFullYear()} Christ Foundation Gospel Church (Inc.). All rights reserved.
+            &copy; {new Date().getFullYear()} {values.footer_copyright}
           </p>
           <Link to="/admin/login" className="text-primary-foreground/30 hover:text-accent text-xs font-serif transition-colors">
             Admin

@@ -83,6 +83,7 @@ function WebsiteSettingsInner() {
       queryClient.invalidateQueries({ queryKey: ['website_settings_all'] });
       queryClient.invalidateQueries({ queryKey: ['topbar_settings'] });
       queryClient.invalidateQueries({ queryKey: ['live_now_settings'] });
+      queryClient.invalidateQueries({ queryKey: ['footer_settings'] });
       toast({ title: 'Settings saved successfully!' });
     },
     onError: () => toast({ title: 'Failed to save settings', variant: 'destructive' }),
