@@ -65,7 +65,7 @@ export function WelcomeSection() {
               )}
               <div>
                 <p className="font-display font-semibold text-primary text-sm">
-                  {churchSettings.general_overseer_name || 'Rev. Nathaniel A. Akintobi (JP)'}
+                  {churchSettings.general_overseer_name || 'Rev. Nathaniel A. Akintobi'}
                 </p>
                 <p className="text-muted-foreground text-xs font-serif">
                   General Overseer, CFGC (Inc.)

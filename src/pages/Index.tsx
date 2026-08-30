@@ -7,6 +7,7 @@ import { WelcomeSection } from '@/components/home/WelcomeSection';
 import { VisionMissionCards } from '@/components/home/VisionMissionCards';
 import { UpcomingEvents } from '@/components/home/UpcomingEvents';
 import { QuickLinks } from '@/components/home/QuickLinks';
+import { SundaySchoolLesson } from '@/components/home/SundaySchoolLesson';
 
 interface HomeSection {
   id: string;
@@ -20,6 +21,7 @@ const SECTION_MAP: Record<string, React.ComponentType> = {
   hero_slider: HeroSlider,
   quick_links: QuickLinks,
   welcome: WelcomeSection,
+  sunday_school_lesson: SundaySchoolLesson,
   vision_mission: VisionMissionCards,
   events: UpcomingEvents,
 };
@@ -37,14 +39,16 @@ const Index = () => {
     },
   });
 
-  // Fallback to default order if DB not loaded yet
-  const visibleSections = sections ?? [
+  const fallbackSections: HomeSection[] = [
     { id: '1', section_key: 'hero_slider', label: 'Hero Slider', display_order: 1, is_visible: true },
     { id: '2', section_key: 'quick_links', label: 'Quick Links', display_order: 2, is_visible: true },
     { id: '3', section_key: 'welcome', label: 'Welcome', display_order: 3, is_visible: true },
-    { id: '4', section_key: 'vision_mission', label: 'Vision & Mission', display_order: 4, is_visible: true },
-    { id: '5', section_key: 'events', label: 'Events', display_order: 5, is_visible: true },
+    { id: '4', section_key: 'sunday_school_lesson', label: 'Sunday School Lesson', display_order: 4, is_visible: true },
+    { id: '5', section_key: 'vision_mission', label: 'Vision & Mission', display_order: 5, is_visible: true },
+    { id: '6', section_key: 'events', label: 'Events', display_order: 6, is_visible: true },
   ];
+
+  const visibleSections = sections && sections.length > 0 ? sections : fallbackSections;
 
   return (
     <div className="flex flex-col min-h-screen bg-background">

@@ -1,0 +1,17 @@
+-- Sunday School lesson content and homepage section seed
+INSERT INTO cms_content (key, value) VALUES
+  (
+    'sunday_school_lesson',
+    '{
+      "date": "SUNDAY, AUGUST 30, 2026",
+      "topic_en": "THE PRICE HE MUST PAY",
+      "memory_verse_en": "IF ANY MAN WILL COME AFTER ME, LET HIM DENY HIMSELF AND TAKE UP HIS CROSS AND FOLLOW ME (MATTHEW 16:24)",
+      "topic_yo": "OHUN TI YOO GBA WA",
+      "memory_verse_yo": "BI ENIKAN BA NFE LATI TO MI LEHIN, KI O SE ARA RE, KI O SI GBE AGBELEBU RE, KI O SI MAA TO MI LEHIN (MATTEU 16:24)"
+    }'
+  )
+ON CONFLICT (key) DO NOTHING;
+
+INSERT INTO home_sections (section_key, label, display_order, is_visible) VALUES
+  ('sunday_school_lesson', 'Sunday School Lesson', 4, true)
+ON CONFLICT DO NOTHING;

@@ -5,6 +5,7 @@ import { ChevronRight, FileText, Eye, Target, BookOpen, Scroll, Users } from 'lu
 
 const contentItems = [
   { key: 'welcome_message', label: 'Welcome Message', desc: 'Homepage welcome & overseer message', icon: FileText },
+  { key: 'sunday_school_lesson', label: 'Sunday School Lesson', desc: 'Date, topic, and memory verse in English & Yoruba', icon: BookOpen },
   { key: 'history_text', label: 'Brief History of the Church', desc: 'Church history section on About page', icon: Scroll },
   { key: 'vision_text', label: 'Our Vision', desc: 'Vision statement', icon: Eye },
   { key: 'mission_text', label: 'Our Mission', desc: 'Mission statement', icon: Target },

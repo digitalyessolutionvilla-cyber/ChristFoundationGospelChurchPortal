@@ -13,6 +13,7 @@ import { Save, Info } from 'lucide-react';
 
 const keyLabels: Record<string, string> = {
   welcome_message: 'Welcome Message',
+  sunday_school_lesson: 'Sunday School Lesson',
   history_text: 'Brief History of the Church',
   vision_text: 'Our Vision',
   mission_text: 'Our Mission',
@@ -62,7 +63,9 @@ function EditContentInner() {
       <div className="bg-card rounded-2xl border border-border shadow-card p-6">
         <div className="flex items-start gap-2 bg-secondary/60 rounded-lg p-3 mb-4 text-xs font-serif text-muted-foreground">
           <Info className="w-4 h-4 shrink-0 mt-0.5" />
-          Use double line breaks (Enter twice) to separate paragraphs. Use **text** for bold formatting.
+          {key === 'sunday_school_lesson'
+            ? 'Use valid JSON with keys: date, topic_en, memory_verse_en, topic_yo, memory_verse_yo.'
+            : 'Use double line breaks (Enter twice) to separate paragraphs. Use **text** for bold formatting.'}
         </div>
 
         {isLoading || value === null ? (

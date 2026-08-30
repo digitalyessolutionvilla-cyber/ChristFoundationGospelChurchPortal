@@ -43,12 +43,13 @@ interface QuickLink {
   is_active: boolean;
 }
 
-const BUILT_IN_KEYS = ['hero_slider', 'quick_links', 'welcome', 'vision_mission', 'events'];
+const BUILT_IN_KEYS = ['hero_slider', 'quick_links', 'welcome', 'sunday_school_lesson', 'vision_mission', 'events'];
 
 const SECTION_LABELS: Record<string, string> = {
   hero_slider: 'Hero Slider — managed via Hero Slider page',
   quick_links: 'Quick Links — managed in the Quick Links tab',
   welcome: 'Welcome Message — managed via Page Content',
+  sunday_school_lesson: 'Sunday School Lesson — managed via Sunday School CMS content',
   vision_mission: 'Vision & Mission — managed via Page Content',
   events: 'Upcoming Events — auto-pulled from Events',
 };
