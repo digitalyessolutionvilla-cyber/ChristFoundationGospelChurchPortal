@@ -4,18 +4,24 @@ import { supabase } from '@/integrations/supabase/client';
 
 interface SundaySchoolLessonData {
   date: string;
+  lesson_number: string;
+  reference: string;
   topic_en: string;
   memory_verse_en: string;
+  reference_yo: string;
   topic_yo: string;
   memory_verse_yo: string;
 }
 
 const DEFAULT_LESSON: SundaySchoolLessonData = {
-  date: 'SUNDAY, AUGUST 30, 2026',
-  topic_en: 'THE PRICE HE MUST PAY',
-  memory_verse_en: 'IF ANY MAN WILL COME AFTER ME, LET HIM DENY HIMSELF AND TAKE UP HIS CROSS AND FOLLOW ME (MATTHEW 16:24)',
-  topic_yo: 'OHUN TI YOO GBA WA',
-  memory_verse_yo: 'BI ENIKAN BA NFE LATI TO MI LEHIN, KI O SE ARA RE, KI O SI GBE AGBELEBU RE, KI O SI MAA TO MI LEHIN (MATTEU 16:24)',
+  date: 'SUNDAY, SEPTEMBER 6, 2026',
+  lesson_number: 'LESSON 150 - SENIOR',
+  reference: 'LUKE 15:1-32',
+  topic_en: 'THE LOST SHEEP, THE LOST COIN, AND THE PRODIGAL SON',
+  memory_verse_en: 'There is joy in the presence of the angels of God over one sinner that repenteth (Luke 15:10).',
+  reference_yo: 'LUKU 15:1-32',
+  topic_yo: 'AGUTAN TI O SỌNÙ, OWÓ FADAKA TI O SỌNÙ, ATI ỌMỌ ONINAKUNA',
+  memory_verse_yo: 'Ayọ mbẹ niwaju awọn angẹli Ọlọrun lori ẹlẹṣẹ kan ti o ronupiwada (Luku 15:10).',
 };
 
 function parseLesson(raw: string | null): SundaySchoolLessonData {
@@ -24,6 +30,11 @@ function parseLesson(raw: string | null): SundaySchoolLessonData {
   try {
     const parsed = JSON.parse(raw);
     if (parsed && typeof parsed === 'object') {
+      if (
+        !parsed.lesson_number ||
+        parsed.date === 'SUNDAY, AUGUST 30, 2026' ||
+        parsed.topic_en === 'THE PRICE HE MUST PAY'
+      ) return DEFAULT_LESSON;
       return { ...DEFAULT_LESSON, ...parsed };
     }
   } catch {
@@ -61,7 +72,7 @@ export function SundaySchoolLesson() {
             </h2>
             <div className="mt-4 flex items-center justify-center gap-3 text-sm md:text-base text-primary/80 font-serif uppercase tracking-[0.18em]">
               <span className="h-px w-10 bg-primary/30" />
-              <span>{isLoading ? 'Loading...' : lesson.date}</span>
+              <span>{isLoading ? 'Loading...' : `${lesson.date} · ${lesson.lesson_number}`}</span>
               <span className="h-px w-10 bg-primary/30" />
             </div>
           </div>
@@ -75,7 +86,7 @@ export function SundaySchoolLesson() {
 
               <div className="space-y-6">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">Topic</p>
+                    <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">{lesson.reference}</p>
                   <h3 className="font-display text-2xl md:text-3xl text-primary leading-tight">
                     {lesson.topic_en}
                   </h3>
@@ -86,7 +97,7 @@ export function SundaySchoolLesson() {
                     <Quote className="h-3.5 w-3.5" />
                     Memory Verse
                   </div>
-                  <p className="text-base md:text-lg leading-relaxed text-foreground/90">
+                    <p className="text-base md:text-lg leading-relaxed text-foreground/90">
                     {lesson.memory_verse_en}
                   </p>
                 </div>
@@ -101,7 +112,7 @@ export function SundaySchoolLesson() {
 
               <div className="space-y-6">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">Ori Eko</p>
+                    <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">{lesson.reference_yo}</p>
                   <h3 className="font-display text-2xl md:text-3xl text-primary leading-tight">
                     {lesson.topic_yo}
                   </h3>

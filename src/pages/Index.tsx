@@ -8,6 +8,7 @@ import { VisionMissionCards } from '@/components/home/VisionMissionCards';
 import { UpcomingEvents } from '@/components/home/UpcomingEvents';
 import { QuickLinks } from '@/components/home/QuickLinks';
 import { SundaySchoolLesson } from '@/components/home/SundaySchoolLesson';
+import { MorningDevotional } from '@/components/home/MorningDevotional';
 
 interface HomeSection {
   id: string;
@@ -22,6 +23,7 @@ const SECTION_MAP: Record<string, React.ComponentType> = {
   quick_links: QuickLinks,
   welcome: WelcomeSection,
   sunday_school_lesson: SundaySchoolLesson,
+  morning_devotional: MorningDevotional,
   vision_mission: VisionMissionCards,
   events: UpcomingEvents,
 };
@@ -44,8 +46,9 @@ const Index = () => {
     { id: '2', section_key: 'quick_links', label: 'Quick Links', display_order: 2, is_visible: true },
     { id: '3', section_key: 'welcome', label: 'Welcome', display_order: 3, is_visible: true },
     { id: '4', section_key: 'sunday_school_lesson', label: 'Sunday School Lesson', display_order: 4, is_visible: true },
-    { id: '5', section_key: 'vision_mission', label: 'Vision & Mission', display_order: 5, is_visible: true },
-    { id: '6', section_key: 'events', label: 'Events', display_order: 6, is_visible: true },
+    { id: '5', section_key: 'morning_devotional', label: 'Morning Devotional', display_order: 5, is_visible: true },
+    { id: '6', section_key: 'vision_mission', label: 'Vision & Mission', display_order: 6, is_visible: true },
+    { id: '7', section_key: 'events', label: 'Events', display_order: 7, is_visible: true },
   ];
 
   const visibleSections = sections && sections.length > 0 ? sections : fallbackSections;

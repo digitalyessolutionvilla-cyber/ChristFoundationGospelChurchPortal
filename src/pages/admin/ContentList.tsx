@@ -1,11 +1,12 @@
 import { AdminGuard } from '@/components/shared/AdminGuard';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { Link } from 'react-router-dom';
-import { ChevronRight, FileText, Eye, Target, BookOpen, Scroll, Users } from 'lucide-react';
+import { ChevronRight, FileText, Eye, Target, BookOpen, Scroll, Users, BookHeart } from 'lucide-react';
 
 const contentItems = [
   { key: 'welcome_message', label: 'Welcome Message', desc: 'Homepage welcome & overseer message', icon: FileText },
   { key: 'sunday_school_lesson', label: 'Sunday School Lesson', desc: 'Date, topic, and memory verse in English & Yoruba', icon: BookOpen },
+  { key: 'morning_devotional', label: 'Morning Devotional', desc: 'Date, scripture, reflection, and prayer on the homepage', icon: BookHeart },
   { key: 'history_text', label: 'Brief History of the Church', desc: 'Church history section on About page', icon: Scroll },
   { key: 'vision_text', label: 'Our Vision', desc: 'Vision statement', icon: Eye },
   { key: 'mission_text', label: 'Our Mission', desc: 'Mission statement', icon: Target },

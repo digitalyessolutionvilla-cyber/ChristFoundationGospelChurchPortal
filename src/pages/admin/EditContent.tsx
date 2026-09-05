@@ -14,6 +14,7 @@ import { Save, Info } from 'lucide-react';
 const keyLabels: Record<string, string> = {
   welcome_message: 'Welcome Message',
   sunday_school_lesson: 'Sunday School Lesson',
+  morning_devotional: 'Morning Devotional',
   history_text: 'Brief History of the Church',
   vision_text: 'Our Vision',
   mission_text: 'Our Mission',
@@ -64,7 +65,9 @@ function EditContentInner() {
         <div className="flex items-start gap-2 bg-secondary/60 rounded-lg p-3 mb-4 text-xs font-serif text-muted-foreground">
           <Info className="w-4 h-4 shrink-0 mt-0.5" />
           {key === 'sunday_school_lesson'
-            ? 'Use valid JSON with keys: date, topic_en, memory_verse_en, topic_yo, memory_verse_yo.'
+            ? 'Use valid JSON with keys: date, lesson_number, reference, topic_en, memory_verse_en, reference_yo, topic_yo, memory_verse_yo.'
+            : key === 'morning_devotional'
+              ? 'Use valid JSON with English keys series, date, title, text_reference, key_text, body, reflection, song, prayer, bible_in_one_year, footer, plus the corresponding _yo keys for Yoruba.'
             : 'Use double line breaks (Enter twice) to separate paragraphs. Use **text** for bold formatting.'}
         </div>
 

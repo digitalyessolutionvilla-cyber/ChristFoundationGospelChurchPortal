@@ -1,0 +1,34 @@
+-- Morning devotional content and homepage section seed
+INSERT INTO cms_content (key, value) VALUES
+  (
+    'morning_devotional',
+    '{
+      "series": "DAILY FOUNDATION",
+      "date": "SUNDAY, SEPTEMBER 6, 2026",
+      "title": "PARCHED LANDS INTO SPRINGS",
+      "text_reference": "PSALM 107:35",
+      "key_text": "He turneth the wilderness into a standing water, and dry ground into watersprings. (PSALM 107:35, KJV)",
+      "body": "What a confirmation do we have from the Lord, that He is turning every dry ground into water springs, and for many, whose ground is facing dryness, here is a word of consolation.\n\nThere are some believers whose grounds are facing dryness. The land upon which they ought to be yielding abundant fruit of labour is yielding less or nothing: it has become patches.\n\nThese grounds could be their fellowship time, personal prayer life, Bible study, singing of spiritual songs, etc., but, alas, they have become patches. They have become moribund.\n\nHowever, today, the Lord is changing every dry ground where there is no water into a water spring. He has said, Out of thy belly shall flow, rivers of living waters.\n\nBeloved, whatever may have become patches in our lives, perhaps, parched communion, consecration, and consistent Christian life; parched love for Christ and neighbors; parched faith, fervency, and finances, we have an assurance that Christ will make a turnaround of them all and make us a fountain of abundant blessings.",
+      "reflection": "Our patches are becoming a fountain of river.",
+      "song": "There Shall Be Showers of Blessing (SFHB 201)",
+      "prayer": "Almighty God, that which You have spoken, fulfill it, Lord. Every of our ground that has become patches, give us a water spring in Jesus name. Amen",
+      "bible_in_one_year": "EZEKIEL 32-34",
+      "footer": "CHRIST, Our Sure Foundation.",
+      "series_yo": "IPILẸ OJOOJUMỌ",
+      "date_yo": "ỌJỌ AIKU, ỌJỌ KEFA OṢU KẸSAN, ỌDUN 2026",
+      "title_yo": "ILẸ GBIGBẸ SI ORISUN OMI",
+      "text_reference_yo": "ORIN DAFIDI 107:35",
+      "key_text_yo": "O sọ aginju di adagun omi, ati ilẹ gbigbẹ di orisun omi. (ORIN DAFIDI 107:35)",
+      "body_yo": "Ẹ wo irú idaniloju tí a ní láti ọ̀dọ̀ Olúwa, pé Ó ń sọ gbogbo ilẹ̀ gbígbẹ di orisun omi, àti fún ọ̀pọ̀lọpọ̀ ènìyàn tí ilẹ̀ wọn ndojú kọ gbigbẹ, èyí ni ọ̀rọ̀ ìtùnú.\n\nAwọn onigbagbọ kan wa ti ilẹ wọn ndojukọ ọgbẹlẹ. Ilẹ̀ tí ó yẹ kí wọ́n máa so ọ̀pọ̀lọpọ èso ti iṣẹ́ àṣekára ń so èso díẹ̀ tàbí ofo: ó ti di ilẹ gbigbẹ.\n\nAwọn ilẹ wọnyi le jẹ akoko isin idapo wọn, igbesi aye adura ti ara-ẹni, ikẹkọọ Bibeli, kikọ awọn orin ẹmi, ati bẹẹbẹẹ lọ, ṣugbọn, o ṣe, wọn ti di ilẹ gbigbẹ. Wọ́n ti di ahoro.\n\nAmọ, lónìí, Olúwa nyí gbogbo ilẹ̀ gbígbẹ nibití kò sí omi padà di orísun omi. Ó ti sọ pé: Láti inú rẹ ni odò omi ìyè yóò ti máa ṣàn jáde.\n\nOlufẹ, ohunkohun ti o le ti di ọgbẹlẹ ninu igbesi aye wa, boya, ọgbẹlẹ niti idapọ, iyara-ẹni-sọtọ, ati igbesi aye Kristeni to ṣe deede; Ìfẹ́ to ti gbẹ fún Kristi àti àwọn aládùgbò; ọgbẹlẹ igbagbọ, ìtara, àti eto iṣuna, a ní ìdánilójú pé Kristi yóò yí gbogbo wọn padà, yóò sì sọ wá di orísun ìbùkún yanturu.",
+      "reflection_yo": "Awon ilẹ gbigbẹ wa ndi orisun odo.",
+      "song_yo": "Ojo Ibukun Yoo Si Rọ (SFHB 201)",
+      "prayer_yo": "Ọlọrun Olodumare, ṣe imuṣẹ ohun ti O ti sọ, Oluwa. Gbogbo ilẹ wa ti o ti di gbigbẹ, fun wa ni orisun omi ni oruko Jesu. Amin",
+      "bible_in_one_year_yo": "EZEKIEL 32 - 34",
+      "footer_yo": "KRISTI, Ipilẹ wa ti O daju."
+    }'
+  )
+ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value;
+
+INSERT INTO home_sections (section_key, label, display_order, is_visible) VALUES
+  ('morning_devotional', 'Morning Devotional', 5, true)
+ON CONFLICT DO NOTHING;
