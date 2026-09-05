@@ -6,6 +6,7 @@ import { AdminGuard } from '@/components/shared/AdminGuard';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { ImageUploader } from '@/components/shared/ImageUploader';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { logActivity } from '@/hooks/useAdminProfile';
@@ -28,6 +29,27 @@ function EditContentInner() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [value, setValue] = useState<string | null>(null);
+
+  const isFeatureContent = key === 'sunday_school_lesson' || key === 'morning_devotional';
+  const imageUrl = (() => {
+    if (!isFeatureContent || !value) return '';
+    try {
+      const parsed = JSON.parse(value) as { image_url?: unknown };
+      return typeof parsed.image_url === 'string' ? parsed.image_url : '';
+    } catch {
+      return '';
+    }
+  })();
+
+  const updateImageUrl = (image: string) => {
+    if (!value) return;
+    try {
+      const parsed = JSON.parse(value) as Record<string, unknown>;
+      setValue(JSON.stringify({ ...parsed, image_url: image }, null, 2));
+    } catch {
+      toast({ title: 'Please enter valid JSON before adding an image', variant: 'destructive' });
+    }
+  };
 
   const { isLoading } = useQuery({
     queryKey: ['cms_content', key],
@@ -65,20 +87,31 @@ function EditContentInner() {
         <div className="flex items-start gap-2 bg-secondary/60 rounded-lg p-3 mb-4 text-xs font-serif text-muted-foreground">
           <Info className="w-4 h-4 shrink-0 mt-0.5" />
           {key === 'sunday_school_lesson'
-            ? 'Use valid JSON with keys: date, lesson_number, reference, topic_en, memory_verse_en, reference_yo, topic_yo, memory_verse_yo.'
+            ? 'Use valid JSON with keys: date, lesson_number, reference, topic_en, memory_verse_en, reference_yo, topic_yo, memory_verse_yo, image_url.'
             : key === 'morning_devotional'
-              ? 'Use valid JSON with English keys series, date, title, text_reference, key_text, body, reflection, song, prayer, bible_in_one_year, footer, plus the corresponding _yo keys for Yoruba.'
+              ? 'Use valid JSON with English keys series, date, title, text_reference, key_text, body, reflection, song, prayer, bible_in_one_year, footer, plus the corresponding _yo keys for Yoruba and image_url.'
             : 'Use double line breaks (Enter twice) to separate paragraphs. Use **text** for bold formatting.'}
         </div>
 
         {isLoading || value === null ? (
           <Skeleton className="h-72 w-full rounded-lg" />
         ) : (
-          <Textarea
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            className="font-serif min-h-72 text-sm leading-relaxed"
-          />
+          <>
+            {isFeatureContent && (
+              <div className="mb-6 space-y-2">
+                <p className="font-display text-sm font-semibold text-foreground">Post Graphic</p>
+                <p className="text-xs font-serif text-muted-foreground">
+                  Upload an image to display with this post and share it from the homepage.
+                </p>
+                <ImageUploader value={imageUrl} onChange={updateImageUrl} folder={key ?? 'content'} label="Post graphic" />
+              </div>
+            )}
+            <Textarea
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              className="font-serif min-h-72 text-sm leading-relaxed"
+            />
+          </>
         )}
 
         <div className="mt-4 flex justify-end">

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { BookOpenText, Quote } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import { ShareActions } from '@/components/shared/ShareActions';
 
 interface SundaySchoolLessonData {
   date: string;
@@ -11,6 +12,7 @@ interface SundaySchoolLessonData {
   reference_yo: string;
   topic_yo: string;
   memory_verse_yo: string;
+  image_url: string;
 }
 
 const DEFAULT_LESSON: SundaySchoolLessonData = {
@@ -22,6 +24,7 @@ const DEFAULT_LESSON: SundaySchoolLessonData = {
   reference_yo: 'LUKU 15:1-32',
   topic_yo: 'AGUTAN TI O SỌNÙ, OWÓ FADAKA TI O SỌNÙ, ATI ỌMỌ ONINAKUNA',
   memory_verse_yo: 'Ayọ mbẹ niwaju awọn angẹli Ọlọrun lori ẹlẹṣẹ kan ti o ronupiwada (Luku 15:10).',
+  image_url: '',
 };
 
 function parseLesson(raw: string | null): SundaySchoolLessonData {
@@ -130,6 +133,16 @@ export function SundaySchoolLesson() {
               </div>
             </div>
           </div>
+          {lesson.image_url && (
+            <div className="mt-6 overflow-hidden rounded-3xl border border-border bg-card shadow-card">
+              <img src={lesson.image_url} alt={`${lesson.topic_en} lesson graphic`} className="max-h-[28rem] w-full object-cover" />
+            </div>
+          )}
+          <ShareActions
+            className="mt-8"
+            title={`Sunday School: ${lesson.topic_en}`}
+            text={`${lesson.lesson_number}\n${lesson.reference}\n\nMemory Verse: ${lesson.memory_verse_en}\n\nYoruba: ${lesson.topic_yo}\n${lesson.reference_yo}\n\n${lesson.memory_verse_yo}`}
+          />
         </div>
       </div>
     </section>

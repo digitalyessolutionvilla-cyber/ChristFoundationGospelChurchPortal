@@ -3,6 +3,7 @@ import { BookHeart, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ShareActions } from '@/components/shared/ShareActions';
 import { supabase } from '@/integrations/supabase/client';
 
 interface MorningDevotionalData {
@@ -28,6 +29,7 @@ interface MorningDevotionalData {
   prayer_yo: string;
   bible_in_one_year_yo: string;
   footer_yo: string;
+  image_url: string;
 }
 
 const DEFAULT_DEVOTIONAL: MorningDevotionalData = {
@@ -53,6 +55,7 @@ const DEFAULT_DEVOTIONAL: MorningDevotionalData = {
   prayer_yo: 'Ọlọrun Olodumare, ṣe imuṣẹ ohun ti O ti sọ, Oluwa. Gbogbo ilẹ wa ti o ti di gbigbẹ, fun wa ni orisun omi ni oruko Jesu. Amin',
   bible_in_one_year_yo: 'EZEKIEL 32 - 34',
   footer_yo: 'KRISTI, Ipilẹ wa ti O daju.',
+  image_url: '',
 };
 
 function parseDevotional(raw: string | null): MorningDevotionalData {
@@ -115,6 +118,12 @@ export function MorningDevotional() {
               {devotional.key_text}
             </p>
           </div>
+
+          {devotional.image_url && (
+            <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-muted">
+              <img src={devotional.image_url} alt={`${devotional.title} devotional graphic`} className="max-h-[28rem] w-full object-cover" />
+            </div>
+          )}
 
           <p className="mt-6 text-base leading-8 text-foreground/90 line-clamp-3">
             {devotional.body.split('\n\n')[0]}
@@ -182,6 +191,11 @@ export function MorningDevotional() {
               </DialogContent>
             </Dialog>
           </div>
+          <ShareActions
+            className="mt-4"
+            title={`${devotional.series}: ${devotional.title}`}
+            text={`${devotional.date}\n\n${devotional.key_text}\n\n${devotional.body}\n\nReflection: ${devotional.reflection}\nSong: ${devotional.song}\nPrayer: ${devotional.prayer}\nBible in One Year: ${devotional.bible_in_one_year}`}
+          />
         </div>
       </div>
     </section>

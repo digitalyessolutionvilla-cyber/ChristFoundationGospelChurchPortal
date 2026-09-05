@@ -24,7 +24,8 @@ INSERT INTO cms_content (key, value) VALUES
       "song_yo": "Ojo Ibukun Yoo Si Rọ (SFHB 201)",
       "prayer_yo": "Ọlọrun Olodumare, ṣe imuṣẹ ohun ti O ti sọ, Oluwa. Gbogbo ilẹ wa ti o ti di gbigbẹ, fun wa ni orisun omi ni oruko Jesu. Amin",
       "bible_in_one_year_yo": "EZEKIEL 32 - 34",
-      "footer_yo": "KRISTI, Ipilẹ wa ti O daju."
+      "footer_yo": "KRISTI, Ipilẹ wa ti O daju.",
+      "image_url": ""
     }'
   )
 ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value;
