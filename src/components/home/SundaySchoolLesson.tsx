@@ -16,14 +16,14 @@ interface SundaySchoolLessonData {
 }
 
 const DEFAULT_LESSON: SundaySchoolLessonData = {
-  date: 'SUNDAY, SEPTEMBER 6, 2026',
-  lesson_number: 'LESSON 150 - SENIOR',
-  reference: 'LUKE 15:1-32',
-  topic_en: 'THE LOST SHEEP, THE LOST COIN, AND THE PRODIGAL SON',
-  memory_verse_en: 'There is joy in the presence of the angels of God over one sinner that repenteth (Luke 15:10).',
-  reference_yo: 'LUKU 15:1-32',
-  topic_yo: 'AGUTAN TI O SỌNÙ, OWÓ FADAKA TI O SỌNÙ, ATI ỌMỌ ONINAKUNA',
-  memory_verse_yo: 'Ayọ mbẹ niwaju awọn angẹli Ọlọrun lori ẹlẹṣẹ kan ti o ronupiwada (Luku 15:10).',
+  date: 'SUNDAY, SEPTEMBER 13, 2026',
+  lesson_number: 'LESSON - SENIOR',
+  reference: 'ISAIAH 12:1-6; HABAKKUK 3:17-19',
+  topic_en: 'THE GOODNESS OF GOD TO HIS SAINTS',
+  memory_verse_en: 'Praise ye the LORD. I will praise the LORD with my whole heart, in the assembly of the upright, and in the congregation (Psalm 111:1).',
+  reference_yo: 'ISAIAH 12:1-6; HABAKKUK 3:17-19',
+  topic_yo: 'OORE ỌLỌRUN SI AWỌN ENIYAN MIMỌ RẸ',
+  memory_verse_yo: 'Ẹ ma yìn OLUWA. Emi o ma yin OLUWA tinutinu mi, ninu ijọ awọn ẹni diduro-ṣinṣin, ati ni ijọ enia (Orin Dafidi 111:1).',
   image_url: '',
 };
 
@@ -36,6 +36,7 @@ function parseLesson(raw: string | null): SundaySchoolLessonData {
       if (
         !parsed.lesson_number ||
         parsed.date === 'SUNDAY, AUGUST 30, 2026' ||
+        parsed.date === 'SUNDAY, SEPTEMBER 6, 2026' ||
         parsed.topic_en === 'THE PRICE HE MUST PAY'
       ) return DEFAULT_LESSON;
       return { ...DEFAULT_LESSON, ...parsed };

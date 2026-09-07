@@ -34,27 +34,27 @@ interface MorningDevotionalData {
 
 const DEFAULT_DEVOTIONAL: MorningDevotionalData = {
   series: 'DAILY FOUNDATION',
-  date: 'SUNDAY, SEPTEMBER 6, 2026',
-  title: 'PARCHED LANDS INTO SPRINGS',
-  text_reference: 'PSALM 107:35',
-  key_text: '“He turneth the wilderness into a standing water, and dry ground into watersprings.” (PSALM 107:35, KJV)',
-  body: 'What a confirmation do we have from the Lord, that He is turning every dry ground into water springs, and for many, whose ground is facing dryness, here is a word of consolation.\n\nThere are some believers whose grounds are facing dryness. The land upon which they ought to be yielding abundant fruit of labour is yielding less or nothing: it has become patches.\n\nThese grounds could be their fellowship time, personal prayer life, Bible study, singing of spiritual songs, etc., but, alas, they have become patches. They have become moribund.\n\nHowever, today, the Lord is changing every dry ground where there is no water into a water spring. He has said, “Out of thy belly shall flow, rivers of living waters.”\n\nBeloved, whatever may have become patches in our lives, perhaps, parched communion, consecration, and consistent Christian life; parched love for Christ and neighbors; parched faith, fervency, and finances, we have an assurance that Christ will make a turnaround of them all and make us a fountain of abundant blessings.',
-  reflection: 'Our patches are becoming a fountain of river.',
-  song: 'There Shall Be Showers of Blessing (SFHB 201)',
-  prayer: 'Almighty God, that which You have spoken, fulfill it, Lord. Every of our ground that has become patches, give us a water spring in Jesus’ name. Amen',
-  bible_in_one_year: 'EZEKIEL 32-34',
+  date: 'MONDAY, SEPTEMBER 7, 2026',
+  title: 'DEFILE NOT YOURSELVES',
+  text_reference: 'EZEKIEL 20:7',
+  key_text: '“…cast ye away the abomination of his eyes, and defile not yourselves with the idols of Egypt…” (EZEKIEL 20:7, KJV)',
+  body: 'The period before us calls for spiritual caution and consecration. The coming of the Lord is at hand, and the devil, knowing this, is doing all in his power to hinder sinners from coming to Christ and saints from making it to heaven. However, the Lord will not fail to warn us against the evil works of the devil, which manifest themselves through the abominations of this world and the idols of “Egypt.”\n\nThe world is full of sin and all its evil works. The mystery of iniquity is already at work, and to win the battle, we have a duty to ensure that we do not accommodate the abominations of this world or defile ourselves with the idols of Egypt. We must remain watchful, separated, and consecrated unto the Lord.\n\nThe story of Daniel and the three Hebrew men is an example of men who refused to defile themselves with the abominations of Babylon and its idols. Even when hatred, persecution, and the fiery furnace stood before them, they stood their ground and remained faithful to the Lord. Joseph, while in Egypt, also refused to allow the immorality of the Egyptian woman to defile him or lead him into sin. The Lord eventually honored, blessed, and promoted them all.\n\nThe “abomination of his eyes” represents the sinful attractions and influences that seek to draw the heart away from God. These include the lust of the eyes, the lust of the flesh, and the pride of life. They manifest in the immorality, lewdness, lasciviousness, and every work of darkness that characterize the world.\n\nO reader, are there any abominations in your heart? Have you given yourself to the idols of Egypt—to the worldliness and unrighteousness of this present world? The Lord admonishes us to put away these abominations and the idols of the land. Let us cast away from us all our transgressions and make for ourselves a new heart and a new spirit before the Lord. Let us set our eyes on Jesus. He can save us, preserve us, and bless us with the everlasting blessings of heaven and eternal life.',
+  reflection: 'The abominations and idols of this world only bring wretchedness and sorrow. Defile not yourselves with them.',
+  song: 'Take Time to Be Holy (SFHB 462)',
+  prayer: 'Lord, help me to remain pure and consecrated unto You. Deliver me from every abomination and every idol of this world. Help me to keep my eyes fixed on Jesus and remain faithful unto the end. In Jesus’ name. Amen.',
+  bible_in_one_year: 'EZEKIEL 35-37',
   footer: 'CHRIST, Our Sure Foundation.',
-  series_yo: 'IPILẸ OJOOJUMỌ',
-  date_yo: 'ỌJỌ AIKU, ỌJỌ KEFA OṢU KẸSAN, ỌDUN 2026',
-  title_yo: 'ILẸ GBIGBẸ SI ORISUN OMI',
-  text_reference_yo: 'ORIN DAFIDI 107:35',
-  key_text_yo: '“O sọ aginju di adagun omi, ati ilẹ gbigbẹ di orisun omi.” (ORIN DAFIDI 107:35)',
-  body_yo: 'Ẹ wo irú idaniloju tí a ní láti ọ̀dọ̀ Olúwa, pé Ó ń sọ gbogbo ilẹ̀ gbígbẹ di orisun omi, àti fún ọ̀pọ̀lọpọ̀ ènìyàn tí ilẹ̀ wọn ndojú kọ gbigbẹ, èyí ni ọ̀rọ̀ ìtùnú.\n\nAwọn onigbagbọ kan wa ti ilẹ wọn ndojukọ ọgbẹlẹ. Ilẹ̀ tí ó yẹ kí wọ́n máa so ọ̀pọ̀lọpọ èso ti iṣẹ́ àṣekára ń so èso díẹ̀ tàbí ofo: ó ti di ilẹ gbigbẹ.\n\nAwọn ilẹ wọnyi le jẹ akoko isin idapo wọn, igbesi aye adura ti ara-ẹni, ikẹkọọ Bibeli, kikọ awọn orin ẹmi, ati bẹẹbẹẹ lọ, ṣugbọn, o ṣe, wọn ti di ilẹ gbigbẹ. Wọ́n ti di ahoro.\n\nAmọ, lónìí, Olúwa nyí gbogbo ilẹ̀ gbígbẹ nibití kò sí omi padà di orísun omi. Ó ti sọ pé: “Láti inú rẹ ni odò omi ìyè yóò ti máa ṣàn jáde.”\n\nOlufẹ, ohunkohun ti o le ti di ọgbẹlẹ ninu igbesi aye wa, boya, ọgbẹlẹ niti idapọ, iyara-ẹni-sọtọ, ati igbesi aye Kristeni to ṣe deede; Ìfẹ́ to ti gbẹ fún Kristi àti àwọn aládùgbò; ọgbẹlẹ igbagbọ, ìtara, àti eto iṣuna, a ní ìdánilójú pé Kristi yóò yí gbogbo wọn padà, yóò sì sọ wá di orísun ìbùkún yanturu.',
-  reflection_yo: 'Awon ilẹ gbigbẹ wa ndi orisun odo.',
-  song_yo: 'Ojo Ibukun Yoo Si Rọ (SFHB 201)',
-  prayer_yo: 'Ọlọrun Olodumare, ṣe imuṣẹ ohun ti O ti sọ, Oluwa. Gbogbo ilẹ wa ti o ti di gbigbẹ, fun wa ni orisun omi ni oruko Jesu. Amin',
-  bible_in_one_year_yo: 'EZEKIEL 32 - 34',
-  footer_yo: 'KRISTI, Ipilẹ wa ti O daju.',
+  series_yo: 'IPILẸ OJOOJUMỌ́',
+  date_yo: 'ỌJỌ́ AJÉ, ỌJỌ KEJE OṢU KẸSAN, ỌDUN 2026',
+  title_yo: 'MÁṢE BA ARA RẸ JẸ',
+  text_reference_yo: 'ESEKIẸLI 20:7',
+  key_text_yo: '“…ki olukuluku ninu nyin gbe irira oju rẹ̀ junù, ẹ má si ṣe fi oriṣa Egipti sọ ara nyin di aimọ́.…” (ESEKIẸLI 20:7)',
+  body_yo: 'Àkókò tí a wà yìí ń pe fún ìṣọ́ra àti iyara-ẹni-sọtọ ti ẹmi. Ipadabọ Olúwa ti sún mọ́lé, eṣu sì mọ èyí; nítorí náà, ó ń lo gbogbo agbára rẹ̀ láti dí àwọn ẹlẹ́ṣẹ̀ lọ́wọ́ kí wọn má bàa wá sí ọ̀dọ̀ Kristi, àti láti dí àwọn ènìyàn mímọ́ lọ́wọ́ kí wọn má bàa dé ọ̀run. Amọ, Olúwa kì yóò kùnà láti kìlọ̀ fún wa nípa àwọn iṣẹ́ búburú ti eṣu, èyí tí ń farahàn nínú àwọn ohun ìríra ayé yìí àti àwọn òrìṣà “Egipti.”\n\nAyé kún fún ẹ̀ṣẹ̀ àti gbogbo iṣẹ́ búburú rẹ̀. Ohun ijinlẹ ẹṣẹ ti ń ṣiṣẹ́ naa, láti borí ogun yìí, a ni ojúṣe láti rí i dájú pé a kò gba àwọn ohun ìríra ayé yìí laaye ninu ìgbésí ayé wa, tàbí kí a fi àwọn òrìṣà Egipti ba ara wa jẹ́. A gbọ́dọ̀ wà lójúfò, ki a ya ara wa sọ́tọ̀, kí a sì ya ara wa sí mímọ́ fún Olúwa.\n\nÌtàn Dáníẹ́lì àti àwọn ọmọkùnrin Heberu mẹ́ta jẹ́ àpẹẹrẹ àwọn ènìyàn tí wọ́n kọ̀ láti fi àwọn ohun ìríra àti àwọn òrìṣà Bábílónì ba ara wọn jẹ́. Kódà nígbà tí ìkórìíra, inúnibíni àti iná ìléru dúró níwájú wọn, wọ́n dúró ṣinṣin, wọ́n sì jẹ́ olootọ́ sí Olúwa sibẹ. Jósẹ́fù pẹlu, nígbà tí ó wà ní Egipti, o kọ̀ láti jẹ́ kí iwa ifẹkufẹ obìnrin ara Egipti náà ba ara rẹ̀ jẹ́ tàbí mú un dẹṣẹ̀. Nígbẹ̀yìngbẹ́yín, Olúwa bu ọlá fún gbogbo wọn, Ó bùkún wọn, Ó sì gbé wọn ga.\n\n“Iríra oju rẹ̀” dúró fún àwọn ohun tó ń fa ìfẹ́kúfẹ̀ẹ́ ẹ̀ṣẹ̀ àti àwọn ipa búburú tí ń gbìyànjú láti fa ọkàn ènìyàn kúrò lọ́dọ̀ Ọlọ́run. Àwọn wọ̀nyí ni ìfẹ́kúfẹ̀ẹ́ ojú, ìfẹ́kúfẹ̀ẹ́ ara àti irera aiye. Wọ́n ń farahàn nínú ifẹkufẹ, iwa àìtọ́, iwa wọbia àti gbogbo iṣẹ́ òkùnkùn tí o kun inu ayé yìí.\n\nOlùkàwé, njẹ àwọn ohun ìríra kan wà nínú ọkàn rẹ bi? Njẹ o ti fi ara rẹ fún àwọn òrìṣà Egipti—ìyẹn, sí aṣa ayé àti àìṣòdodo ayé ìsinsìnyí? Olúwa ń gba wa níyànjú pé kí a mú àwọn ohun ìríra wọ̀nyí àti àwọn òrìṣà ilẹ̀ náà kúrò. Ẹ jẹ́ kí a mu gbogbo àwọn ìrékọjá wa kuro, kí a sì ṣe ọkàn titun àti ẹ̀mí titun fún ara wa níwájú Olúwa. Ẹ jẹ́ kí a gbé ojú wa sara Jesu. Ó lè gbà wá là, Ó lè pa wá mọ́, Ó sì lè fi àwọn ìbùkún ayérayé ọ̀run àti ìyè àìnípẹ̀kun bùkún wa.',
+  reflection_yo: 'Àwọn ohun ìríra àti àwọn òrìṣà ayé yìí kì í mú nǹkan mìíràn wá bíkòṣe ìbànújẹ́, ìṣòro àti ìrora. Máṣe fi wọn ba ara rẹ jẹ́.',
+  song_yo: 'Fẹ Lati Jẹ Mimọ (SFHB 462)',
+  prayer_yo: 'Olúwa, ràn mí lọ́wọ́ kí n lè wà ní mímọ́ àti ìyàsímímọ́ fun Ọ. Gba mí lọwọ gbogbo irira ayé yìí ati gbogbo oriṣa aiye yii. Ràn mí lọ́wọ́ kí n máa fi ojú mi wò Jesu nígbà gbogbo, kí n sì dúró pẹlu ijolootọ títí dé òpin. Ní orúkọ Jesu. Àmín.',
+  bible_in_one_year_yo: 'ESEKIẸLI 35–37',
+  footer_yo: 'KRISTI, Ipilẹ Wa ti O daju.',
   image_url: '',
 };
 
@@ -64,7 +64,12 @@ function parseDevotional(raw: string | null): MorningDevotionalData {
   try {
     const parsed = JSON.parse(raw);
     if (parsed && typeof parsed === 'object') {
-      if ('scripture' in parsed || 'content' in parsed) return DEFAULT_DEVOTIONAL;
+      if (
+        'scripture' in parsed ||
+        'content' in parsed ||
+        parsed.date === 'SUNDAY, SEPTEMBER 6, 2026' ||
+        parsed.title === 'PARCHED LANDS INTO SPRINGS'
+      ) return DEFAULT_DEVOTIONAL;
       return { ...DEFAULT_DEVOTIONAL, ...parsed };
     }
   } catch {
