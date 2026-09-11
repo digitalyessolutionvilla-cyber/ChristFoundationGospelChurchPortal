@@ -34,26 +34,26 @@ interface MorningDevotionalData {
 
 const DEFAULT_DEVOTIONAL: MorningDevotionalData = {
   series: 'DAILY FOUNDATION',
-  date: 'MONDAY, SEPTEMBER 7, 2026',
-  title: 'DEFILE NOT YOURSELVES',
-  text_reference: 'EZEKIEL 20:7',
-  key_text: '“…cast ye away the abomination of his eyes, and defile not yourselves with the idols of Egypt…” (EZEKIEL 20:7, KJV)',
-  body: 'The period before us calls for spiritual caution and consecration. The coming of the Lord is at hand, and the devil, knowing this, is doing all in his power to hinder sinners from coming to Christ and saints from making it to heaven. However, the Lord will not fail to warn us against the evil works of the devil, which manifest themselves through the abominations of this world and the idols of “Egypt.”\n\nThe world is full of sin and all its evil works. The mystery of iniquity is already at work, and to win the battle, we have a duty to ensure that we do not accommodate the abominations of this world or defile ourselves with the idols of Egypt. We must remain watchful, separated, and consecrated unto the Lord.\n\nThe story of Daniel and the three Hebrew men is an example of men who refused to defile themselves with the abominations of Babylon and its idols. Even when hatred, persecution, and the fiery furnace stood before them, they stood their ground and remained faithful to the Lord. Joseph, while in Egypt, also refused to allow the immorality of the Egyptian woman to defile him or lead him into sin. The Lord eventually honored, blessed, and promoted them all.\n\nThe “abomination of his eyes” represents the sinful attractions and influences that seek to draw the heart away from God. These include the lust of the eyes, the lust of the flesh, and the pride of life. They manifest in the immorality, lewdness, lasciviousness, and every work of darkness that characterize the world.\n\nO reader, are there any abominations in your heart? Have you given yourself to the idols of Egypt—to the worldliness and unrighteousness of this present world? The Lord admonishes us to put away these abominations and the idols of the land. Let us cast away from us all our transgressions and make for ourselves a new heart and a new spirit before the Lord. Let us set our eyes on Jesus. He can save us, preserve us, and bless us with the everlasting blessings of heaven and eternal life.',
-  reflection: 'The abominations and idols of this world only bring wretchedness and sorrow. Defile not yourselves with them.',
-  song: 'Take Time to Be Holy (SFHB 462)',
-  prayer: 'Lord, help me to remain pure and consecrated unto You. Deliver me from every abomination and every idol of this world. Help me to keep my eyes fixed on Jesus and remain faithful unto the end. In Jesus’ name. Amen.',
-  bible_in_one_year: 'EZEKIEL 35-37',
+  date: 'WEDNESDAY, SEPTEMBER 9, 2026',
+  title: 'REDEMPTION FROM OPPRESSION I',
+  text_reference: 'JEREMIAH 50:33 - 35',
+  key_text: '”Their Redeemer is strong; the LORD of hosts is his name: he shall throughly plead their cause, that he may give rest to the land, and disquiet the inhabitants of Babylon.” (JEREMIAH 50:34, KJV)',
+  body: 'God is always interested in His people, and His care for them is beyond human comprehension. As he did in Egypt, God takes notice of his people\'s bondage in Babylon. Israel and Judah were oppressed together, and He has surely seen it and heard their cry.\n\nThe people of God became weak and powerless as those, the Babylonians, who took them captives held them fast, and were much too hard for them. However, this is their comfort in distress, that, though they are weak, their Redeemer is strong! The Lord, who is their Avenger, has a right to them, will claim his right and make good his claim.\n\nThe Lord is stronger than the enemy that holds fast to His people. He can overpower all the forces that are against them and put strength into His people. His name is the Lord of hosts, and He will answer to it, and make it known that He is what his people call Him, and He will be to them what His people call Him.\n\nTherefore, it is a great comfort for us, as believers, that, though we have host against us, we have the Lord of host for us and He shall thoroughly plead our cause, pleading He shall plead it, plead it jealously, effectually, plead and carry it, that he may give rest to our land, rest from all our enemies round about.',
+  reflection: 'The Lord shall plead our cause, and He shall plead it jealously and effectually till we have rest to our land.',
+  song: 'The Lord’s Our Rock in Him We Hide (SFHB 571)',
+  prayer: 'Almighty God, our great Redeemer and Avenger, hear us today and redeem us from all oppressors. Give rest to our land, and we shall continue to praise forever in Jesus\' name. Amen',
+  bible_in_one_year: 'EZEKIEL 40-41',
   footer: 'CHRIST, Our Sure Foundation.',
   series_yo: 'IPILẸ OJOOJUMỌ́',
-  date_yo: 'ỌJỌ́ AJÉ, ỌJỌ KEJE OṢU KẸSAN, ỌDUN 2026',
-  title_yo: 'MÁṢE BA ARA RẸ JẸ',
-  text_reference_yo: 'ESEKIẸLI 20:7',
-  key_text_yo: '“…ki olukuluku ninu nyin gbe irira oju rẹ̀ junù, ẹ má si ṣe fi oriṣa Egipti sọ ara nyin di aimọ́.…” (ESEKIẸLI 20:7)',
-  body_yo: 'Àkókò tí a wà yìí ń pe fún ìṣọ́ra àti iyara-ẹni-sọtọ ti ẹmi. Ipadabọ Olúwa ti sún mọ́lé, eṣu sì mọ èyí; nítorí náà, ó ń lo gbogbo agbára rẹ̀ láti dí àwọn ẹlẹ́ṣẹ̀ lọ́wọ́ kí wọn má bàa wá sí ọ̀dọ̀ Kristi, àti láti dí àwọn ènìyàn mímọ́ lọ́wọ́ kí wọn má bàa dé ọ̀run. Amọ, Olúwa kì yóò kùnà láti kìlọ̀ fún wa nípa àwọn iṣẹ́ búburú ti eṣu, èyí tí ń farahàn nínú àwọn ohun ìríra ayé yìí àti àwọn òrìṣà “Egipti.”\n\nAyé kún fún ẹ̀ṣẹ̀ àti gbogbo iṣẹ́ búburú rẹ̀. Ohun ijinlẹ ẹṣẹ ti ń ṣiṣẹ́ naa, láti borí ogun yìí, a ni ojúṣe láti rí i dájú pé a kò gba àwọn ohun ìríra ayé yìí laaye ninu ìgbésí ayé wa, tàbí kí a fi àwọn òrìṣà Egipti ba ara wa jẹ́. A gbọ́dọ̀ wà lójúfò, ki a ya ara wa sọ́tọ̀, kí a sì ya ara wa sí mímọ́ fún Olúwa.\n\nÌtàn Dáníẹ́lì àti àwọn ọmọkùnrin Heberu mẹ́ta jẹ́ àpẹẹrẹ àwọn ènìyàn tí wọ́n kọ̀ láti fi àwọn ohun ìríra àti àwọn òrìṣà Bábílónì ba ara wọn jẹ́. Kódà nígbà tí ìkórìíra, inúnibíni àti iná ìléru dúró níwájú wọn, wọ́n dúró ṣinṣin, wọ́n sì jẹ́ olootọ́ sí Olúwa sibẹ. Jósẹ́fù pẹlu, nígbà tí ó wà ní Egipti, o kọ̀ láti jẹ́ kí iwa ifẹkufẹ obìnrin ara Egipti náà ba ara rẹ̀ jẹ́ tàbí mú un dẹṣẹ̀. Nígbẹ̀yìngbẹ́yín, Olúwa bu ọlá fún gbogbo wọn, Ó bùkún wọn, Ó sì gbé wọn ga.\n\n“Iríra oju rẹ̀” dúró fún àwọn ohun tó ń fa ìfẹ́kúfẹ̀ẹ́ ẹ̀ṣẹ̀ àti àwọn ipa búburú tí ń gbìyànjú láti fa ọkàn ènìyàn kúrò lọ́dọ̀ Ọlọ́run. Àwọn wọ̀nyí ni ìfẹ́kúfẹ̀ẹ́ ojú, ìfẹ́kúfẹ̀ẹ́ ara àti irera aiye. Wọ́n ń farahàn nínú ifẹkufẹ, iwa àìtọ́, iwa wọbia àti gbogbo iṣẹ́ òkùnkùn tí o kun inu ayé yìí.\n\nOlùkàwé, njẹ àwọn ohun ìríra kan wà nínú ọkàn rẹ bi? Njẹ o ti fi ara rẹ fún àwọn òrìṣà Egipti—ìyẹn, sí aṣa ayé àti àìṣòdodo ayé ìsinsìnyí? Olúwa ń gba wa níyànjú pé kí a mú àwọn ohun ìríra wọ̀nyí àti àwọn òrìṣà ilẹ̀ náà kúrò. Ẹ jẹ́ kí a mu gbogbo àwọn ìrékọjá wa kuro, kí a sì ṣe ọkàn titun àti ẹ̀mí titun fún ara wa níwájú Olúwa. Ẹ jẹ́ kí a gbé ojú wa sara Jesu. Ó lè gbà wá là, Ó lè pa wá mọ́, Ó sì lè fi àwọn ìbùkún ayérayé ọ̀run àti ìyè àìnípẹ̀kun bùkún wa.',
-  reflection_yo: 'Àwọn ohun ìríra àti àwọn òrìṣà ayé yìí kì í mú nǹkan mìíràn wá bíkòṣe ìbànújẹ́, ìṣòro àti ìrora. Máṣe fi wọn ba ara rẹ jẹ́.',
-  song_yo: 'Fẹ Lati Jẹ Mimọ (SFHB 462)',
-  prayer_yo: 'Olúwa, ràn mí lọ́wọ́ kí n lè wà ní mímọ́ àti ìyàsímímọ́ fun Ọ. Gba mí lọwọ gbogbo irira ayé yìí ati gbogbo oriṣa aiye yii. Ràn mí lọ́wọ́ kí n máa fi ojú mi wò Jesu nígbà gbogbo, kí n sì dúró pẹlu ijolootọ títí dé òpin. Ní orúkọ Jesu. Àmín.',
-  bible_in_one_year_yo: 'ESEKIẸLI 35–37',
+  date_yo: 'ỌJỌRU, ỌJỌ KẸSAN OṢU KẸSAN, ỌDUN 2026',
+  title_yo: 'IRAPADA KURO LỌWỌ INILARA (APA KINNI)',
+  text_reference_yo: 'JEREMIAH 50:33 - 35',
+  key_text_yo: '”Ṣugbọn Olurapada wọn lagbara; Oluwa awọn ọmọ-ogun li orukọ rẹ̀: ni jijà yio gba ijà wọn jà! ki o le mu ilẹ na simi, ki o si mu awọn olugbe Babeli wariri.” (JEREMIAH 50:34)',
+  body_yo: 'Ọlọrun nifẹ si awọn eniyan Rẹ nigbagbogbo ati pe itọju Rẹ lori wọn kọja oye eniyan. Gẹ́gẹ́ bí O ti ṣe ní Egipti, Ọlọ́run kíyè sí ìgbèkùn àwọn ènìyàn rẹ̀ ní Bábílónì. Israeli ati Juda ni a nilara papọ, Oun si ti ri i dajudaju, O si gbọ igbe wọn.\n\nÀwọn ènìyàn Ọlọ́run di aláìlera àti aláìlágbára bí àwọn ará Bábílónì, tí wọ́n kó wọn nígbèkùn ti de wọn ṣinṣin, tí wọ́n sì le jù fún wọn. Sibẹsibẹ, eyi ni itunu wọn ninu ipọnju, pe, botilẹjẹpe wọn jẹ alailera, Olurapada wọn lagbara! Olúwa tí í ṣe Olùgbẹ̀san wọn, ní ẹ̀tọ́ sí wọn, yóò gba ẹ̀tọ́ rẹ̀, yóò sì mú ẹ̀tọ́ rẹ̀ ṣe.\n\nOluwa l’agbara ju ota ti o di eniyan Re mu lọ. O le bori gbogbo ipa ti o lodi si wọn, ki O si fi agbara sinu awọn eniyan Rẹ. Orúkọ rẹ̀ ni Olúwa àwọn ọmọ-ogun, Òun yóò sì dá a lóhùn, yóò sì jẹ́ kí ó di mimọ̀ pé Oun ni ohun tí àwọn ènìyàn rẹ̀ ń pè E, Oun yóò sì jẹ́ ohun tí àwọn ènìyàn Rẹ̀ ń pè é fún.\n\nNitorina, itunu nla ni fun wa, gege bi onigbagbo, pe, bi a tilẹ ni awọn ọmọ-ogun to dide lodi si wa, Oluwa awọn ọmọ-ogun wa fun wa, yio si gba ija wa ja daadaa, yio gba a ro, yio fi owu gba a ro, lododo, yio gba a ro, yio si gbé e, kí O lè fún ilẹ wa ní ìsinmi, isinmi lọwọ gbogbo àwọn ọ̀tá wa kaakiri.',
+  reflection_yo: 'Oluwa yio gba ẹjọ wa ro, yio si fi owú ati ododo gba a ro titi awa o fi ni isimi ni ilẹ wa.',
+  song_yo: 'Oluwa Li Apata Wa (SFHB 571)',
+  prayer_yo: 'Ọlọrun Olodumare, Olurapada ati Olugbẹsan wa agba, fetisi wa loni ki O si rà wa pada lọwọ gbogbo awọn aninilara. Fun ilẹ wa ni isimi, a o si maa yin Ọ titi lae ni orukọ Jesu. Amin',
+  bible_in_one_year_yo: 'ESIỌKIẸLI 40-41',
   footer_yo: 'KRISTI, Ipilẹ Wa ti O daju.',
   image_url: '',
 };
@@ -68,6 +68,7 @@ function parseDevotional(raw: string | null): MorningDevotionalData {
         'scripture' in parsed ||
         'content' in parsed ||
         parsed.date === 'SUNDAY, SEPTEMBER 6, 2026' ||
+        parsed.date === 'MONDAY, SEPTEMBER 7, 2026' ||
         parsed.title === 'PARCHED LANDS INTO SPRINGS'
       ) return DEFAULT_DEVOTIONAL;
       return { ...DEFAULT_DEVOTIONAL, ...parsed };

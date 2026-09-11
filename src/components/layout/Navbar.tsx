@@ -24,6 +24,28 @@ interface NavItem {
   is_active: boolean;
 }
 
+const fallbackNavItems: NavItem[] = [
+  { id: 'home', parent_id: null, label: 'Home', url: '/', target: '_self', display_order: 1, is_active: true },
+  { id: 'about', parent_id: null, label: 'About', url: '#', target: '_self', display_order: 2, is_active: true },
+  { id: 'locations', parent_id: null, label: 'Locations', url: '/locations', target: '_self', display_order: 3, is_active: true },
+  { id: 'contact', parent_id: null, label: 'Contact', url: '/contact', target: '_self', display_order: 4, is_active: true },
+  { id: 'ministries', parent_id: null, label: 'Ministries', url: '#', target: '_self', display_order: 5, is_active: true },
+  { id: 'media', parent_id: null, label: 'Media', url: '#', target: '_self', display_order: 6, is_active: true },
+  { id: 'calendar', parent_id: null, label: 'Our Calendar', url: '/calendar', target: '_self', display_order: 7, is_active: true },
+  { id: 'testimonies', parent_id: null, label: 'Testimonies', url: '/testimonies', target: '_self', display_order: 8, is_active: true },
+  { id: 'about-history', parent_id: 'about', label: 'Brief History', url: '/about', target: '_self', display_order: 1, is_active: true },
+  { id: 'about-vision', parent_id: 'about', label: 'Our Vision', url: '/vision', target: '_self', display_order: 2, is_active: true },
+  { id: 'about-mission', parent_id: 'about', label: 'Our Mission', url: '/mission', target: '_self', display_order: 3, is_active: true },
+  { id: 'about-beliefs', parent_id: 'about', label: 'Doctrines & Beliefs', url: '/about#doctrines', target: '_self', display_order: 4, is_active: true },
+  { id: 'about-leadership', parent_id: 'about', label: 'Church Leadership', url: '/leadership', target: '_self', display_order: 5, is_active: true },
+  { id: 'ministry-youth', parent_id: 'ministries', label: 'Youth Ministry', url: '/youth-ministry', target: '_self', display_order: 1, is_active: true },
+  { id: 'ministry-live', parent_id: 'ministries', label: 'Watch Us Live', url: '/watch-live', target: '_self', display_order: 2, is_active: true },
+  { id: 'media-sermons', parent_id: 'media', label: 'Sermons', url: '/sermons', target: '_self', display_order: 1, is_active: true },
+  { id: 'media-news', parent_id: 'media', label: 'News & Announcements', url: '/news', target: '_self', display_order: 2, is_active: true },
+  { id: 'media-gallery', parent_id: 'media', label: 'Gallery', url: '/gallery', target: '_self', display_order: 3, is_active: true },
+  { id: 'media-radio', parent_id: 'media', label: 'Online Radio', url: '/online-radio', target: '_self', display_order: 4, is_active: true },
+];
+
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [now, setNow] = useState(new Date());
@@ -47,18 +69,35 @@ export function Navbar() {
   });
 
   // Dynamic navigation from DB
-  const { data: navItems = [] } = useQuery({
+  const { data: navItems = fallbackNavItems } = useQuery({
     queryKey: ['nav_primary'],
     queryFn: async () => {
-      const { data: menu } = await supabase.from('nav_menus').select('id').eq('slug', 'primary').maybeSingle();
-      if (!menu?.id) return [];
-      const { data: items } = await supabase
-        .from('nav_menu_items')
-        .select('*')
-        .eq('menu_id', menu.id)
-        .eq('is_active', true)
-        .order('display_order');
-      return (items ?? []) as NavItem[];
+      try {
+        const { data: menus } = await supabase
+          .from('nav_menus')
+          .select('id, slug, location')
+          .or('slug.eq.primary,slug.eq.header,location.eq.header')
+          .order('slug', { ascending: false });
+
+        const selectedMenu = (menus ?? []).find((menu) => menu.slug === 'primary')
+          ?? (menus ?? []).find((menu) => menu.slug === 'header')
+          ?? (menus ?? []).find((menu) => menu.location === 'header')
+          ?? null;
+
+        if (!selectedMenu?.id) return fallbackNavItems;
+
+        const { data: items } = await supabase
+          .from('nav_menu_items')
+          .select('*')
+          .eq('menu_id', selectedMenu.id)
+          .eq('is_active', true)
+          .order('display_order');
+
+        const menuItems = (items ?? []) as NavItem[];
+        return menuItems.length > 0 ? menuItems : fallbackNavItems;
+      } catch {
+        return fallbackNavItems;
+      }
     },
     staleTime: 60 * 1000,
   });
