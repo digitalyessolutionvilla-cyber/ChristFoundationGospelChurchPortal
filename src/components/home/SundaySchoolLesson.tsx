@@ -16,14 +16,14 @@ interface SundaySchoolLessonData {
 }
 
 const DEFAULT_LESSON: SundaySchoolLessonData = {
-  date: 'SUNDAY, SEPTEMBER 13, 2026',
-  lesson_number: 'LESSON - SENIOR',
-  reference: 'ISAIAH 12:1-6; HABAKKUK 3:17-19',
-  topic_en: 'THE GOODNESS OF GOD TO HIS SAINTS',
-  memory_verse_en: 'Praise ye the LORD. I will praise the LORD with my whole heart, in the assembly of the upright, and in the congregation (Psalm 111:1).',
-  reference_yo: 'ISAIAH 12:1-6; HABAKKUK 3:17-19',
-  topic_yo: 'OORE ỌLỌRUN SI AWỌN ENIYAN MIMỌ RẸ',
-  memory_verse_yo: 'Ẹ ma yìn OLUWA. Emi o ma yin OLUWA tinutinu mi, ninu ijọ awọn ẹni diduro-ṣinṣin, ati ni ijọ enia (Orin Dafidi 111:1).',
+  date: 'SUNDAY, SEPTEMBER 20, 2026',
+  lesson_number: 'LESSON 152 - SENIOR',
+  reference: 'NUMBERS 27:15-23; DEUTERONOMY 34:9; JOSHUA 1:1-18',
+  topic_en: "JOSHUA'S APPOINTMENT AS LEADER OF ISRAEL",
+  memory_verse_en: 'Have not I commanded thee? Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God is with thee whithersoever thou goest (Joshua 1:9).',
+  reference_yo: 'Numeri 27:15-23; Deuteronomi 34:9; Joṣua 1:1-18',
+  topic_yo: 'A YAN JOṢUA NI ALAKOSO ISRAẸLI',
+  memory_verse_yo: 'Emi kò ha paṣẹ fun ọ bi? Ṣe giri ki o si mu àiya le; máṣe bẹru, bẹẹni ki àiya ki o máṣe fò ọ: nitoripe OLUWA Ọlọrun rẹ wà pẹlu rẹ nibikibi ti iwọ ba nlọ (Joṣua 1:9).',
   image_url: '',
 };
 

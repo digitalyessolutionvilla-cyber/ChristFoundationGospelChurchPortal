@@ -1,0 +1,31 @@
+-- Update the morning devotional for Thursday, September 17, 2026
+INSERT INTO cms_content (key, value) VALUES
+  (
+    'morning_devotional',
+    '{
+      "series": "DAILY FOUNDATION",
+      "date": "THURSDAY, SEPTEMBER 17, 2026",
+      "title": "LET TRIAL BLESS",
+      "text_reference": "ROMANS 5:3",
+      "key_text": "“Knowing that tribulation worketh patience.” (ROMANS 5:3, KJV)",
+      "body": "This verse offers a promise in essence, even if not in form. We are in constant need of patience, and this text shows us how to gain it. We learn patience through enduring trials, just as someone learns to swim by actually swimming—not by staying on dry land. In the same way, we can''t learn patience without experiencing trouble. Isn''t it worth the suffering to gain that beautiful state of mind which calmly accepts all of God''s will?\n\nBut the verse points out a surprising fact that goes beyond natural understanding—tribulation, by itself, usually brings out irritation, unbelief, and rebellion. Only through the sacred work of grace does it produce patience. Just like no one would thrash wheat just to raise dust, so tribulation often seems like a harsh tool; yet it works to calm our spirit. We don’t toss a person about to give them rest, but that’s how the Lord deals with His children. This is not the way of man, but it showcases the wisdom of our all-knowing God.\n\nOh, for the grace to let my trials bless me! Why should I want to stop the gracious work they are doing? Lord, I ask You to remove my affliction, but I ask even more that You remove my impatience. Precious Lord Jesus, with Your cross, engrave the image of Your patience on my heart.\n\n(Culled from the Faith Checkbook by C.H. Spurgeon)",
+      "reflection": "Trials are often for a divine cause and purpose that can only be seen through Christ and through our patience.",
+      "song": "Oh Weary Heart There Is A Home (SFHB 519)",
+      "prayer": "Almighty God, thank you for every trial we have endured. We ask for your grace to be patient and to allow your blessings, beauty, and praise to be revealed in our moments of testing and trials. In Jesus’ name, Amen.",
+      "bible_in_one_year": "DANIEL 10 - 12",
+      "footer": "CHRIST, Our Sure Foundation.",
+      "series_yo": "IPILẸ OJOOJUMỌ",
+      "date_yo": "ỌJỌBỌ, ỌJỌ KẸTADINLOGUN OṢU KẸSAN, ỌDỌN 2026",
+      "title_yo": "JẸ KI IYIRIWO MU IBUKUN WA",
+      "text_reference_yo": "ROMU 5:3",
+      "key_text_yo": "“Bi a ti mọ̀ pe wahalà nṣiṣẹ sũru.” (ROMU 5:3)",
+      "body_yo": "Ẹsẹ Iwe mimọ yii nfunni ni ileri kan ni pato, koda bi ko tilẹ si ni irisi ti a ro. A nílò sùúrù nígbà gbogbo, ẹsẹ Ìwé Mímọ́ yìí sì jẹ́ ki á mọ bi a ṣe lè ni i. A ń kọ sùúrù nípasẹ̀ fifaradà àwọn iyiriwo, gẹ́gẹ́ bí ẹnì kan ti nkọ́ láti lúwẹ̀ẹ́ nípa lilúwẹ̀ẹ́ nitootọ—kì í ṣe nípa dídúró sórí ilẹ̀ gbígbẹ. Lọ́nà kan náà, a kò lè kọ́ sùúrù láìsí iriri ìdààmú. Njẹ ijiya naa ko ha niyelori lati le jere ipo ọkan to rẹwa naa ti nfi pẹlẹpẹlẹ gba gbogbo ifẹ Ọlọrun bi?\n\nṢùgbọ́n ẹsẹ Iwe Mimọ naa tọ́ka sí òtítọ́ kan tó yani lẹ́nu tí ó kọjá òye ẹda—ìpọ́njú niti rẹ̀, máa ń mú ìbínú, aigbàgbọ́, àti ìṣọ̀tẹ̀ jáde. Nipasẹ iṣẹ mimọ ti oore-ọfẹ nikan ni o fi nmu sũru jade. Gẹ́gẹbí kò ṣe si ẹ́ni ti yio máa fọ́ àlìkámà láti ri erukuru lasan, bẹ́ẹ̀ gẹgẹ ni ìpọ́njú sábà máa ń dàbí ohun èlò tó le; sibẹsibẹ o nṣiṣẹ lati ṣe itunu fun ẹmi wa. A ki i ju eniyan kan siwa sẹhin lati fun wọn ni isinmi, ṣugbọn bayi ni Oluwa ṣe nṣe pẹlu awọn ọmọ Rẹ. Èyí kì í ṣe ọ̀nà ènìyàn, ṣùgbọ́n ó nfi ọgbọ́n Ọlọ́run wa tí ó mọ ohun gbogbo hàn.\n\nAh, emi iba ni oore-ọfẹ lati jẹ ki awọn iyiriwo mi bukun mi! Kini eredi ti mo ṣe fẹ lati da iṣẹ oore-ọfẹ ti wọn nṣe duro? Oluwa, mo bere lowo Rẹ pe ki O mu ipọnju mi kuro, ṣugbon mo tun bere julọ pe ki O mu aini suuru mi kuro. Jesu Oluwa ọwọn, pẹlu agbelebu Rẹ, Ya aworan suuru Rẹ sinu ọkan mi.\n\n(A mu u jade lati inu Iwe Ayẹwo Igbagbọ lati ọwọ C.H. Spurgeon)",
+      "reflection_yo": "Awọn iyiriwo wa fun eredi ati ipinnu atọrunwa nigba gbogbo ti a le ri nipasẹ Kristi nikan ati nipasẹ sũru wa.",
+      "song_yo": "Ọkan Arẹ Ile Kan Mbẹ (SFHB 519)",
+      "prayer_yo": "Ọlọrun Olodumare, O ṣeun fun gbogbo iyiriwo ti a ti farada. A beere fun oore-ọfẹ Rẹ lati ni suuru ati lati jẹ ki awọn ibukun, ẹwa, ati iyin Rẹ han ni awọn akoko idanwo ati iyiriwo wa ni orukọ Jesu, Amin.",
+      "bible_in_one_year_yo": "DANIẸLI 10 - 12",
+      "footer_yo": "KRISTI, Ipilẹ Wa ti O daju.",
+      "image_url": ""
+    }'
+  )
+ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value;

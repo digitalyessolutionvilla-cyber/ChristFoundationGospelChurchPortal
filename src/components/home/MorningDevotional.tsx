@@ -34,26 +34,26 @@ interface MorningDevotionalData {
 
 const DEFAULT_DEVOTIONAL: MorningDevotionalData = {
   series: 'DAILY FOUNDATION',
-  date: 'WEDNESDAY, SEPTEMBER 9, 2026',
-  title: 'REDEMPTION FROM OPPRESSION I',
-  text_reference: 'JEREMIAH 50:33 - 35',
-  key_text: '”Their Redeemer is strong; the LORD of hosts is his name: he shall throughly plead their cause, that he may give rest to the land, and disquiet the inhabitants of Babylon.” (JEREMIAH 50:34, KJV)',
-  body: 'God is always interested in His people, and His care for them is beyond human comprehension. As he did in Egypt, God takes notice of his people\'s bondage in Babylon. Israel and Judah were oppressed together, and He has surely seen it and heard their cry.\n\nThe people of God became weak and powerless as those, the Babylonians, who took them captives held them fast, and were much too hard for them. However, this is their comfort in distress, that, though they are weak, their Redeemer is strong! The Lord, who is their Avenger, has a right to them, will claim his right and make good his claim.\n\nThe Lord is stronger than the enemy that holds fast to His people. He can overpower all the forces that are against them and put strength into His people. His name is the Lord of hosts, and He will answer to it, and make it known that He is what his people call Him, and He will be to them what His people call Him.\n\nTherefore, it is a great comfort for us, as believers, that, though we have host against us, we have the Lord of host for us and He shall thoroughly plead our cause, pleading He shall plead it, plead it jealously, effectually, plead and carry it, that he may give rest to our land, rest from all our enemies round about.',
-  reflection: 'The Lord shall plead our cause, and He shall plead it jealously and effectually till we have rest to our land.',
-  song: 'The Lord’s Our Rock in Him We Hide (SFHB 571)',
-  prayer: 'Almighty God, our great Redeemer and Avenger, hear us today and redeem us from all oppressors. Give rest to our land, and we shall continue to praise forever in Jesus\' name. Amen',
-  bible_in_one_year: 'EZEKIEL 40-41',
+  date: 'THURSDAY, SEPTEMBER 17, 2026',
+  title: 'LET TRIAL BLESS',
+  text_reference: 'ROMANS 5:3',
+  key_text: '“Knowing that tribulation worketh patience.” (ROMANS 5:3, KJV)',
+  body: `This verse offers a promise in essence, even if not in form. We are in constant need of patience, and this text shows us how to gain it. We learn patience through enduring trials, just as someone learns to swim by actually swimming—not by staying on dry land. In the same way, we can't learn patience without experiencing trouble. Isn't it worth the suffering to gain that beautiful state of mind which calmly accepts all of God's will?\n\nBut the verse points out a surprising fact that goes beyond natural understanding—tribulation, by itself, usually brings out irritation, unbelief, and rebellion. Only through the sacred work of grace does it produce patience. Just like no one would thrash wheat just to raise dust, so tribulation often seems like a harsh tool; yet it works to calm our spirit. We don’t toss a person about to give them rest, but that’s how the Lord deals with His children. This is not the way of man, but it showcases the wisdom of our all-knowing God.\n\nOh, for the grace to let my trials bless me! Why should I want to stop the gracious work they are doing? Lord, I ask You to remove my affliction, but I ask even more that You remove my impatience. Precious Lord Jesus, with Your cross, engrave the image of Your patience on my heart.\n\n(Culled from the Faith Checkbook by C.H. Spurgeon)`,
+  reflection: 'Trials are often for a divine cause and purpose that can only be seen through Christ and through our patience.',
+  song: 'Oh Weary Heart There Is A Home (SFHB 519)',
+  prayer: 'Almighty God, thank you for every trial we have endured. We ask for your grace to be patient and to allow your blessings, beauty, and praise to be revealed in our moments of testing and trials. In Jesus’ name, Amen.',
+  bible_in_one_year: 'DANIEL 10 - 12',
   footer: 'CHRIST, Our Sure Foundation.',
-  series_yo: 'IPILẸ OJOOJUMỌ́',
-  date_yo: 'ỌJỌRU, ỌJỌ KẸSAN OṢU KẸSAN, ỌDUN 2026',
-  title_yo: 'IRAPADA KURO LỌWỌ INILARA (APA KINNI)',
-  text_reference_yo: 'JEREMIAH 50:33 - 35',
-  key_text_yo: '”Ṣugbọn Olurapada wọn lagbara; Oluwa awọn ọmọ-ogun li orukọ rẹ̀: ni jijà yio gba ijà wọn jà! ki o le mu ilẹ na simi, ki o si mu awọn olugbe Babeli wariri.” (JEREMIAH 50:34)',
-  body_yo: 'Ọlọrun nifẹ si awọn eniyan Rẹ nigbagbogbo ati pe itọju Rẹ lori wọn kọja oye eniyan. Gẹ́gẹ́ bí O ti ṣe ní Egipti, Ọlọ́run kíyè sí ìgbèkùn àwọn ènìyàn rẹ̀ ní Bábílónì. Israeli ati Juda ni a nilara papọ, Oun si ti ri i dajudaju, O si gbọ igbe wọn.\n\nÀwọn ènìyàn Ọlọ́run di aláìlera àti aláìlágbára bí àwọn ará Bábílónì, tí wọ́n kó wọn nígbèkùn ti de wọn ṣinṣin, tí wọ́n sì le jù fún wọn. Sibẹsibẹ, eyi ni itunu wọn ninu ipọnju, pe, botilẹjẹpe wọn jẹ alailera, Olurapada wọn lagbara! Olúwa tí í ṣe Olùgbẹ̀san wọn, ní ẹ̀tọ́ sí wọn, yóò gba ẹ̀tọ́ rẹ̀, yóò sì mú ẹ̀tọ́ rẹ̀ ṣe.\n\nOluwa l’agbara ju ota ti o di eniyan Re mu lọ. O le bori gbogbo ipa ti o lodi si wọn, ki O si fi agbara sinu awọn eniyan Rẹ. Orúkọ rẹ̀ ni Olúwa àwọn ọmọ-ogun, Òun yóò sì dá a lóhùn, yóò sì jẹ́ kí ó di mimọ̀ pé Oun ni ohun tí àwọn ènìyàn rẹ̀ ń pè E, Oun yóò sì jẹ́ ohun tí àwọn ènìyàn Rẹ̀ ń pè é fún.\n\nNitorina, itunu nla ni fun wa, gege bi onigbagbo, pe, bi a tilẹ ni awọn ọmọ-ogun to dide lodi si wa, Oluwa awọn ọmọ-ogun wa fun wa, yio si gba ija wa ja daadaa, yio gba a ro, yio fi owu gba a ro, lododo, yio gba a ro, yio si gbé e, kí O lè fún ilẹ wa ní ìsinmi, isinmi lọwọ gbogbo àwọn ọ̀tá wa kaakiri.',
-  reflection_yo: 'Oluwa yio gba ẹjọ wa ro, yio si fi owú ati ododo gba a ro titi awa o fi ni isimi ni ilẹ wa.',
-  song_yo: 'Oluwa Li Apata Wa (SFHB 571)',
-  prayer_yo: 'Ọlọrun Olodumare, Olurapada ati Olugbẹsan wa agba, fetisi wa loni ki O si rà wa pada lọwọ gbogbo awọn aninilara. Fun ilẹ wa ni isimi, a o si maa yin Ọ titi lae ni orukọ Jesu. Amin',
-  bible_in_one_year_yo: 'ESIỌKIẸLI 40-41',
+  series_yo: 'IPILẸ OJOOJUMỌ',
+  date_yo: 'ỌJỌBỌ, ỌJỌ KẸTADINLOGUN OṢU KẸSAN, ỌDỌN 2026',
+  title_yo: 'JẸ KI IYIRIWO MU IBUKUN WA',
+  text_reference_yo: 'ROMU 5:3',
+  key_text_yo: '“Bi a ti mọ̀ pe wahalà nṣiṣẹ sũru.” (ROMU 5:3)',
+  body_yo: `Ẹsẹ Iwe mimọ yii nfunni ni ileri kan ni pato, koda bi ko tilẹ si ni irisi ti a ro. A nílò sùúrù nígbà gbogbo, ẹsẹ Ìwé Mímọ́ yìí sì jẹ́ ki á mọ bi a ṣe lè ni i. A ń kọ sùúrù nípasẹ̀ fifaradà àwọn iyiriwo, gẹ́gẹ́ bí ẹnì kan ti nkọ́ láti lúwẹ̀ẹ́ nípa lilúwẹ̀ẹ́ nitootọ—kì í ṣe nípa dídúró sórí ilẹ̀ gbígbẹ. Lọ́nà kan náà, a kò lè kọ́ sùúrù láìsí iriri ìdààmú. Njẹ ijiya naa ko ha niyelori lati le jere ipo ọkan to rẹwa naa ti nfi pẹlẹpẹlẹ gba gbogbo ifẹ Ọlọrun bi?\n\nṢùgbọ́n ẹsẹ Iwe Mimọ naa tọ́ka sí òtítọ́ kan tó yani lẹ́nu tí ó kọjá òye ẹda—ìpọ́njú niti rẹ̀, máa ń mú ìbínú, aigbàgbọ́, àti ìṣọ̀tẹ̀ jáde. Nipasẹ iṣẹ mimọ ti oore-ọfẹ nikan ni o fi nmu sũru jade. Gẹ́gẹbí kò ṣe si ẹ́ni ti yio máa fọ́ àlìkámà láti ri erukuru lasan, bẹ́ẹ̀ gẹgẹ ni ìpọ́njú sábà máa ń dàbí ohun èlò tó le; sibẹsibẹ o nṣiṣẹ lati ṣe itunu fun ẹmi wa. A ki i ju eniyan kan siwa sẹhin lati fun wọn ni isinmi, ṣugbọn bayi ni Oluwa ṣe nṣe pẹlu awọn ọmọ Rẹ. Èyí kì í ṣe ọ̀nà ènìyàn, ṣùgbọ́n ó nfi ọgbọ́n Ọlọ́run wa tí ó mọ ohun gbogbo hàn.\n\nAh, emi iba ni oore-ọfẹ lati jẹ ki awọn iyiriwo mi bukun mi! Kini eredi ti mo ṣe fẹ lati da iṣẹ oore-ọfẹ ti wọn nṣe duro? Oluwa, mo bere lowo Rẹ pe ki O mu ipọnju mi kuro, ṣugbon mo tun bere julọ pe ki O mu aini suuru mi kuro. Jesu Oluwa ọwọn, pẹlu agbelebu Rẹ, Ya aworan suuru Rẹ sinu ọkan mi.\n\n(A mu u jade lati inu Iwe Ayẹwo Igbagbọ lati ọwọ C.H. Spurgeon)`,
+  reflection_yo: 'Awọn iyiriwo wa fun eredi ati ipinnu atọrunwa nigba gbogbo ti a le ri nipasẹ Kristi nikan ati nipasẹ sũru wa.',
+  song_yo: 'Ọkan Arẹ Ile Kan Mbẹ (SFHB 519)',
+  prayer_yo: 'Ọlọrun Olodumare, O ṣeun fun gbogbo iyiriwo ti a ti farada. A beere fun oore-ọfẹ Rẹ lati ni suuru ati lati jẹ ki awọn ibukun, ẹwa, ati iyin Rẹ han ni awọn akoko idanwo ati iyiriwo wa ni orukọ Jesu, Amin.',
+  bible_in_one_year_yo: 'DANIẸLI 10 - 12',
   footer_yo: 'KRISTI, Ipilẹ Wa ti O daju.',
   image_url: '',
 };
@@ -102,11 +102,8 @@ export function MorningDevotional() {
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-2 text-church-red font-serif text-sm uppercase tracking-[0.24em] font-semibold mb-3">
               <BookHeart className="h-4 w-4" />
-              Morning Devotional
-            </div>
-            <p className="font-serif text-sm uppercase tracking-[0.24em] text-primary/70">
               {devotional.series}
-            </p>
+            </div>
             <h2 className="mt-2 font-display text-3xl md:text-4xl font-bold text-primary">
               {devotional.title}
             </h2>

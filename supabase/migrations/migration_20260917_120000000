@@ -1,0 +1,17 @@
+-- Update the Sunday School lesson for Sunday, September 20, 2026
+INSERT INTO cms_content (key, value) VALUES
+  (
+    'sunday_school_lesson',
+    '{
+      "date": "SUNDAY, SEPTEMBER 20, 2026",
+      "lesson_number": "LESSON 152 - SENIOR",
+      "reference": "NUMBERS 27:15-23; DEUTERONOMY 34:9; JOSHUA 1:1-18",
+      "topic_en": "JOSHUA''S APPOINTMENT AS LEADER OF ISRAEL",
+      "memory_verse_en": "Have not I commanded thee? Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God is with thee whithersoever thou goest (Joshua 1:9).",
+      "reference_yo": "Numeri 27:15-23; Deuteronomi 34:9; Joṣua 1:1-18",
+      "topic_yo": "A YAN JOṢUA NI ALAKOSO ISRAẸLI",
+      "memory_verse_yo": "Emi kò ha paṣẹ fun ọ bi? Ṣe giri ki o si mu àiya le; máṣe bẹru, bẹẹni ki àiya ki o máṣe fò ọ: nitoripe OLUWA Ọlọrun rẹ wà pẹlu rẹ nibikibi ti iwọ ba nlọ (Joṣua 1:9).",
+      "image_url": ""
+    }'
+  )
+ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value;
