@@ -1,0 +1,31 @@
+-- Update the morning devotional for Friday, September 18, 2026
+INSERT INTO cms_content (key, value) VALUES
+  (
+    'morning_devotional',
+    '{
+      "series": "DAILY FOUNDATION",
+      "date": "FRIDAY, SEPTEMBER 18, 2026",
+      "title": "NEGATIVE OR POSITIVE HELP?",
+      "text_reference": "2 CHRONICLES 20:23-24",
+      "key_text": "“For the children of Ammon and Moab stood up against the inhabitants of mount Seir, utterly to slay and destroy them: and when they had made an end…every one helped to destroy another.” (2 CHRONICLES 20:23, KJV)",
+      "body": "What a barbaric and devastating situation it was to see that the overwhelming spiritual death and destruction among the saints can be caused by the destructive division that exists among us. What was once merely an identity division between Paul and Apollos has, in some cases, turned into a situation of slaying and destruction.\n\nThe slaying and destruction of others are common among sinners and the ungodly. Their natural tendency is to kill, steal, and destroy. They are of the stock of the children of wrath, who have no regard for God in their thoughts. For this reason, they slay one another, whether by words or deeds. They are eager to destroy and, sadly, can help one another in destroying themselves.\n\nHowever, finding such ungodly behavior among many believers is surprising and deeply concerning. The children of peace have sometimes balkanized themselves and turned against one another, becoming like the children of Ammon, Moab, and Mount Seir, helping to destroy one another.\n\nBeloved, let us examine ourselves today. How much of your words, attitude, and behavior have you used in destroying your fellow brethren? Do you speak ungodly, untruthful, and unedifying words? Do you backbite and wound others with your words? Do your actions discourage, weaken, or destroy the faith of others?\n\nOh, let us repent today! The ministry we have received from Christ is the ministry of reconciliation. Let us show that we are responsible Christians, committed to the works and life of Jesus Christ. Rather than helping one another to destroy ourselves, God will be pleased to see us helping one another toward edification and healing through prayer, love, encouragement, and edifying words.\n\nLet our words build rather than break. Let our attitudes heal rather than wound. Let our actions strengthen rather than weaken. May we become instruments through which God brings encouragement, restoration, and spiritual growth to His people.",
+      "reflection": "Is your help edifying or killing? God will be pleased if all that we do helps others to grow.",
+      "song": "Is Your Life a Channel of Blessing (SFHB 479)",
+      "prayer": "Lord Jesus, give me a heart of love, unity, reconciliation, and compassion. Help me to speak words that edify and pray for those who are weak. Make me an instrument of healing and spiritual growth in the body of Christ. In Jesus’ name, Amen.",
+      "bible_in_one_year": "EZRA 1–3",
+      "footer": "CHRIST, Our Sure Foundation.",
+      "series_yo": "ÌPÌLẸ̀ OJOOJUMỌ",
+      "date_yo": "ỌJỌ́ ẸTÌ, ỌJỌ KEJIDINLOGUN OṢÙ KẸSÁN, ỌDÚN 2026",
+      "title_yo": "ÌRÀNLỌ́WỌ́ RERE TABI EYITI N PANI LARA NI BI?",
+      "text_reference_yo": "2 KRONIKA 20:23-24",
+      "key_text_yo": "“Awọn ọmọ Ammoni ati Moabu si dide si awọn ti ngbe òke Seiri, lati pa, ati lati run wọn tũtu: nigbati nwọn si pa awọn ti ngbe òke Seiri run tan, ẹnikini nṣe iranlọwọ lati run ẹnikeji.” (2 KRONIKA 20:23)",
+      "body_yo": "Ohun tó burú tí ó sì ń bani nínú jẹ́ gidi ni láti rí i pé ikú àti ìparun ti ẹ̀mí tó gbilẹ̀ laarín àwọn ènìyàn mimọ lè jẹ́ àbájáde ìpínyà oniparun tí ó wà laarín wa. Ohun tí ó bẹ̀rẹ̀ gẹ́gẹ́ bí ipinya níti ìdánimọ̀ laarín Paulù àti Apollo ti di, ní àwọn ọ̀ràn kan, ipò iṣekupani ati iparun ara wọn.\n\niṣekupani àti ṣiṣe ìparun àwọn ẹlòmíràn jẹ́ ohun tí ó wọ́pọ̀ laarín àwọn ẹlẹ́ṣẹ̀ àti àwọn alaiwa-bi-Ọlọ́run. Ìtẹ̀sí inú wọn ni láti pa, lati jale, àti láti parun. Wọ́n jẹ́ lára àwọn ọmọ ìbínú, tí kò ka Ọlọ́run sí nínú èrò wọn. Nítorí èyí, wọ́n ń pa ara wọn, yálà nípa ọ̀rọ̀ tàbí nípa ìṣe. Wọ́n ń yára láti ṣe iparun ara wọn, ó sì bani nínú jẹ́ pé wọ́n lè ran ara wọn lọ́wọ́ láti pa ara wọn run.\n\nAmọ, ó jẹ́ ohun ìyàlẹ́nu àti ohun ti ko dun mọni ninu láti rí irú ìwà aiwa-bi-Ọlọ́run bẹ́ẹ̀ laarín ọ̀pọ̀ àwọn onígbàgbọ́. Awọn ọmọ àlàáfíà ti pín ara wọn sí ẹgbẹ́ẹgbẹ́, wọ́n sì di ọta ara wọn, tí wọ́n si dà bí àwọn ọmọ Ammoni, Moabu àti òkè Seiri, tí wọ́n ṣe iranwọ láti pa ara wọn run.\n\nOlùfẹ́, ẹ jẹ́ ki a yẹ ara wa wò lónìí. Mélo nínú àwọn ọ̀rọ̀, ìwà àti ìṣesi rẹ ni o ti lò láti ba àwọn arákùnrin àti arábìnrin rẹ jẹ́? Njẹ o ń sọ àwọn ọ̀rọ̀ aiwa-bi-Ọlọ́run, tí ko jẹ́ òtítọ́, ti ko si gbé ènìyàn ró bi? Njẹ o ń sọ̀rọ̀ ẹ̀yìn, tí o sì ń fi ọ̀rọ̀ rẹ̀ ṣe ọgbẹ fun ẹlomiran bi? Njẹ àwọn ìṣesi rẹ ń mú kí ìgbàgbọ́ àwọn ẹlòmíràn rẹ̀wẹ̀sì, kí ó di aláìlera, tàbí kí ó parun bi?\n\nẸ jẹ́ ki á ronúpìwàdà lónìí! Iṣẹ́ ìránṣẹ́ tí a ti gba láti ọ̀dọ̀ Kristi ni iṣẹ́ iranṣẹ ti ìlàjà. Ẹ jẹ́ ki a fihàn pé a jẹ́ Kristẹni tí ó ní ojúṣe, tí o fi ara rẹ jin fun iṣẹ àti ìgbésí ayé Jésù Kristi. Dípò kí a máa ṣe iranwọ láti pa ara wa run, Ọlọ́run yóò dùnnu láti rí wa tí a ń ran ara wa lọ́wọ́ sí igbeniro àti ìmúláradá nípasẹ̀ àdúrà, ìfẹ́, ọrọ iwuri àti àwọn ọ̀rọ̀ tí ń gbé ènìyàn ró.\n\nẸ jẹ́ kí àwọn ọ̀rọ̀ wa gbe ènìyàn ró dípò kí o wó wọn lulẹ̀. Ẹ jẹ́ kí ìwà wa ṣe ìmúláradá dípò kí ó ṣe ọgbẹ́. Ẹ jẹ́ kí àwọn ìṣesi wa fún àwọn ẹlòmíràn ní okun dípò kí wọ́n sọ wọn di alailera. Kí a lè di àwọn ohun èlò tí Ọlọ́run ń lò láti mú iwuri, ìmúpadàbọ̀sípò àti ìdàgbàsókè ti ẹ̀mí wá fun àwọn ènìyàn Rẹ̀.",
+      "reflection_yo": "Njẹ ìrànlọ́wọ́ rẹ ń gbé ènìyàn ró tàbí ó ń pa wọ́n bi? Inu Ọlọ́run yóò dùn bí gbogbo ohun tí a bá ń ṣe bá ń ran àwọn ẹlòmíràn lọ́wọ́ láti dàgbà.",
+      "song_yo": "O Ha J''ohun Elo Ibukun (SFHB 479)",
+      "prayer_yo": "Jesu Olúwa, fún mi ní ọkàn ìfẹ́, ìṣọ̀kan, ìlàjà àti ìyọ́nú. Ràn mí lọ́wọ́ láti máa sọ àwọn ọ̀rọ̀ tí ń gbé ènìyàn ró, kí n sì máa gbàdúrà fún àwọn tí ó jẹ alailera. Ṣe mí ní ohun èlò ìmúláradá àti ìdàgbàsókè ti ẹ̀mí nínú ara Kristi. Ní orúkọ Jésù. Àmín.",
+      "bible_in_one_year_yo": "ẸSRA 1–3",
+      "footer_yo": "KRISTI, Ipilẹ Wa ti O daju.",
+      "image_url": ""
+    }'
+  )
+ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value;
