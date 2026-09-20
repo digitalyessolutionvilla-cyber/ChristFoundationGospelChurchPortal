@@ -1,0 +1,8 @@
+-- Keep the temporary National Youth Rally announcement separate from Youth Ministry content
+UPDATE cms_content
+SET value = $youth$
+The CFGC Youth Ministry is dedicated to raising a generation of young people who are rooted in God's Word, empowered by the Holy Spirit, and equipped to make a difference in their world. We provide a dynamic, fun, and faith-filled environment where young people can encounter God, build meaningful friendships, and discover their purpose.
+
+Through weekly fellowships, Bible studies, prayer meetings, and outreach activities, our youth are challenged to grow in their relationship with God and to be salt and light in their communities. We believe that young people are not just the church of tomorrow — they are the church of today.
+  $youth$
+WHERE key = 'youth_ministry_text';
