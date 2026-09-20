@@ -8,6 +8,8 @@ import { Badge } from '@/components/ui/badge';
 import { Newspaper, Calendar } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 interface NewsArticle {
   id: string; title: string; content: string; image_url: string;
@@ -102,7 +104,7 @@ export default function NewsPage() {
       <main className="flex-1 py-16 px-4">
         <div className="max-w-5xl mx-auto">
           {isLoading ? (
-            <div className="space-y-6">{[1,2,3].map(i => <Skeleton key={i} className="h-48 rounded-2xl" />)}</div>
+            <div className="space-y-6">{[1, 2, 3].map(i => <Skeleton key={i} className="h-48 rounded-2xl" />)}</div>
           ) : articles?.length === 0 ? (
             <div className="text-center py-20">
               <Newspaper className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
@@ -127,6 +129,17 @@ export default function NewsPage() {
                             {article.published_at ? format(parseISO(article.published_at), 'MMMM d, yyyy') : ''}
                           </div>
                           <p className="text-sm font-serif text-muted-foreground line-clamp-3">{article.content}</p>
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button variant="outline" size="sm" className="mt-4 font-serif">Read More</Button>
+                            </DialogTrigger>
+                            <DialogContent className="max-h-[90vh] max-w-3xl overflow-y-auto">
+                              <DialogHeader>
+                                <DialogTitle className="font-display text-2xl text-primary">{article.title}</DialogTitle>
+                              </DialogHeader>
+                              <div className="whitespace-pre-line font-serif leading-8 text-foreground/85">{article.content}</div>
+                            </DialogContent>
+                          </Dialog>
                         </div>
                       </article>
                     ))}
@@ -151,6 +164,17 @@ export default function NewsPage() {
                             </div>
                           </div>
                           <p className="text-sm font-serif text-muted-foreground line-clamp-2">{article.content}</p>
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button variant="outline" size="sm" className="mt-3 font-serif">Read More</Button>
+                            </DialogTrigger>
+                            <DialogContent className="max-h-[90vh] max-w-3xl overflow-y-auto">
+                              <DialogHeader>
+                                <DialogTitle className="font-display text-2xl text-primary">{article.title}</DialogTitle>
+                              </DialogHeader>
+                              <div className="whitespace-pre-line font-serif leading-8 text-foreground/85">{article.content}</div>
+                            </DialogContent>
+                          </Dialog>
                         </div>
                       </article>
                     ))}

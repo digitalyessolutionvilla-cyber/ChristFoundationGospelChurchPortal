@@ -1,6 +1,8 @@
 import { Calendar, MapPin, Clock } from 'lucide-react';
 import { format, parseISO, isPast } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 interface Event {
   id: string;
@@ -66,6 +68,26 @@ export function EventCard({ event }: EventCardProps) {
             </div>
           )}
         </div>
+
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="outline" size="sm" className="mt-4 font-serif">
+              Read More
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="font-display text-2xl text-primary">{event.title}</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4 font-serif text-foreground/85">
+              <p className="whitespace-pre-line leading-7">{event.description}</p>
+              <div className="space-y-2 border-t border-border pt-4 text-sm">
+                <p><strong>Date:</strong> {format(date, 'EEEE, MMMM d, yyyy')}</p>
+                {event.location && <p><strong>Venue:</strong> {event.location}</p>}
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
