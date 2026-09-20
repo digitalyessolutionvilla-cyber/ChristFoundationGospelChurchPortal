@@ -14,13 +14,79 @@ interface NewsArticle {
   author: string; is_featured: boolean; published_at: string;
 }
 
+const FALLBACK_NEWS_ARTICLE: NewsArticle = {
+  id: 'national-youth-rally-news-2026',
+  title: '2026 National Youth Rally: Christ Foundation Gospel Church Calls Young People to “Fight the Good Fight of Faith”',
+  content: `By Christ Foundation Gospel Church (Inc.)
+
+September 2026
+
+Christ Foundation Gospel Church (Inc.), through its Covenant Youths, is set to host the 2026 National Youth Rally, a three-day gathering designed to inspire, equip and empower young people through the Word of God, prayer, fellowship and practical activities.
+
+The rally, themed “Fight the Good Fight of Faith”, is anchored on the biblical charge from 1 Timothy 6:12: “Fight the good fight of faith.”
+
+A Programme Designed to Empower the Youth
+
+The 2026 National Youth Rally will feature a range of spiritual, creative and developmental activities aimed at engaging young people and encouraging them in their faith journey.
+
+Activities scheduled for the rally include:
+
+• Word Exposition
+• Symposia
+• Prevailing Prayer
+• Teens Presentations
+• Youth Concert
+• Drama
+• Entrepreneurial Workshop
+
+The organisers say the gathering will provide an opportunity for young people to receive biblical teaching, participate in prayer and worship, develop meaningful relationships, and gain practical insights through the entrepreneurial workshop.
+
+Ministering
+
+The programme will be ministered by Rev. N. A. Akintobi, General Overseer, who will lead participants through the theme of standing firm and remaining committed to the Christian faith.
+
+Event Details
+
+Event: 2026 National Youth Rally
+Theme: Fight the Good Fight of Faith
+Date: Thursday, 29th – Saturday, 31st October 2026
+Time: 9:00 AM Daily
+Venue: 5–13 Tijani Ayoola Street, Iroko Town via Ajegunle B/Stop, Sango-Ota, Ogun State.
+
+Join the Celebration
+
+Young people, families, church members and guests are invited to participate in the three-day programme and experience a time of spiritual renewal, learning, worship and fellowship.
+
+The event will also be available online through the church's social media platforms.
+
+Facebook: CFGC Nationwide
+YouTube: CFGC
+
+For enquiries, contact:
++234 703 974 9785
++234 703 333 75418
+
+“Come, be blessed and empowered.”
+
+Christ Foundation Gospel Church (Inc.)`,
+  image_url: '',
+  author: 'Christ Foundation Gospel Church (Inc.)',
+  is_featured: true,
+  published_at: '2026-09-20T00:00:00Z',
+};
+
 export default function NewsPage() {
   const { data: articles, isLoading } = useQuery({
     queryKey: ['news'],
     queryFn: async () => {
-      const { data } = await supabase.from('news_announcements').select('*').eq('is_published', true).order('published_at', { ascending: false });
-      return (data ?? []) as NewsArticle[];
+      try {
+        const { data } = await supabase.from('news_announcements').select('*').eq('is_published', true).order('published_at', { ascending: false });
+        return data?.length ? data as NewsArticle[] : [FALLBACK_NEWS_ARTICLE];
+      } catch {
+        return [FALLBACK_NEWS_ARTICLE];
+      }
     },
+    initialData: [FALLBACK_NEWS_ARTICLE],
   });
 
   const featured = articles?.filter(a => a.is_featured) ?? [];
