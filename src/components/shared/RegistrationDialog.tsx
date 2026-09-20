@@ -18,8 +18,8 @@ export function RegistrationDialog({ className = '', label = 'Register Now' }: R
                     {label}
                 </Button>
             </DialogTrigger>
-            <DialogContent className="h-[92vh] max-w-4xl overflow-hidden p-0">
-                <DialogHeader className="border-b border-border px-5 py-4">
+            <DialogContent className="flex h-[92vh] max-w-4xl flex-col gap-0 overflow-hidden p-0">
+                <DialogHeader className="shrink-0 border-b border-border px-5 py-2">
                     <DialogTitle className="font-display text-xl text-primary">National Youth Rally Registration</DialogTitle>
                 </DialogHeader>
                 <iframe
