@@ -1,0 +1,56 @@
+-- Add the 2026 National Youth Rally to events and Youth Ministry content
+INSERT INTO events (title, description, event_date, location, is_featured)
+SELECT
+  '2026 NATIONAL YOUTH RALLY — FIGHT THE GOOD FIGHT OF FAITH',
+  $event$
+The Covenant Youths, Christ Foundation Gospel Church (Inc.), presents the 2026 National Youth Rally.
+
+Theme: Fight the Good Fight of Faith — 1 Timothy 6:12
+Date: Thursday, 29th – Saturday, 31st October, 2026
+Time: 9:00 AM Daily
+
+Featuring: Word Exposition, Symposia, Prevailing Prayer, Teens Presentations, Youth Concert, Drama, and Entrepreneurial Workshop.
+
+Rev. N. A. Akintobi, General Overseer
+For enquiries: +234 703 974 9785; +234 703 333 75418
+Join us live: Facebook CFGC Nationwide; YouTube CFGC
+Come, be blessed and empowered.
+  $event$,
+  '2026-10-29',
+  '5–13 Tijani Ayoola Street, Iroko Town via Ajegunle B/Stop, Sango-Ota, Ogun State',
+  true
+WHERE NOT EXISTS (
+  SELECT 1 FROM events WHERE title = '2026 NATIONAL YOUTH RALLY — FIGHT THE GOOD FIGHT OF FAITH'
+);
+
+INSERT INTO cms_content (key, value)
+VALUES (
+  'youth_ministry_text',
+  $youth$
+The CFGC Youth Ministry is dedicated to raising a generation of young people who are rooted in God's Word, empowered by the Holy Spirit, and equipped to make a difference in their world. We provide a dynamic, fun, and faith-filled environment where young people can encounter God, build meaningful friendships, and discover their purpose.
+
+Through weekly fellowships, Bible studies, prayer meetings, and outreach activities, our youth are challenged to grow in their relationship with God and to be salt and light in their communities. We believe that young people are not just the church of tomorrow — they are the church of today.
+
+**2026 NATIONAL YOUTH RALLY**
+**FIGHT THE GOOD FIGHT OF FAITH**
+“Fight the good fight of faith” — 1 Timothy 6:12
+
+The Covenant Youths, Christ Foundation Gospel Church (Inc.), presents the 2026 National Youth Rally.
+
+**Date:** Thursday, 29th – Saturday, 31st October, 2026
+**Time:** 9:00 AM Daily
+**Venue:** 5–13 Tijani Ayoola Street, Iroko Town via Ajegunle B/Stop, Sango-Ota, Ogun State.
+
+**Featuring:** Word Exposition, Symposia, Prevailing Prayer, Teens Presentations, Youth Concert, Drama, and Entrepreneurial Workshop.
+
+**Rev. N. A. Akintobi**
+General Overseer
+
+**For Enquiries:** +234 703 974 9785; +234 703 333 75418
+
+**Join Us Live:** Facebook: CFGC Nationwide | YouTube: CFGC
+
+Come, be blessed and empowered.
+  $youth$
+)
+ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value;

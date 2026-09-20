@@ -5,6 +5,15 @@ import { EventCard } from '@/components/shared/EventCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import { CalendarDays } from 'lucide-react';
 
+const RALLY_EVENT = {
+  id: 'national-youth-rally-2026',
+  title: '2026 NATIONAL YOUTH RALLY — FIGHT THE GOOD FIGHT OF FAITH',
+  description: 'The Covenant Youths present the 2026 National Youth Rally. Thursday, 29th – Saturday, 31st October, 2026 at 9:00 AM daily. Featuring Word Exposition, Symposia, Prevailing Prayer, Teens Presentations, Youth Concert, Drama, and Entrepreneurial Workshop. For enquiries: +234 703 974 9785; +234 703 333 75418.',
+  event_date: '2026-10-29',
+  location: '5–13 Tijani Ayoola Street, Iroko Town via Ajegunle B/Stop, Sango-Ota, Ogun State',
+  is_featured: true,
+};
+
 export function UpcomingEvents() {
   const today = new Date().toISOString().split('T')[0];
 
@@ -18,8 +27,8 @@ export function UpcomingEvents() {
         .gte('event_date', today)
         .order('event_date', { ascending: true })
         .limit(3);
-      if (error) throw error;
-      return data ?? [];
+      if (error || !data?.length) return [RALLY_EVENT];
+      return data;
     },
   });
 
