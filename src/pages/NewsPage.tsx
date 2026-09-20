@@ -10,6 +10,7 @@ import { format, parseISO } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { RegistrationDialog } from '@/components/shared/RegistrationDialog';
 
 interface NewsArticle {
   id: string; title: string; content: string; image_url: string;
@@ -140,6 +141,7 @@ export default function NewsPage() {
                               <div className="whitespace-pre-line font-serif leading-8 text-foreground/85">{article.content}</div>
                             </DialogContent>
                           </Dialog>
+                          <RegistrationDialog className="mt-3" />
                         </div>
                       </article>
                     ))}
@@ -175,6 +177,7 @@ export default function NewsPage() {
                               <div className="whitespace-pre-line font-serif leading-8 text-foreground/85">{article.content}</div>
                             </DialogContent>
                           </Dialog>
+                          <RegistrationDialog className="mt-3" />
                         </div>
                       </article>
                     ))}

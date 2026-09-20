@@ -12,6 +12,7 @@ const RALLY_EVENT = {
   event_date: '2026-10-29',
   location: '5–13 Tijani Ayoola Street, Iroko Town via Ajegunle B/Stop, Sango-Ota, Ogun State',
   is_featured: true,
+  registration_link: 'https://form.svhrt.com/6aaf8c0e5f15ef5ec31e3687',
 };
 
 export function UpcomingEvents() {

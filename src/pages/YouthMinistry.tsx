@@ -2,6 +2,7 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { CMSText } from '@/components/shared/CMSText';
+import { RegistrationDialog } from '@/components/shared/RegistrationDialog';
 import { Users, BookOpen, Heart, Music, CalendarDays, Clock3, MapPin, Phone, ExternalLink } from 'lucide-react';
 
 const activities = [
@@ -94,6 +95,7 @@ const YouthMinistry = () => {
                   <a href="/news" className="mt-6 inline-flex items-center gap-2 font-serif text-sm font-semibold text-primary hover:text-church-red">
                     Read full announcement <ExternalLink className="h-4 w-4" />
                   </a>
+                  <RegistrationDialog className="mt-4 w-full sm:w-auto" />
                 </div>
               </div>
             </section>

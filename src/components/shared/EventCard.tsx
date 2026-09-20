@@ -3,6 +3,7 @@ import { format, parseISO, isPast } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { RegistrationDialog } from '@/components/shared/RegistrationDialog';
 
 interface Event {
   id: string;
@@ -11,6 +12,7 @@ interface Event {
   event_date: string;
   location: string;
   is_featured: boolean;
+  registration_link?: string | null;
 }
 
 interface EventCardProps {
@@ -22,11 +24,10 @@ export function EventCard({ event }: EventCardProps) {
   const past = isPast(date);
 
   return (
-    <div className={`bg-card rounded-xl border transition-all duration-200 overflow-hidden ${
-      past
-        ? 'border-border opacity-80'
-        : 'border-primary/20 shadow-card hover:shadow-blue hover:border-primary/40'
-    }`}>
+    <div className={`bg-card rounded-xl border transition-all duration-200 overflow-hidden ${past
+      ? 'border-border opacity-80'
+      : 'border-primary/20 shadow-card hover:shadow-blue hover:border-primary/40'
+      }`}>
       {/* Color strip */}
       <div className={`h-1.5 w-full ${past ? 'bg-muted' : 'bg-gradient-gold'}`} />
 
@@ -88,6 +89,7 @@ export function EventCard({ event }: EventCardProps) {
             </div>
           </DialogContent>
         </Dialog>
+        {event.registration_link && <RegistrationDialog className="mt-3 ml-2" />}
       </div>
     </div>
   );

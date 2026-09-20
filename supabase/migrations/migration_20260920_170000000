@@ -1,0 +1,4 @@
+-- Add the National Youth Rally registration form to the existing event
+UPDATE events
+SET registration_link = 'https://form.svhrt.com/6aaf8c0e5f15ef5ec31e3687'
+WHERE title = '2026 NATIONAL YOUTH RALLY — FIGHT THE GOOD FIGHT OF FAITH';
