@@ -22,31 +22,31 @@ const WatchLive = () => {
             <div className="h-1 w-24 bg-gradient-gold mx-auto mb-8" />
 
             <h2 className="font-display text-3xl md:text-4xl font-bold text-primary mb-4">
-              Live Stream Coming Soon
+              Watch Us Live on YouTube
             </h2>
             <p className="font-serif text-foreground/70 text-lg mb-3 leading-relaxed">
-              We are preparing to bring our services to you online.
+              Join our services from anywhere in the world.
             </p>
             <p className="font-serif text-muted-foreground text-sm leading-relaxed mb-8">
-              Soon you will be able to watch our Sunday services, camp meetings, and special programs live from wherever you are. Check our social media for updates.
+              Watch our Sunday services, camp meetings, and special programs on the CFGC Online YouTube channel.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
               <a
-                href="https://facebook.com"
+                href="https://www.youtube.com/@cfgconline/streams"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-block bg-primary text-primary-foreground font-serif font-semibold px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
               >
-                Follow on Facebook
+                Watch YouTube Live
               </a>
               <a
-                href="https://twitter.com/cfgcglobal"
+                href="https://web.facebook.com/cfgcglobal"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-block bg-secondary text-secondary-foreground font-serif font-semibold px-6 py-3 rounded-lg hover:bg-secondary/80 transition-colors border border-border"
               >
-                Follow @cfgcglobal
+                Follow on Facebook
               </a>
             </div>
 

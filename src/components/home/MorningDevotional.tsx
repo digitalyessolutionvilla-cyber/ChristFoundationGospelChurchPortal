@@ -34,15 +34,15 @@ interface MorningDevotionalData {
 
 const DEFAULT_DEVOTIONAL: MorningDevotionalData = {
   series: 'DAILY FOUNDATION',
-  date: 'FRIDAY, SEPTEMBER 18, 2026',
-  title: 'NEGATIVE OR POSITIVE HELP?',
-  text_reference: '2 CHRONICLES 20:23-24',
-  key_text: '“For the children of Ammon and Moab stood up against the inhabitants of mount Seir, utterly to slay and destroy them: and when they had made an end…every one helped to destroy another.” (2 CHRONICLES 20:23, KJV)',
+  date: 'SUNDAY, SEPTEMBER 20, 2026',
+  title: 'CHRIST: OUR DIVINE GUIDE',
+  text_reference: 'PSALMS 32:8',
+  key_text: '“I will instruct thee and teach thee in the way which thou shalt go: I will guide thee with mine eye.” (PSALMS 32:8, KJV)',
   body: `What a barbaric and devastating situation it was to see that the overwhelming spiritual death and destruction among the saints can be caused by the destructive division that exists among us. What was once merely an identity division between Paul and Apollos has, in some cases, turned into a situation of slaying and destruction.\n\nThe slaying and destruction of others are common among sinners and the ungodly. Their natural tendency is to kill, steal, and destroy. They are of the stock of the children of wrath, who have no regard for God in their thoughts. For this reason, they slay one another, whether by words or deeds. They are eager to destroy and, sadly, can help one another in destroying themselves.\n\nHowever, finding such ungodly behavior among many believers is surprising and deeply concerning. The children of peace have sometimes balkanized themselves and turned against one another, becoming like the children of Ammon, Moab, and Mount Seir, helping to destroy one another.\n\nBeloved, let us examine ourselves today. How much of your words, attitude, and behavior have you used in destroying your fellow brethren? Do you speak ungodly, untruthful, and unedifying words? Do you backbite and wound others with your words? Do your actions discourage, weaken, or destroy the faith of others?\n\nOh, let us repent today! The ministry we have received from Christ is the ministry of reconciliation. Let us show that we are responsible Christians, committed to the works and life of Jesus Christ. Rather than helping one another to destroy ourselves, God will be pleased to see us helping one another toward edification and healing through prayer, love, encouragement, and edifying words.\n\nLet our words build rather than break. Let our attitudes heal rather than wound. Let our actions strengthen rather than weaken. May we become instruments through which God brings encouragement, restoration, and spiritual growth to His people.`,
-  reflection: 'Is your help edifying or killing? God will be pleased if all that we do helps others to grow.',
-  song: 'Is Your Life a Channel of Blessing (SFHB 479)',
-  prayer: 'Lord Jesus, give me a heart of love, unity, reconciliation, and compassion. Help me to speak words that edify and pray for those who are weak. Make me an instrument of healing and spiritual growth in the body of Christ. In Jesus’ name, Amen.',
-  bible_in_one_year: 'EZRA 1–3',
+  reflection: 'God is the most faithful and willing guide. Let us trust Him to lead every step of our lives.',
+  song: 'Lead Us, Heavenly Father (SFHB 552)',
+  prayer: 'Lord, I acknowledge You as my guide. Help me to trust Your direction and follow Your leading every day. Let your eyes lead me in the path of righteousness and peace. Amen.',
+  bible_in_one_year: 'HAGGAI 1–2',
   footer: 'CHRIST, Our Sure Foundation.',
   series_yo: 'ÌPÌLẸ̀ OJOOJUMỌ',
   date_yo: 'ỌJỌ́ ẸTÌ, ỌJỌ KEJIDINLOGUN OṢÙ KẸSÁN, ỌDÚN 2026',
@@ -58,6 +58,19 @@ const DEFAULT_DEVOTIONAL: MorningDevotionalData = {
   image_url: '',
 };
 
+Object.assign(DEFAULT_DEVOTIONAL, {
+  body: `Have you ever traveled to a place without knowing the direction? In such moments, we naturally seek help to find our way. Years ago, travelers had to rely on asking strangers for directions. A friend once shared how, in some Western countries with vast lands and similar-looking roads, people often had to study paper maps for days before embarking on a journey. In Africa, where access to maps may be limited, many ask for help along the way or pay a commercial motorcyclist to lead them to their destination.\n\nToday, technology has transformed navigation. Tools like GPS, Google Maps, and Waze provide instant directions. However, as helpful as these tools are, they are not without flaws: they may malfunction, reroute unnecessarily, or lead to longer, more costly paths. More importantly, they cannot guide us away from spiritual dangers like sin, sickness, or satanic traps.\n\nBut here is the good news: just as GPS leads in the physical, God is the unfailing spiritual guide of His people. God declares His desire and ability to instruct, teach, and guide us in our text. When we allow the Lord to lead, we are kept from paths of destruction. Unlike technology, God never fails, never misleads, and never runs out of signal. He will never take us outside His divine will.\n\nAre you on the wrong path? Are you lost spiritually or emotionally? Turn on your spiritual GPS; let God, through the Holy Spirit, lead you back to His will and glory. No matter how far you’ve gone in the wrong direction, once you surrender to His leading, He will bring you back to where you belong.\n\nLastly, take note of the precious promise: “I will guide thee with mine eye.” Having God’s eye upon us is the most excellent assurance in life’s journey. With his eyes guiding us, we will walk with strength and confidence of eternal life and peace.`,
+  date_yo: 'ỌJỌ AIKU, OGUNJỌ OṢU KẸSAN, ỌDUN 2026',
+  title_yo: 'KRISTI: ITỌNI ATỌRUNWA WA',
+  text_reference_yo: 'ORIN DAFIDI 32:8',
+  key_text_yo: '“Emi o fi ẹsẹ̀ rẹ le ọ̀na, emi o si kọ́ ọ li ọ̀na ti iwọ o rìn: emi o ma fi oju mi tọ́ ọ.” (ORIN DAFIDI 32:8)',
+  body_yo: `Njẹ o ti rin irin-ajo lọ si agbegbe kan ri lai mọ ọna bi? Ni iru awọn akoko bẹẹ, a ma nsaba wa iranlọwọ lati mọ ọna wa. Ni awọn ọdun diẹ sẹyin, awọn aririn ajo ni lati gbẹkẹle bibeere itọni lọwọ awọn ajeji. Ọ̀rẹ́ kan sọ nigba kan, bí àwọn orílẹ̀-èdè kan ní Ìwọ̀ Oòrùn tí ó ní ilẹ̀ gbígbòòrò àti àwọn ojú ọ̀nà tó jọ ara wọn, àwọn ènìyàn nilati tẹjumọ máàpù ori beba fún ọ̀pọ̀lọpọ ọjọ́ kí wọ́n tó bẹ̀rẹ̀ ìrìn àjò wọn. Ní Áfíríkà, níbi tí àwòrán itọsọna (maapu) ṣeeṣe ki o ma si, ọ̀pọ̀lọpọ eniyan ńbéèrè fún ìrànlọ́wọ́ lójú ọ̀nà tàbí kí wọ́n sanwó fún alùpùpù kan láti ṣamọna wọn de ibi tí wọ́n ń lọ.\n\nLoni, imọ-ẹrọ ti yi irin-ajo pada. Awọn irinṣẹ bii 'GPS', maapu Google, ati 'Waze' npese awọn itọsọna lẹsẹkẹsẹ. Amọ, bi awọn ohun-elo wọnyi ti jẹ iranwọ to, wọn ko ṣe alaini ikuna wọn: wọn le ṣe aiṣedeede, wọn le yi ọna pada lainidi, tabi dari eniyan si ọna gigun, ti yio na eniyan lowo pupọ. Ní pàtàkì jùlọ, wọn kò lè ṣamọ̀nà wa kúrò nínú àwọn ewu tẹ̀mí bí ẹ̀ṣẹ̀, àìsàn, tàbí ìdẹkùn sátánì.\n\nṢugbọn eyi ni iroyin ayọ naa: gẹgẹ bi 'GPS' ṣe nṣe itọsọna niti ara, Ọlọrun ni itọsọna ti ẹmi ti kii kuna fun awọn eniyan Rẹ. Ọlọ́run kéde ìfẹ́ àti agbára Rẹ̀ láti fi ẹsẹ ẹni le ọna, lati kọ́ni, àti láti tọ́ wa sọ́nà nínú ìbi kika wa. Nigba ti a ba gba Oluwa laaye lati dari, a pa wa mọ kuro ni ipa-ọna iparun. Láìdàbí ìmọ̀ ẹ̀rọ, Ọlọ́run kì í kùnà, kì í ṣini lọ́nà, kì í sì kuna àmì. Oun ko jẹ mu wa kuro ninu ifẹ Rẹ lae.\n\nNjẹ o wa ni ọna ti ko tọna bi? Njẹ o ti sọnu nipa ti ẹmi tabi ti ẹdun ọkan bi? Tan itọni (GPS) ti ẹmi rẹ; jẹ ki Ọlọrun, nipasẹ Ẹmi Mimọ, ṣamọna rẹ pada sinu ifẹ ati ogo Rẹ. Bó ti wù ki o ti lọ jìnnà tó lọna ti kò tọna, ni kete ti o ba jọwọ ara rẹ fún ìdarí Rẹ̀, Oun yoo mú ọ padà wá síbi tí o yẹ fun.\n\nNi ipari, ṣàkíyèsí ìlérí iyebiye náà: “Emi o ma fi oju mi tọ́ ọ.” Nini oju Ọlọrun lara wa ni idaniloju ti o tayọ julọ ni irin-ajo igbesi aye. Pẹ̀lú ojú Rẹ tí ń darí wa, a o máa rìn pẹ̀lú okun àti idaniloju ìyè àìnípẹ̀kun àti àlàáfíà.`,
+  reflection_yo: 'Ọlọrun ni olutọni olõtọ ati onifẹ julọ. Ẹ jẹ́ kí a gbẹ́kẹ̀lé E láti máa darí gbogbo ìgbésẹ̀ ìgbésí ayé wa.',
+  song_yo: 'Má Tọju Wa Baba Ọrun (SFHB 552)',
+  prayer_yo: 'Oluwa, mo gba Ọ gẹgẹbi amọna mi. Ran mi lọwọ lati gbẹkẹle itọsọna Rẹ ati lati tẹle idari Rẹ lojoojumọ. Jẹ ki oju Rẹ tọ mi lọ si ipa-ọna ododo ati alaafia. Amin.',
+  bible_in_one_year_yo: 'HAGGAI 1–2',
+});
+
 function parseDevotional(raw: string | null): MorningDevotionalData {
   if (!raw) return DEFAULT_DEVOTIONAL;
 
@@ -69,7 +82,8 @@ function parseDevotional(raw: string | null): MorningDevotionalData {
         'content' in parsed ||
         parsed.date === 'SUNDAY, SEPTEMBER 6, 2026' ||
         parsed.date === 'MONDAY, SEPTEMBER 7, 2026' ||
-        parsed.title === 'PARCHED LANDS INTO SPRINGS'
+        parsed.title === 'PARCHED LANDS INTO SPRINGS' ||
+        parsed.date !== DEFAULT_DEVOTIONAL.date
       ) return DEFAULT_DEVOTIONAL;
       return { ...DEFAULT_DEVOTIONAL, ...parsed };
     }

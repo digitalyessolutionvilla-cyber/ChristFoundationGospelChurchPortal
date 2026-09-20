@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Facebook, Twitter } from 'lucide-react';
+import { MapPin, Phone, Facebook, Instagram, Music2, Youtube } from 'lucide-react';
 
 const LOGO_URL = 'https://cdn.enter.pro/resources/uid_100066245/29b71ed7-ea27-47.png';
 
@@ -84,9 +84,9 @@ export function Footer() {
 
           <div className="mt-5">
             <h4 className="font-display font-semibold text-sm text-accent mb-2">Follow Us</h4>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-x-4 gap-y-2">
               <a
-                href="https://facebook.com"
+                href="https://web.facebook.com/cfgcglobal"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-1.5 text-xs font-serif text-primary-foreground/70 hover:text-accent transition-colors"
@@ -94,12 +94,28 @@ export function Footer() {
                 <Facebook className="w-4 h-4" /> Facebook
               </a>
               <a
-                href="https://twitter.com/cfgcglobal"
+                href="https://www.youtube.com/@cfgconline"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-1.5 text-xs font-serif text-primary-foreground/70 hover:text-accent transition-colors"
               >
-                <Twitter className="w-4 h-4" /> @cfgcglobal
+                <Youtube className="w-4 h-4" /> YouTube
+              </a>
+              <a
+                href="https://www.tiktok.com/@cfgcnationwide"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1.5 text-xs font-serif text-primary-foreground/70 hover:text-accent transition-colors"
+              >
+                <Music2 className="w-4 h-4" /> TikTok
+              </a>
+              <a
+                href="https://www.instagram.com/cfgcnationwide"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1.5 text-xs font-serif text-primary-foreground/70 hover:text-accent transition-colors"
+              >
+                <Instagram className="w-4 h-4" /> Instagram
               </a>
             </div>
           </div>

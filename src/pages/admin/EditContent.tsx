@@ -87,10 +87,10 @@ function EditContentInner() {
         <div className="flex items-start gap-2 bg-secondary/60 rounded-lg p-3 mb-4 text-xs font-serif text-muted-foreground">
           <Info className="w-4 h-4 shrink-0 mt-0.5" />
           {key === 'sunday_school_lesson'
-            ? 'Use valid JSON with keys: date, lesson_number, reference, topic_en, memory_verse_en, reference_yo, topic_yo, memory_verse_yo, image_url.'
+            ? 'Use valid JSON with keys: date, lesson_number, reference, topic_en, memory_verse_en, full_lesson_en, reference_yo, topic_yo, memory_verse_yo, full_lesson_yo, image_url.'
             : key === 'morning_devotional'
               ? 'Use valid JSON with English keys series, date, title, text_reference, key_text, body, reflection, song, prayer, bible_in_one_year, footer, plus the corresponding _yo keys for Yoruba and image_url.'
-            : 'Use double line breaks (Enter twice) to separate paragraphs. Use **text** for bold formatting.'}
+              : 'Use double line breaks (Enter twice) to separate paragraphs. Use **text** for bold formatting.'}
         </div>
 
         {isLoading || value === null ? (
