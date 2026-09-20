@@ -38,6 +38,14 @@ const YouthMinistry = () => {
               <CMSText contentKey="youth_ministry_text" className="text-foreground/85 font-serif" />
             </div>
 
+            <div className="mb-12 overflow-hidden rounded-3xl border border-border bg-muted shadow-card">
+              <img
+                src="/youth-rally-2026.png"
+                alt="2026 National Youth Rally flyer: Fight the Good Fight of Faith"
+                className="mx-auto block h-auto max-h-[52rem] w-full object-contain"
+              />
+            </div>
+
             <section className="mb-12 overflow-hidden rounded-3xl border border-primary/20 bg-primary text-primary-foreground shadow-blue">
               <div className="grid md:grid-cols-[0.9fr_1.1fr]">
                 <div className="relative flex min-h-[28rem] flex-col justify-between overflow-hidden bg-[radial-gradient(circle_at_70%_20%,hsl(35_96%_54%/.9),transparent_34%),linear-gradient(145deg,hsl(224_65%_15%),hsl(0_76%_42%))] p-7 md:p-9">
