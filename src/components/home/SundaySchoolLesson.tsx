@@ -20,14 +20,14 @@ interface SundaySchoolLessonData {
 }
 
 const DEFAULT_LESSON: SundaySchoolLessonData = {
-  date: 'SUNDAY, SEPTEMBER 20, 2026',
-  lesson_number: 'LESSON 152 - SENIOR',
-  reference: 'NUMBERS 27:15-23; DEUTERONOMY 34:9; JOSHUA 1:1-18',
-  topic_en: "JOSHUA'S APPOINTMENT AS LEADER OF ISRAEL",
-  memory_verse_en: 'Have not I commanded thee? Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God is with thee whithersoever thou goest (Joshua 1:9).',
-  reference_yo: 'Numeri 27:15-23; Deuteronomi 34:9; Joṣua 1:1-18',
-  topic_yo: 'A YAN JOṢUA NI ALAKOSO ISRAẸLI',
-  memory_verse_yo: 'Emi kò ha paṣẹ fun ọ bi? Ṣe giri ki o si mu àiya le; máṣe bẹru, bẹẹni ki àiya ki o máṣe fò ọ: nitoripe OLUWA Ọlọrun rẹ wà pẹlu rẹ nibikibi ti iwọ ba nlọ (Joṣua 1:9).',
+  date: 'SUNDAY, SEPTEMBER 27, 2026',
+  lesson_number: 'LESSON 153 - SENIOR',
+  reference: 'JOSHUA 2:1-24',
+  topic_en: 'RAHAB AND THE SCARLET LINE',
+  memory_verse_en: 'And the blood shall be to you for a token upon the houses where ye are: and when I see the blood, I will pass over you (Exodus 12:13).',
+  reference_yo: 'Joṣua 2:1-24',
+  topic_yo: 'RAHABU ATI OKÙN ODÒDÓ',
+  memory_verse_yo: 'Ẹjẹ na ni yio si ṣe àmi fun nyin lara ile ti ẹnyin gbé wà: nigbati emi ba ri ẹjẹ na, emi o ré nyin kọja (Ẹksodu 12:13).',
   full_lesson_en: `For English
 
 [NUM:27:15-23]; [DEU:34:9]; [JOS:1:1-18].
@@ -192,8 +192,95 @@ Ki ni idahun wọn?`,
   image_url: '',
 };
 
+const LOCAL_LESSON_153: SundaySchoolLessonData = {
+  ...DEFAULT_LESSON,
+  full_lesson_en: `RAHAB AND THE SCARLET LINE
+
+[JOS:2:1-24].
+
+Lesson - Senior
+
+Memory Verse
+
+And the blood shall be to you for a token upon the houses where ye are: and when I see the blood, I will pass over you (Exodus 12:13).
+
+Cross References
+
+I The Two Spies Concealed in Rahab's House
+
+1. Joshua sent two men to spy out Jericho secretly, and they came to Rahab's house, [JOS:2:1].
+2. Rahab hid them from the king's men, [JOS:2:2-7].
+
+II Rahab's Covenant with the Two Spies
+
+Rahab confessed that the LORD is God in heaven above and earth beneath. She asked the spies to save her family, and they agreed if she kept their mission secret, [JOS:2:8-14].
+
+III The Token of Deliverance
+
+Rahab let the spies down by a cord and was instructed to bind the scarlet cord in her window as a token. Everyone who remained inside her house would be saved, [JOS:2:15-20]; [EXO:12:13].
+
+IV The Return to Israel's Camp
+
+Rahab bound the scarlet line in the window. The spies hid in the mountain, returned to Joshua, and reported that the LORD had delivered the land into Israel's hands, [JOS:2:21-24].
+
+Notes
+
+Rahab believed in the God of Israel despite growing up among the idolatry and wickedness of Jericho. The scarlet line was a token of safety and points to the blood of the Lamb, Jesus Christ, through whom God provides redemption.
+
+Questions
+
+1. Of what nationality were the inhabitants of Jericho?
+2. What did they hear about Israel's God?
+3. What was the difference between Rahab and her townsmen?
+4. Of what event was the scarlet line a symbol?
+5. Why did Rahab befriend the two men?
+6. What was the result of her kindness?
+7. What passage confirms Rahab's faith and salvation?`,
+  full_lesson_yo: `RAHABU ATI OKÙN ÒDÒDÓ
+
+Joṣua 2:1-24
+
+Lesson - Senior
+
+Memory Verse
+
+Ẹjẹ na ni yio si ṣe àmi fun nyin lara ile ti ẹnyin gbé wà: nigbati emi ba ri ẹjẹ na, emi o ré nyin kọja (Ẹksodu 12:13).
+
+Cross References
+
+I A Fi Awọn Ami Meji Naa Pamọ ni Ile Rahabu
+
+Joṣua rán ọkunrin meji lati yọ lọ ṣe ami ilu Jẹriko. Rahabu fi wọn pamọ kuro lọwọ awọn iranṣẹ ọba, [Joṣua 2:1-7].
+
+II Majẹmu Rahabu pẹlu Awọn Ami Meji Naa
+
+Rahabu jẹwọ pe Ọlọrun Israẹli ni Ọlọrun Ọrun ati aye. O bẹ awọn ami naa pe ki wọn dá oun ati gbogbo ile rẹ sí, wọn si gba, [Joṣua 2:8-14].
+
+III Àmì fun Igbala Rahabu ati awọn Ara Ile Rẹ
+
+Rahabu sọ wọn kalẹ pẹlu okùn, wọn si sọ fun un lati so okùn ododó mọ oju ferese rẹ gẹgẹ bi àmì fun igbala. Gbogbo ẹni ti o ba wà ninu ile naa ni a ó dá sí, [Joṣua 2:15-20]; [Ẹksodu 12:13].
+
+IV Ipadabọ Awọn Ọkunrin Naa si Ibudo Israẹli
+
+Rahabu so okùn ododó mọ ferese. Awọn ami naa pada tọ Joṣua lọ wọn si sọ pe Oluwa ti fi gbogbo ilẹ naa le Israẹli lọwọ, [Joṣua 2:21-24].
+
+ALAYE
+
+Rahabu ni igbagbọ ninu Ọlọrun Israẹli laaarin ibọriṣa ati iwa buburu ti Jeriko. Okùn ododó jẹ àmì aabo, o si tọka si ẹjẹ Ọdọ-agutan, Jesu Kristi, ẹni ti Ọlọrun fi fun wa fun irapada.
+
+AWỌN IBEERE
+
+1. Awọn ara ilu wo ni awọn olugbe Jẹriko?
+2. Ki ni wọn gbọ nipa Ọlọrun Israẹli?
+3. Ki ni iyatọ ti ó wà laaarin Rahabu ati awọn ara ilu rẹ?
+4. Iṣẹlẹ wo ni ọjá ododó jẹ apẹẹrẹ rẹ?
+5. Ki ni ṣe ti Rahabu fi ran awọn ami meji lọwọ?
+6. Ki ni abayọrisi inu rere rẹ si wọn?
+7. Ẹsẹ wo ni o fi idi igbagbọ ati igbala rẹ mulẹ?`,
+};
+
 function parseLesson(raw: string | null): SundaySchoolLessonData {
-  if (!raw) return DEFAULT_LESSON;
+  if (!raw) return LOCAL_LESSON_153;
 
   try {
     const parsed = JSON.parse(raw);
@@ -203,14 +290,14 @@ function parseLesson(raw: string | null): SundaySchoolLessonData {
         parsed.date === 'SUNDAY, AUGUST 30, 2026' ||
         parsed.date === 'SUNDAY, SEPTEMBER 6, 2026' ||
         parsed.topic_en === 'THE PRICE HE MUST PAY'
-      ) return DEFAULT_LESSON;
+      ) return LOCAL_LESSON_153;
       return { ...DEFAULT_LESSON, ...parsed };
     }
   } catch {
     // Ignore malformed JSON and fall back to the default lesson data.
   }
 
-  return DEFAULT_LESSON;
+  return LOCAL_LESSON_153;
 }
 
 function FullLessonDialog({ title, triggerLabel, content }: { title: string; triggerLabel: string; content: string }) {
