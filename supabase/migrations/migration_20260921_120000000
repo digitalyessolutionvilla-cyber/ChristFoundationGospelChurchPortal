@@ -1,0 +1,33 @@
+-- Update the morning devotional for Monday, September 21, 2026
+INSERT INTO cms_content (key, value) VALUES
+  (
+    'morning_devotional',
+    $json$
+    {
+      "series": "DAILY FOUNDATION",
+      "date": "MONDAY, SEPTEMBER 21, 2026",
+      "title": "IS THERE A DIFFERENCE?",
+      "text_reference": "EXODUS 11:7",
+      "key_text": "“But against any of the children of Israel shall not a dog move his tongue, against man or beast: that ye may know how that the Lord doth put a difference between the Egyptians and Israel” (EXODUS 11:7, KJV)",
+      "body": "Can God control even the barking of dogs? Yes, He can. He can keep an Egyptian dog from harming one of Israel’s lambs. If God can silence the dogs, whether literal or figurative, including the vicious “dogs” among men and even the great dog at hell’s gate, then we can go forward without fear.\n\nEven if He allows the dogs to bark, He can prevent them from biting. They may make a lot of noise, but they can’t do us any real harm. Still, how sweet it is when all is quiet! How wonderful to move among enemies and see that God has made them live in peace with us. Like Daniel in the lions' den, we are unharmed even in the presence of destroyers.\n\nOh, that this promise of the Lord to Israel would be true for me today! If the “dog” is bothering me, I will tell the Lord about it. Lord, he won’t listen to my words, but if You speak, he will be silenced. Give me peace, O my God, and let me see so clearly that this peace is from You, that I may know the difference Your grace has made in my life compared to the ungodly!",
+      "reflection": "God can silence the dogs, whether literal or figurative, including the vicious “dogs” among men and even the great dog at hell’s gate.",
+      "song": "Storms Do Not Alarm Me (SFHB 525)",
+      "prayer": "Almighty God, thank you for the assurance of the difference between my enemies and me. Lord, help me to silence every dog that threatens my faith; keep me from the hurt of the enemies, and I shall continue to glorify your name. In Jesus name. Amen",
+      "bible_in_one_year": "ZACHARIAH 1-7",
+      "footer": "CHRIST, Our Sure Foundation.",
+      "series_yo": "ÌPÌLẸ̀ OJOOJUMỌ",
+      "date_yo": "ỌJỌ́ ÀJÉ, OJỌ́ KỌKANLELOGUN OṢÙ KẸSÁN, ỌDÚN 2026",
+      "title_yo": "NJẸ ÌYÀTỌ̀ WÀ BI?",
+      "text_reference_yo": "ẸKSODU 11:7",
+      "key_text_yo": "“Ṣugbọn si ọkan ninu awọn ọmọ Israeli li ajá ki yio yọ ahọn rẹ̀, si enia tabi si ẹran: ki ẹnyin ki o le mọ̀ bi OLUWA ti fi ìyatọ sãrin awọn ara Egipti ati Israeli.” (ẸKSODU 11:7)",
+      "body_yo": "Njẹ Ọlọ́run lè ṣàkóso gbígbó àwọn ajá bi? Bẹ́ẹ̀ni, O lè ṣe é. Ó lè dá ajá ará Egipti dúró lati máṣe ṣe ipalara fun ọ̀kan lara àwọn ọ̀dọ́-àgùntàn Israẹli. Bí Ọlọ́run bá lè pa àwọn ajá lẹnu mọ—yálà àwọn ajá gidi tàbí àwọn “ajá” ní afiwe, títí kan àwọn \"aja\" digbolugi laarin awọn ènìyàn àti aja to buru julọ tó wà ní ẹnu-ọ̀nà ọ̀run-apaadi, nígbà náà a lè tẹ̀síwájú láìsí ìbẹ̀rù.\n\nKódà bí Ó bá gba kí àwọn ajá naa gbó, Ó lè dí wọn lọ́wọ́ lati maṣe ge eniyan jẹ. Wọ́n lè pariwo gan-an, ṣùgbọ́n wọn kò lè ṣe wa ní ìpalára. Síbẹ̀, bawo lo ti dùn to nígbà tí ohun gbogbo bá wa ni idákẹ́ rọrọ! Ó ti jẹ́ ohun ìyanu to láti rìn laarín àwọn ọ̀tá, kí a sì rí i pé Ọlọ́run ti mú kí wọ́n gbe ní àlàáfíà pẹ̀lú wa. Gẹgẹbí Dáníẹ́lì nínú ihò kìnnìún, bẹ́ẹ̀ gẹgẹ ni a wà láìfarapa kódà níwájú àwọn tí ó fẹ́ pa wá run.\n\nAh, ki ileri Olúwa yìí tí Ó ṣe fún Israẹli lè jẹ́ òtítọ́ fún mi lónìí! Bí “ajá” naa bá ń yọ mí lẹ́nu, emi yoo sọ fún Olúwa nípa rẹ̀. Olúwa, aja naa kò fẹ́ gbọ́ ọ̀rọ̀ mi, ṣùgbọ́n bí Iwọ bá sọ̀rọ̀, yóò dákẹ́. Fún mi ní àlàáfíà, Ọlọ́run mi, kí O sì jẹ́ kí n riran kedere pé àlàáfíà yìí ti ọ̀dọ̀ Rẹ̀ wá, kí n lè mọ ìyàtọ̀ tí oore-ọ̀fẹ́ Rẹ̀ ti ṣe nínú ìgbésí ayé mi ní ìfiwéra pẹ̀lú àwọn alaiwa-bi-Ọlọ́run!",
+      "reflection_yo": "Ọlọ́run lè pa àwọn ajá lẹnu mọ, yálà àwọn ajá gidi tàbí àwọn “ajá” ní afiwe, títí kan àwọn \"aja\" digbolugi laarin awọn ènìyàn àti aja búburú julọ to wa ni ẹnu-ọ̀nà ọ̀run-apaadi.",
+      "song_yo": "Ẹru 'Ji Ko Ba Mi (SFHB 525)",
+      "prayer_yo": "Ọlọ́run Olódùmarè, mo dúpẹ́ lọwọ Rẹ fún ìdánilójú ìyàtọ̀ láàrín èmi àti àwọn ọ̀tá mi. Olúwa, ba mi pa gbogbo “ajá” tí ó ń halẹ̀ mọ́ ìgbàgbọ́ mi lẹnu mọ; pami mọ kúrò nínú ìpalára àwọn ọ̀tá, emi o sì tẹsiwaju lati máa yin orúkọ Rẹ. Ní orúkọ Jésù. Àmín.",
+      "bible_in_one_year_yo": "SEKARIAH 1–7",
+      "footer_yo": "KRISTI, Ipilẹ Wa ti O daju.",
+      "image_url": ""
+    }
+    $json$
+  )
+ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value;

@@ -83,7 +83,7 @@ function parseDevotional(raw: string | null): MorningDevotionalData {
         parsed.date === 'SUNDAY, SEPTEMBER 6, 2026' ||
         parsed.date === 'MONDAY, SEPTEMBER 7, 2026' ||
         parsed.title === 'PARCHED LANDS INTO SPRINGS' ||
-        parsed.date !== DEFAULT_DEVOTIONAL.date
+        parsed.title === 'DEFILE NOT YOURSELVES'
       ) return DEFAULT_DEVOTIONAL;
       return { ...DEFAULT_DEVOTIONAL, ...parsed };
     }
